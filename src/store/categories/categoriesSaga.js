@@ -8,7 +8,7 @@ import {
 import { put, call, takeLatest } from "redux-saga/effects";
 
 function fetchCategoriesApi() {
-  return getData(`${serverUrl}/categories`);
+  return getData(`/categories`);
 }
 
 function* fetchCategories() {

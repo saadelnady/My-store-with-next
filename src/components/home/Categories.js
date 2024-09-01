@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
-import List from "./List";
 import { useEffect } from "react";
 import { getCategories } from "@/store/categories/categoriesActions";
+import List from "./List";
 
 const Categories = () => {
   const dispatch = useDispatch();

@@ -1,32 +1,30 @@
 import {
-  GET_CATEGORIES,
-  GET_CATEGORIES_FAIL,
-  GET_CATEGORIES_SUCCESS,
+  GET_PRODUCTS,
+  GET_PRODUCTS_FAIL,
+  GET_PRODUCTS_SUCCESS,
 } from "./actionsTypes";
 
 const initialState = {
-  categories: [],
-  category: {},
+  products: [],
+  product: {},
   isLoading: false,
   error: null,
 };
 
-export default function categoriesReducer(state = initialState, action) {
-  console.log("action.payLoad ====>", action.payLoad);
-
+export default function productsReducer(state = initialState, action) {
   switch (action.type) {
-    case GET_CATEGORIES:
+    case GET_PRODUCTS:
       return {
         ...state,
         isLoading: true,
       };
-    case GET_CATEGORIES_SUCCESS:
+    case GET_PRODUCTS_SUCCESS:
       return {
         ...state,
         isLoading: false,
-        categories: action?.payLoad?.data,
+        products: action?.payLoad?.data,
       };
-    case GET_CATEGORIES_FAIL:
+    case GET_PRODUCTS_FAIL:
       return {
         ...state,
         isLoading: false,

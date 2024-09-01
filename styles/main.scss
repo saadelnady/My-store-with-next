@@ -146,7 +146,6 @@ html {
 }
 header {
   background: $main-bg-color;
-
   position: sticky;
   top: 0;
   left: 0;
@@ -420,26 +419,27 @@ header {
 }
 
 .list {
-  margin-top: 10px;
-  display: flex;
-  justify-content: space-between;
+  margin: 20px 0;
   .item {
-    cursor: pointer;
-    width: 200px;
-    height: 200px;
-
-    .item-img {
-      object-fit: contain;
+    width: fit-content;
+    margin-inline-end: 50px;
+    img {
+      display: block;
+      margin: 0 auto;
       width: 100px;
       height: 100px;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
     }
     p {
+      font-weight: bold;
+      margin-top: 10px;
       text-align: center;
     }
   }
-}
-body {
-  position: relative;
 }
 .loading {
   position: fixed;
@@ -460,4 +460,99 @@ body {
 .error {
   margin: 10px auto;
   text-align: center;
+}
+.products {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  .product-card {
+    min-height: 25rem;
+    position: relative;
+    min-width: 20rem;
+    margin-bottom: 10px;
+
+    .product-img {
+      width: 20rem;
+      height: 25rem;
+      transition: 0.5s;
+
+      &:hover {
+        transform: scale(1.1);
+      }
+    }
+
+    .header {
+      position: relative;
+      background-color: var(--bg-light);
+      overflow: hidden;
+      text-align: center;
+
+      .discountPercentage {
+        position: absolute;
+        background-color: var(--red-color);
+        top: 130px;
+        left: 40px;
+        padding: 5px 10px;
+        border-radius: 6px;
+        color: #fff;
+        z-index: 600;
+      }
+
+      .product-icons {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        top: 130px;
+        right: -40px;
+        z-index: 600;
+        transition: 0.5s;
+
+        svg {
+          color: black;
+          padding: 5px;
+          width: 40px;
+          height: 40px;
+          background-color: #fff;
+          transition: 0.5s;
+          border-radius: 50%;
+
+          &:hover {
+            color: #fff;
+            background-color: var(--red-color);
+          }
+        }
+      }
+    }
+
+    .content {
+      padding: 1rem;
+      text-align: center;
+
+      .title {
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+
+      .description {
+        font-size: 1rem;
+        color: #666;
+        margin-bottom: 1rem;
+      }
+
+      .final-price {
+        font-size: 1.25rem;
+        color: rgba(219, 68, 68, 1);
+        margin-bottom: 0.5rem;
+      }
+
+      .price-before-discount {
+        font-size: 1rem;
+        color: rgba(0, 0, 0, 1);
+      }
+    }
+
+    .product-img {
+      pointer-events: none;
+    }
+  }
 }

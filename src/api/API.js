@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const serverUrl = process.env.SERVER_URL;
+const serverUrl = "https://ecommerce.routemisr.com/api/v1";
 
 const handleRequest = async (method, URL, data = null) => {
   const headers = {
