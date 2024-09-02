@@ -4,18 +4,18 @@ import {
   GET_CATEGORIES_SUCCESS,
 } from "./actionsTypes";
 
-export const getCategories = (payLoad) => {
+export const getCategories = () => {
   return {
     type: GET_CATEGORIES,
-    payLoad,
   };
 };
 export const getCategoriesSuccess = (payLoad) => {
-  return {
+   return {
     type: GET_CATEGORIES_SUCCESS,
     payLoad,
   };
 };
+
 export const getCategoriesFail = (payLoad) => {
   return {
     type: GET_CATEGORIES_FAIL,

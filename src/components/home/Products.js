@@ -6,14 +6,13 @@ import Card from "../shared/card";
 const Products = () => {
   const { products, isLoading } = useSelector((state) => state.productsReducer);
   const dispatch = useDispatch();
-  console.log("products -===>", products);
 
   useEffect(() => {
     dispatch(getProducts());
   }, []);
   return (
     <div className="container">
-      <div className="products">
+      <div className="row justify-content-between">
         {products.map((product, index) => (
           <Card item={product} key={index} />
         ))}

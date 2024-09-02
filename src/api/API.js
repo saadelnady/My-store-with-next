@@ -3,9 +3,11 @@ import axios from "axios";
 const serverUrl = "https://ecommerce.routemisr.com/api/v1";
 
 const handleRequest = async (method, URL, data = null) => {
-  const headers = {
-    token: localStorage.getItem("TOKEN"),
-  };
+  const headers = {};
+
+  if (typeof window !== "undefined") {
+    headers.token = localStorage.getItem("TOKEN");
+  }
 
   const response = await axios({
     method,

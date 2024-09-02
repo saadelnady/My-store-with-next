@@ -1,9 +1,9 @@
 import Head from "next/head";
 import HomePage from "../src/components/home";
 
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import { wrapper } from "@/store";
+import { getCategories } from "@/store/categories/categoriesActions";
+import { endSaga } from "@/helpers/helpers";
 
 export default function Home() {
   return (
@@ -18,3 +18,17 @@ export default function Home() {
     </>
   );
 }
+
+export const getStaticProps = wrapper.getStaticProps((store) => async () => {
+  console.log("Dispatching getCategories action");
+  store.dispatch(getCategories());
+  await endSaga(store);
+  const state = store.getState();
+  const categories = state?.categoriesReducer?.categories;
+  console.log("Categories from state: ", categories);
+
+  return {
+    props: {},
+    revalidate: 10,
+  };
+});

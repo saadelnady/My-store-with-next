@@ -429,87 +429,10 @@ header .container .links li a:hover, header .container .links li a.active {
   text-align: center;
 }
 
-.products {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-}
-.products .product-card {
-  min-height: 25rem;
-  position: relative;
-  min-width: 20rem;
-  margin-bottom: 10px;
-}
-.products .product-card .product-img {
-  width: 20rem;
-  height: 25rem;
-  transition: 0.5s;
-}
-.products .product-card .product-img:hover {
-  transform: scale(1.1);
-}
-.products .product-card .header {
-  position: relative;
-  background-color: var(--bg-light);
-  overflow: hidden;
-  text-align: center;
-}
-.products .product-card .header .discountPercentage {
-  position: absolute;
-  background-color: var(--red-color);
-  top: 130px;
-  left: 40px;
-  padding: 5px 10px;
-  border-radius: 6px;
-  color: #fff;
-  z-index: 600;
-}
-.products .product-card .header .product-icons {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  top: 130px;
-  right: -40px;
-  z-index: 600;
-  transition: 0.5s;
-}
-.products .product-card .header .product-icons svg {
-  color: black;
-  padding: 5px;
-  width: 40px;
-  height: 40px;
-  background-color: #fff;
-  transition: 0.5s;
-  border-radius: 50%;
-}
-.products .product-card .header .product-icons svg:hover {
-  color: #fff;
-  background-color: var(--red-color);
-}
-.products .product-card .content {
-  padding: 1rem;
-  text-align: center;
-}
-.products .product-card .content .title {
-  font-size: 1.5rem;
-  margin-bottom: 0.5rem;
-}
-.products .product-card .content .description {
-  font-size: 1rem;
-  color: #666;
-  margin-bottom: 1rem;
-}
-.products .product-card .content .final-price {
-  font-size: 1.25rem;
-  color: rgb(219, 68, 68);
-  margin-bottom: 0.5rem;
-}
-.products .product-card .content .price-before-discount {
-  font-size: 1rem;
-  color: rgb(0, 0, 0);
-}
-.products .product-card .product-img {
-  pointer-events: none;
+.product-img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
 }
 
 /*# sourceMappingURL=main.css.map */
