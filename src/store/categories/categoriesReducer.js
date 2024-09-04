@@ -12,8 +12,7 @@ const initialState = {
 };
 
 export default function categoriesReducer(state = initialState, action) {
-  console.log("action.payLoad ====>", action.payLoad);
-
+ 
   switch (action.type) {
     case GET_CATEGORIES:
       return {

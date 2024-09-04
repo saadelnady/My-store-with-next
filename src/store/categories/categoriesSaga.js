@@ -9,18 +9,15 @@ import { put, call, takeLatest } from "redux-saga/effects";
 
 async function fetchCategoriesApi() {
   const response = await getData(`/categories`);
-  console.log("API Response: ", response);
-  return response;
+   return response;
 }
 
 function* fetchCategories() {
   try {
     const categories = yield call(fetchCategoriesApi);
-    console.log("categories YA SAAD===>", categories);
-    yield put(getCategoriesSuccess(categories));
+     yield put(getCategoriesSuccess(categories));
   } catch (error) {
-    console.error("Failed to fetch categories:", error);
-    yield put(getCategoriesFail(error));
+     yield put(getCategoriesFail(error));
   }
 }
 // ========================================================================

@@ -12,7 +12,7 @@ const Products = () => {
   }, []);
   return (
     <div className="container">
-      <div className="row justify-content-between">
+      <div className="row">
         {products.map((product, index) => (
           <Card item={product} key={index} />
         ))}

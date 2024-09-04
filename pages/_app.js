@@ -1,4 +1,5 @@
 import Header from "@/components/shared/header";
+import Footer from "@/components/shared/footer";
 import { wrapper } from "@/store";
 
 import "bootstrap/dist/css/bootstrap.css";
@@ -17,6 +18,7 @@ function App({ Component, pageProps }) {
     <>
       <Header />
       <Component {...pageProps} />
+      <Footer />
     </>
   );
 }

@@ -2,11 +2,11 @@ import Slider from "./Slider";
 import Categories from "./Categories";
 import Products from "./Products.js";
 
-const index = () => {
+const index = ({ categories }) => {
   return (
     <>
       <Slider />
-      <Categories />
+      <Categories categories={categories} />
       <Products />
     </>
   );
