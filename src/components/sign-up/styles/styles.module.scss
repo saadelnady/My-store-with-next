@@ -1,0 +1,52 @@
+@import "@/styles/variables.scss";
+
+.sign-up-form {
+  :global {
+    position: relative;
+    z-index: 3;
+    div {
+      width: 100%;
+      height: 80px;
+      margin-bottom: 35px;
+      #error-message {
+        color: #fff;
+        font-size: 100px;
+        font-weight: bold;
+      }
+    }
+
+    h3 {
+      margin-bottom: 10px;
+    }
+    input {
+      width: 100%;
+      margin-bottom: 10px;
+      padding: 10px 15px;
+      border-radius: 10px;
+      -webkit-border-radius: 10px;
+      -moz-border-radius: 10px;
+      -ms-border-radius: 10px;
+      -o-border-radius: 10px;
+      outline: none;
+      border: 2px solid $main-text-color;
+      font-size: 18px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+    label {
+      font-weight: bold;
+      margin-bottom: 10px;
+    }
+    button {
+      margin-left: auto;
+      margin-top: 15px;
+      border: 1px solid $light-color;
+      display: block;
+    }
+
+    button,
+    h3,
+    label {
+      color: $light-color;
+    }
+  }
+}

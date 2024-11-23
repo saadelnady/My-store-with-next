@@ -1,21 +1,14 @@
 import { useSelector } from "react-redux";
 import List from "./List";
+import { Container } from "react-bootstrap";
 
-const Categories = ({ categories }) => {
-  // const { isLoading, categories, error } = useSelector(
-  //   (state) => state.categoriesReducer
-  // );
+const Categories = () => {
+  const { categories, error } = useSelector((state) => state.categories);
 
   return (
-    <div className="container">
-      <div>
-        {categories && categories.length > 0 ? (
-          <List data={categories} />
-        ) : (
-          <p>No categories found.</p>
-        )}
-      </div>
-    </div>
+    <Container>
+      {categories && categories.length > 0 && <List data={categories} />}
+    </Container>
   );
 };
 

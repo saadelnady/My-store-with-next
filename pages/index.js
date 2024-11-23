@@ -1,11 +1,10 @@
 import Head from "next/head";
 import HomePage from "../src/components/home";
-
-import { wrapper } from "@/store";
-import { getCategories } from "@/store/categories/categoriesActions";
-import { endSaga } from "@/helpers/helpers";
-
-export default function Home({ categories }) {
+import { NextSeo } from "next-seo";
+import { wrapper } from "../src/store";
+import { END } from "redux-saga";
+import { getAllCategories } from "@/store/categories/actions";
+export default function Home() {
   return (
     <>
       <Head>
@@ -14,19 +13,19 @@ export default function Home({ categories }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/images/logo-2.png" />
       </Head>
-      <HomePage categories={categories} />
+      <HomePage />
     </>
   );
 }
 
-export const getStaticProps = wrapper.getStaticProps((store) => async () => {
-  store.dispatch(getCategories());
-  await endSaga(store);
-  const state = store.getState();
-  const categories = state?.categoriesReducer?.categories;
-
-  return {
-    props: { categories },
-    revalidate: 10,
+export const getStaticProps = wrapper.getStaticProps((store) => {
+  return async () => {
+    store.dispatch(getAllCategories({ cookies: {} }));
+    store.dispatch(END);
+    await store.sagaTask.toPromise();
+    return {
+      props: {},
+      revalidate: 1,
+    };
   };
 });

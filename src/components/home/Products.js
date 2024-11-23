@@ -1,23 +1,17 @@
-import { getProducts } from "@/store/products/productsActions";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import Card from "../shared/card";
+import { Container } from "react-bootstrap";
 
 const Products = () => {
-  const { products, isLoading } = useSelector((state) => state.productsReducer);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getProducts());
-  }, []);
   return (
-    <div className="container">
+    <Container>
       <div className="row">
-        {products.map((product, index) => (
+        {[].map((product, index) => (
           <Card item={product} key={index} />
         ))}
       </div>
-    </div>
+    </Container>
   );
 };
 

@@ -1,7 +1,12 @@
-import Header from "@/components/shared/header";
-import Footer from "@/components/shared/footer";
-import { wrapper } from "@/store";
+import dynamic from "next/dynamic";
+import Head from "next/head";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import { IntlProvider } from "react-intl";
+import nookies, { parseCookies, setCookie } from "nookies";
+import { END } from "redux-saga";
 
+import SSRProvider from "react-bootstrap/SSRProvider";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
 
@@ -11,15 +16,112 @@ import "swiper/css/pagination";
 import "swiper/css/scrollbar";
 import "swiper/css/effect-fade";
 
-import "../styles/main.css";
+import "../styles/main.scss";
 
+import TopBarProgress from "react-topbar-progress-indicator";
+
+import Aos from "aos";
+
+import { wrapper } from "@/store";
+
+const languages = {
+  ar: require("@/content/languages/ar.json"),
+  en: require("@/content/languages/en.json"),
+};
+
+const Header = dynamic(() => import("@/components/shared/header/header"), {
+  ssr: false,
+});
+const Footer = dynamic(() => import("@/components/shared/footer"), {
+  ssr: false,
+});
 function App({ Component, pageProps }) {
+  const router = useRouter();
+  const { locale, defaultLocale } = useRouter();
+  const messages = languages[locale];
+  const dir = locale === "ar" ? "rtl" : "ltr";
+
+  const [Progress, setProgress] = useState(false);
+
+  const [loading, setLoading] = useState(false);
+
+  TopBarProgress.config({
+    barThickness: 3,
+    barColors: {
+      0: "#20c997",
+      0.5: "#78b012",
+      1.0: "#574a4add",
+    },
+  });
+  useEffect(() => {
+    const handleStart = (url) => {
+      url !== router.pathname ? setLoading(true) : setLoading(false);
+    };
+    const handleComplete = () => setLoading(false);
+
+    router.events.on("routeChangeStart", () => {
+      setProgress(true);
+      handleStart();
+    });
+    router.events.on("routeChangeComplete", () => {
+      setProgress(false);
+      handleComplete();
+    });
+    router.events.on("routeChangeError", handleComplete);
+
+    return () => {
+      router.events.off("routeChangeStart", handleStart);
+      router.events.off("routeChangeComplete", handleComplete);
+      router.events.off("routeChangeError", handleComplete);
+    };
+  }, [router]);
+
+  useEffect(() => {
+    Aos.init({
+      once: true,
+      disable: "mobile",
+    });
+    document.documentElement.dir = dir;
+    document.body.style.direction = dir;
+    document.body.setAttribute("dir", dir);
+  }, [dir]);
   return (
     <>
-      <Header />
-      <Component {...pageProps} />
-      <Footer />
+      <Head>
+        <title>My store</title>
+        <meta charSet="utf-8" />
+        <meta name="description" content="E-commerce website" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="icon" href="/images/logo-2.png" />
+      </Head>
+      <SSRProvider>
+        <IntlProvider
+          messages={messages}
+          defaultLocale={defaultLocale}
+          locale={locale}
+        >
+          <Header />
+          <Component {...pageProps} />
+          <Footer />
+        </IntlProvider>
+      </SSRProvider>
+      {Progress && <TopBarProgress />}
     </>
   );
 }
+
+// App.getInitialProps = wrapper.getInitialAppProps((store) => {
+//   return async ({ Component, ctx }) => {
+//     let pageProps = {};
+//     if (Component.getInitialProps) {
+//       pageProps = await Component.getInitialProps(ctx);
+//     }
+//     return { pageProps };
+//   };
+// });
+App.getInitialProps = wrapper.getInitialAppProps((store) => async () => {
+  store.dispatch(END);
+  await store.sagaTask.toPromise();
+  return {};
+});
 export default wrapper.withRedux(App);

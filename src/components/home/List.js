@@ -7,7 +7,7 @@ import {
   A11y,
   EffectFade,
   Autoplay,
-} from "swiper/modules";
+} from "swiper";
 import Item from "./Item";
 
 const List = ({ data }) => {
@@ -15,7 +15,7 @@ const List = ({ data }) => {
     <Swiper
       className="list"
       modules={[Navigation, Pagination, A11y, Autoplay]}
-      slidesPerView={3.5}
+      slidesPerView={4}
       spaceBetween={50} // Add space between slides
       effect="fade"
       autoplay={{

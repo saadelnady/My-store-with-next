@@ -18,22 +18,22 @@ const Footer = () => {
           <p>Payment Partners</p>
           <ul className="icons">
             <li>
-              <i class="bi bi-instagram"></i>
+              <i className="bi bi-instagram"></i>
             </li>
             <li>
-              <i class="bi bi-facebook"></i>
+              <i className="bi bi-facebook"></i>
             </li>
             <li>
-              <i class="bi bi-tiktok"></i>
+              <i className="bi bi-tiktok"></i>
             </li>
             <li>
-              <i class="bi bi-twitter"></i>
+              <i className="bi bi-twitter"></i>
             </li>
             <li>
-              <i class="bi bi-linkedin"></i>
+              <i className="bi bi-linkedin"></i>
             </li>
             <li>
-              <i class="bi bi-youtube"></i>
+              <i className="bi bi-youtube"></i>
             </li>
           </ul>
           <div className="imgs">

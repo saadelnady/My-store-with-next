@@ -2,7 +2,9 @@ import { useEffect, useState } from "react";
 import slideImageOne from "../../../public/images/slider-image-1.jpeg";
 import slideImageTwo from "../../../public/images/slider-image-2.jpeg";
 import slideImageThree from "../../../public/images/slider-image-3.jpeg";
-import Image from "next/image";
+import styles from "./styles/style.module.scss";
+import Image from "next/future/image";
+import { FormattedMessage } from "react-intl";
 
 const Slider = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
@@ -19,31 +21,36 @@ const Slider = () => {
       );
     }, 5000);
     return () => clearInterval(interval);
-  }, []);
+  }, [images.length]);
 
   const handleDotClick = (index) => {
     setCurrentImageIndex(index);
   };
 
   return (
-    <div className="slider">
+    <div className={styles.slider}>
       <div className="overlay"></div>
       <div className="content">
         <div>
-          <h1>Welcome to My Store Website</h1>
+          <h1>
+            <FormattedMessage id="heroTitle" />
+          </h1>
           <p>
-            Discover the best products at unbeatable prices. Browse through our
-            categories and find exactly what you need!
+            <FormattedMessage id="heroDesc" />
           </p>
         </div>
       </div>
       <div className="images">
         {images.map((item, index) => (
           <Image
+            key={index}
             src={item.image}
             alt={item.alt}
-            key={index}
-            className={index === currentImageIndex ? "active" : ""}
+            layout="fill"
+            priority
+            className={`${styles.image} ${
+              index === currentImageIndex ? "active" : ""
+            }`}
           />
         ))}
       </div>

@@ -10,7 +10,7 @@ const Card = ({ item }) => {
     ratingsAverage,
     priceAfterDiscount,
   } = item;
-  console.log(item);
+  // console.log(item);
 
   const first30CharsOfTitle = title.slice(0, 15) + "...";
   return (
@@ -51,7 +51,7 @@ const Card = ({ item }) => {
           <div className="buttons">
             <button className="btn border m-0 add-to-cart">Add to cart</button>
             <button className="btn wishlist">
-              <i class="bi bi-suit-heart "></i>
+              <i className="bi bi-suit-heart "></i>
             </button>
           </div>
         </div>
