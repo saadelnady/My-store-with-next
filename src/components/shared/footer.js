@@ -1,6 +1,6 @@
 import googleplaylogo from "../../../public/images/googleplay-logo.png";
 import applestorelogo from "../../../public/images/apple-store.png";
-import Image from "next/image";
+import Image from "next/future/image";
 
 const Footer = () => {
   return (

@@ -3,7 +3,7 @@ import HomePage from "../src/components/home";
 import { NextSeo } from "next-seo";
 import { wrapper } from "../src/store";
 import { END } from "redux-saga";
-import { getAllCategories } from "@/store/categories/actions";
+import { getAllCategories, getAllProducts } from "@/store/actions";
 export default function Home() {
   return (
     <>
@@ -21,6 +21,7 @@ export default function Home() {
 export const getStaticProps = wrapper.getStaticProps((store) => {
   return async () => {
     store.dispatch(getAllCategories({ cookies: {} }));
+    store.dispatch(getAllProducts({ cookies: {} }));
     store.dispatch(END);
     await store.sagaTask.toPromise();
     return {

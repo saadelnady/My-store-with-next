@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import slideImageOne from "../../../public/images/slider-image-1.jpeg";
 import slideImageTwo from "../../../public/images/slider-image-2.jpeg";
 import slideImageThree from "../../../public/images/slider-image-3.jpeg";
-import styles from "./styles/style.module.scss";
 import Image from "next/future/image";
 import { FormattedMessage } from "react-intl";
 
@@ -28,7 +27,7 @@ const Slider = () => {
   };
 
   return (
-    <div className={styles.slider}>
+    <div className="slider">
       <div className="overlay"></div>
       <div className="content">
         <div>
@@ -48,9 +47,7 @@ const Slider = () => {
             alt={item.alt}
             layout="fill"
             priority
-            className={`${styles.image} ${
-              index === currentImageIndex ? "active" : ""
-            }`}
+            className={` image ${index === currentImageIndex ? "active" : ""}`}
           />
         ))}
       </div>

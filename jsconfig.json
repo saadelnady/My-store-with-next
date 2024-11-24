@@ -5,7 +5,8 @@
       "@/*": ["./src/*"],
       "@/styles/*": ["styles/*"],
       "@/content/*": ["src/content/*"],
-      "@/helpers/*": ["src/helpers/*"]
+      "@/helpers/*": ["src/helpers/*"],
+      "@/api/*": ["src/api/*"]
     }
   }
 }

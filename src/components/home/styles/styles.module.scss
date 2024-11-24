@@ -1,0 +1,266 @@
+@import "@/styles/variables.scss";
+.home {
+  :global {
+    .slider {
+      height: 500px;
+      position: relative;
+
+      .images {
+        position: relative;
+        width: 100%;
+        height: 500px;
+        overflow: hidden;
+      }
+
+      img {
+        transform: scale(1.1) translateX(-1rem) rotate(-5deg);
+        transition: all 0.5s ease-in-out;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        top: 0;
+        opacity: 0;
+        object-fit: cover;
+        transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+
+        &.active {
+          opacity: 1;
+          transform: scale(1) translateX(0) rotate(0);
+        }
+      }
+
+      .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: inherit;
+        background: $main-bg-overlay;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        z-index: 1;
+      }
+      .content {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $light-color;
+        z-index: 2;
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        top: 0;
+        h1 {
+          font-size: 50px;
+        }
+        p {
+          width: 75%;
+          font-size: 18px;
+          line-height: 2;
+          z-index: 2;
+          margin: 10px auto;
+        }
+      }
+      .nav-buttons {
+        position: absolute;
+        top: 50%;
+        left: 10px;
+        right: 10px;
+        display: flex;
+        justify-content: space-between;
+        z-index: 2;
+
+        button {
+          background: rgba(0, 0, 0, 0.5);
+          border: none;
+          width: 50px;
+          height: 50px;
+
+          color: white;
+          cursor: pointer;
+          transition: background 0.3s;
+          -webkit-transition: background 0.3s;
+          -moz-transition: background 0.3s;
+          -ms-transition: background 0.3s;
+          -o-transition: background 0.3s;
+          border-radius: 50%;
+          -webkit-border-radius: 50%;
+          -moz-border-radius: 50%;
+          -ms-border-radius: 50%;
+          -o-border-radius: 50%;
+
+          &:hover {
+            background: rgba(0, 0, 0, 0.8);
+          }
+        }
+      }
+
+      .dots {
+        position: absolute;
+        bottom: 15px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        gap: 10px;
+        z-index: 2;
+
+        .dot {
+          width: 10px;
+          height: 10px;
+          background: rgba(255, 255, 255, 0.5);
+          border-radius: 50%;
+          cursor: pointer;
+          transition: background 0.3s;
+
+          &.active {
+            background: white;
+          }
+        }
+      }
+    }
+    .list {
+      margin: 20px 0;
+      .item {
+        width: fit-content;
+        margin-inline-end: 50px;
+        img {
+          display: block;
+          margin: 0 auto;
+          width: 100px;
+          height: 100px;
+          border-radius: 50%;
+        }
+        p {
+          font-weight: bold;
+          margin-top: 10px;
+          text-align: center;
+        }
+      }
+    }
+    .card {
+      overflow: hidden;
+      margin: 0 10px 10px 0;
+      padding: 0;
+      max-height: 600px;
+      position: relative;
+      .sale {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: $main-text-color;
+        width: 50px;
+        height: 50px;
+        color: $light-color;
+        z-index: 99;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 0 50% 0;
+        -webkit-border-radius: 0 50% 0;
+        -moz-border-radius: 0 50% 0;
+        -ms-border-radius: 0 50% 0;
+        -o-border-radius: 0 50% 0;
+        span {
+          transform: rotate(50deg);
+          -webkit-transform: rotate(50deg);
+          -moz-transform: rotate(50deg);
+          -ms-transform: rotate(50deg);
+          -o-transform: rotate(50deg);
+        }
+      }
+      .product-img {
+        width: 100%;
+        height: 300px;
+        margin: 0;
+        object-fit: cover;
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+      }
+      .content {
+        padding: 10px 5px;
+        margin: 15px 10px;
+
+        .category-title {
+          color: $main-text-color;
+          margin-bottom: 10px;
+        }
+        .details {
+          margin-top: 10px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          .price {
+            font-size: 17px;
+            font-weight: bold;
+          }
+          .rating {
+            display: flex;
+            align-items: center;
+            font-size: 17px;
+            .rating-number {
+              font-weight: bold;
+            }
+            .rating-icon {
+              margin-inline-end: 10px;
+              width: 20px;
+              height: 20px;
+            }
+          }
+        }
+        .buttons {
+          margin-top: 10px;
+          display: flex;
+          align-items: center;
+          position: relative;
+          overflow: hidden;
+          .add-to-cart {
+            position: absolute;
+            bottom: -100%;
+            transition: 0.5s;
+            -webkit-transition: 0.5s;
+            -moz-transition: 0.5s;
+            -ms-transition: 0.5s;
+            -o-transition: 0.5s;
+            font-size: 17px;
+            font-weight: bold;
+            &:hover {
+              background-color: $main-text-color;
+              color: $light-color;
+            }
+          }
+          .wishlist {
+            font-size: 20px;
+            margin-left: auto;
+            transition: 0.5s;
+            -webkit-transition: 0.5s;
+            -moz-transition: 0.5s;
+            -ms-transition: 0.5s;
+            -o-transition: 0.5s;
+            &:hover {
+              background-color: red;
+              color: $light-color;
+            }
+          }
+        }
+      }
+      &:hover {
+        .product-img {
+          transform: scale(1.1);
+          -webkit-transform: scale(1.1);
+          -moz-transform: scale(1.1);
+          -ms-transform: scale(1.1);
+          -o-transform: scale(1.1);
+        }
+        .buttons .add-to-cart {
+          bottom: 0;
+        }
+      }
+    }
+  }
+}

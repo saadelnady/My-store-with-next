@@ -1,0 +1,69 @@
+@import "@/styles/variables.scss";
+
+.loading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    #20c997 0%,
+    #20c996b2 20%,
+    #20c996be 40%,
+    #20c96c73 100%
+  );
+
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: fadeIn 0.5s ease-in-out;
+
+  img {
+    height: 300px;
+    width: 300px;
+    object-fit: cover;
+    animation: pulse 2s infinite ease-in-out;
+  }
+
+  //   &::after {
+  //     content: "";
+  //     position: absolute;
+  //     bottom: 20%;
+  //     left: 49%;
+  //     transform: translateX(-50%, -50%);
+  //     width: 50px;
+  //     height: 50px;
+  //     border: 5px solid $link-hover-color;
+  //     border-top-color: transparent;
+  //     border-radius: 50%;
+  //     animation: spin 1s linear infinite;
+  //   }
+}
+
+// Animations
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+// @keyframes spin {
+//   to {
+//     transform: rotate(360deg);
+//   }
+// }
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+}

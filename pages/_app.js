@@ -23,6 +23,7 @@ import TopBarProgress from "react-topbar-progress-indicator";
 import Aos from "aos";
 
 import { wrapper } from "@/store";
+import Loading from "@/components/shared/loading/loading";
 
 const languages = {
   ar: require("@/content/languages/ar.json"),
@@ -100,9 +101,15 @@ function App({ Component, pageProps }) {
           defaultLocale={defaultLocale}
           locale={locale}
         >
-          <Header />
-          <Component {...pageProps} />
-          <Footer />
+          {loading ? (
+            <Loading />
+          ) : (
+            <>
+              <Header />
+              <Component {...pageProps} />
+              <Footer />
+            </>
+          )}
         </IntlProvider>
       </SSRProvider>
       {Progress && <TopBarProgress />}
