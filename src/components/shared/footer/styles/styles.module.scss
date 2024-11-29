@@ -1,0 +1,77 @@
+@import "@/styles/variables.scss";
+
+.footer {
+  :global {
+    background-color: $main-bg-color;
+    padding: 17px;
+    .top {
+      padding: 10px 0;
+      border-bottom: 1px solid $main-text-color;
+      p {
+        margin: 10px 0;
+        font-size: 20px;
+      }
+      .input {
+        width: 80%;
+        margin-bottom: 10px;
+        padding: 10px 15px;
+        border-radius: 10px;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+        -o-border-radius: 10px;
+        outline: none;
+        border: 1px solid $main-text-color;
+      }
+      button {
+        transition: 0.5s;
+        -webkit-transition: 0.5s;
+        -moz-transition: 0.5s;
+        -ms-transition: 0.5s;
+        -o-transition: 0.5s;
+        font-size: 17px;
+        font-weight: bold;
+        &:hover {
+          background-color: $main-text-color;
+          color: $light-color;
+        }
+      }
+    }
+    .bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-evenly;
+      flex-wrap: wrap;
+      margin-top: 10px;
+      .icons {
+        display: flex;
+
+        i {
+          margin: 0 10px;
+          font-size: 17px;
+        }
+      }
+      @media (max-width: 768px) {
+        .icons {
+          margin-top: 10px;
+        }
+      }
+      @media (min-width: 768px) {
+        .bottom {
+          justify-content: space-between;
+        }
+      }
+      .imgs {
+        display: flex;
+        align-items: center;
+
+        .store {
+          width: 70px;
+          height: 70px;
+          object-fit: contain;
+          margin: 0 10px;
+        }
+      }
+    }
+  }
+}

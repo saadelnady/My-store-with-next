@@ -4,7 +4,17 @@
   "orders": "Orders",
   "categories": "Categories",
   "login": "Login",
-  "signup": "Sign-up",
+  "signup": "Sign Up",
   "heroTitle": "Welcome to My Store",
-  "heroDesc": "Discover top-quality products at unbeatable prices! Browse our categories to find exactly what you’re looking for."
+  "heroDesc": "Discover the best products at unbeatable prices! Browse through different sections and find everything you need.",
+  "addToCart": "Add to Cart",
+  "getOurApp": "Get Our App",
+  "getAppMessage": "We will send you a link, open it on your phone to download the app",
+  "subscribe": "Subscribe",
+  "email": "Email",
+  "sale": "Sale",
+  "brands": "Brands",
+  "brandsSubtitle": "Discover the perfect brands for your needs",
+  "categoriesSubtitle": "Browse through various categories and find what suits you",
+  "productsSubtitle": "Browse a wide range of diverse products"
 }

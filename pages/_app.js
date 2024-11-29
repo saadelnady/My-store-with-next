@@ -33,7 +33,7 @@ const languages = {
 const Header = dynamic(() => import("@/components/shared/header/header"), {
   ssr: false,
 });
-const Footer = dynamic(() => import("@/components/shared/footer"), {
+const Footer = dynamic(() => import("@/components/shared/footer/Footer"), {
   ssr: false,
 });
 function App({ Component, pageProps }) {
@@ -93,7 +93,7 @@ function App({ Component, pageProps }) {
         <meta charSet="utf-8" />
         <meta name="description" content="E-commerce website" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/images/logo-2.png" />
+        <link rel="icon" href="/images/logo.png" />
       </Head>
       <SSRProvider>
         <IntlProvider

@@ -1,18 +1,28 @@
-import googleplaylogo from "../../../public/images/googleplay-logo.png";
-import applestorelogo from "../../../public/images/apple-store.png";
+import googleplaylogo from "public/images/googleplay-logo.png";
+import applestorelogo from "public/images/apple-store.png";
 import Image from "next/future/image";
-
+import { FormattedMessage, useIntl } from "react-intl";
+import Styles from "./styles/styles.module.scss";
 const Footer = () => {
+  const intl = useIntl();
   return (
-    <div className="footer">
+    <div className={Styles.footer}>
       <div className="container">
         <div className="top">
-          <h2 className="fe-bold">Get our App</h2>
+          <h2 className="fe-bold">
+            <FormattedMessage id="getOurApp" />
+          </h2>
           <p>
-            We Will Send You a Link , Open it on Your Phone To Download The App
+            <FormattedMessage id="getAppMessage" />
           </p>
-          <input type="email" placeholder="Email ...." className="input" />
-          <button className="btn">Subscribe</button>
+          <input
+            type="email"
+            placeholder={`${intl.formatMessage({ id: "email" })}...`}
+            className="input"
+          />
+          <button className="btn">
+            <FormattedMessage id="subscribe" />
+          </button>
         </div>
         <div className="bottom">
           <p>Payment Partners</p>

@@ -4,14 +4,20 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, A11y, Autoplay } from "swiper";
 import { useRouter } from "next/router";
 import Image from "next/future/image";
+import CustomHeading from "../shared/customHeading/CustomHeading";
+import { FormattedMessage } from "react-intl";
 const Categories = () => {
   const { locale } = useRouter();
-  const { categories, error } = useSelector((state) => state.categories);
+  const { categories } = useSelector((state) => state.categories);
   const dir = locale === "ar" ? "rtl" : "ltr";
   return (
     <Container>
+      <CustomHeading
+        title={<FormattedMessage id="categories" />}
+        subTitle={<FormattedMessage id="categoriesSubtitle" />}
+      />
       {categories && categories.length > 0 && (
-        <div className="list">
+        <div className="list" dir={dir}>
           <Swiper
             modules={[Navigation, Pagination, A11y, Autoplay]}
             slidesPerView={4.5}
@@ -42,9 +48,8 @@ const Categories = () => {
             effect="fade"
             autoplay={{
               delay: 3000,
-              disableOnInteraction: false,
             }}
-            style={{ display: "flex" }}
+            navigation
             dir={dir}
             key={dir}
           >

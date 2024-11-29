@@ -1,5 +1,6 @@
 import Slider from "./Slider";
 import Categories from "./Categories";
+import Brands from "./Brands";
 import Products from "./Products.js";
 import styles from "./styles/styles.module.scss";
 const index = () => {
@@ -8,6 +9,7 @@ const index = () => {
       <Slider />
       <Categories />
       <Products />
+      <Brands />
     </div>
   );
 };

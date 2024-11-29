@@ -2,41 +2,49 @@ import { useSelector } from "react-redux";
 import { Col, Container, Row } from "react-bootstrap";
 import Image from "next/future/image";
 import icStar from "../../../public/images/ic-star.png";
+import { FormattedMessage } from "react-intl";
+import CustomHeading from "../shared/customHeading/CustomHeading";
 const Products = () => {
   const { products } = useSelector((state) => state.products);
   return (
     <Container>
+      <CustomHeading
+        title={<FormattedMessage id="products" />}
+        subTitle={<FormattedMessage id="productsSubtitle" />}
+      />
       <Row>
         {products &&
           products.length > 0 &&
-          products?.map((product, index) => {
+          products?.reverse()?.map((product, index) => {
             const {
               title,
               category,
               price,
               imageCover,
+              description,
               ratingsAverage,
               priceAfterDiscount,
             } = product;
-            const first30CharsOfTitle = title.slice(0, 20) + "...";
             return (
-              <Col xs={12} sm={6} md={4} lg={3} key={index}>
+              <Col xs={12} sm={6} md={6} lg={4} xl={3} key={index}>
                 <div className="card">
                   {priceAfterDiscount && (
                     <p className="sale">
-                      <span>Sale</span>
+                      <span>
+                        <FormattedMessage id="sale" />
+                      </span>
                     </p>
                   )}
                   <Image
                     className="product-img"
                     src={imageCover}
-                    alt={title}
+                    alt={"product-img"}
                     width={500}
                     height={500}
                   />
                   <div className="content">
-                    <h3 className="category-title">{category?.name}</h3>
-                    <h4 className="product-title">{first30CharsOfTitle}</h4>
+                    <h3 className="title">{title}</h3>
+                    <h4 className="description">{description}</h4>
                     <div className="details">
                       <p
                         className={`price ${
@@ -62,7 +70,7 @@ const Products = () => {
                     </div>
                     <div className="buttons">
                       <button className="btn border m-0 add-to-cart">
-                        Add to cart
+                        <FormattedMessage id="addToCart" />
                       </button>
                       <button className="btn wishlist">
                         <i className="bi bi-suit-heart "></i>

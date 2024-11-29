@@ -2,6 +2,9 @@ import { Col, Container, Row } from "react-bootstrap";
 import styles from "./styles/styles.module.scss";
 import { generateSquares } from "@/helpers/helpers";
 import { useForm } from "react-hook-form";
+import { useDispatch } from "react-redux";
+import { postUserLogin } from "@/store/actions";
+import { Cookies } from "next/dist/server/web/spec-extension/cookies";
 
 const Login = () => {
   const {
@@ -15,7 +18,11 @@ const Login = () => {
     },
     mode: "all",
   });
-  const handleLoginSubmittion = (data) => console.log(data);
+  const dispatch = useDispatch();
+  const handleLoginSubmittion = (data) => {
+    console.log("data from login form", data);
+    dispatch(postUserLogin({ data, cookie: {} }));
+  };
   return (
     <div className="submit-page">
       <div className="squares">{generateSquares()}</div>
