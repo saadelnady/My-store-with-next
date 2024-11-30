@@ -62,8 +62,6 @@ function* checkUserLoggedInSaga() {
 }
 // --------------------------------------------------------------
 function* postUserLoggOutSaga({ payload }) {
-  console.log("payload", payload);
-
   const { intl } = payload;
 
   try {
