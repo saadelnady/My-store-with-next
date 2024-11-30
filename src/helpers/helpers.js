@@ -1,3 +1,5 @@
+import toast from "react-hot-toast";
+import { FormattedMessage } from "react-intl";
 import { END } from "redux-saga";
 
 export const endSaga = async (store) => {
@@ -14,4 +16,10 @@ export const generateSquares = () => {
     squares.push(<div key={i} className={`square ${sizeClass}`}></div>);
   }
   return squares;
+};
+export const showToast = (type, message, intl) => {
+  if (type === "success") {
+    return toast.success(intl.formatMessage({ id: message }));
+  }
+  return toast.error(intl.formatMessage({ id: message }));
 };

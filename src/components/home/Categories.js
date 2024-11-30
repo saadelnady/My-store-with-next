@@ -48,6 +48,7 @@ const Categories = () => {
             effect="fade"
             autoplay={{
               delay: 3000,
+              disableOnInteraction: false,
             }}
             navigation
             dir={dir}

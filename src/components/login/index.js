@@ -4,7 +4,8 @@ import { generateSquares } from "@/helpers/helpers";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { postUserLogin } from "@/store/actions";
-import { Cookies } from "next/dist/server/web/spec-extension/cookies";
+import { useRouter } from "next/router";
+import { FormattedMessage, useIntl } from "react-intl";
 
 const Login = () => {
   const {
@@ -19,9 +20,10 @@ const Login = () => {
     mode: "all",
   });
   const dispatch = useDispatch();
+  const router = useRouter();
+  const intl = useIntl();
   const handleLoginSubmittion = (data) => {
-    console.log("data from login form", data);
-    dispatch(postUserLogin({ data, cookie: {} }));
+    dispatch(postUserLogin({ data, cookie: {}, router, intl }));
   };
   return (
     <div className="submit-page">
@@ -30,10 +32,15 @@ const Login = () => {
         <div className={styles["login-form"]}>
           <Row className="justify-content-center">
             <Col xs={12} md={6}>
-              <h3>Login</h3>
+              <h3>
+                {" "}
+                <FormattedMessage id="login" />
+              </h3>
               <form onSubmit={handleSubmit(handleLoginSubmittion)}>
                 <div>
-                  <label htmlFor="email">Email :</label>
+                  <label htmlFor="email">
+                    <FormattedMessage id="email" />:
+                  </label>
                   <input
                     id="email"
                     {...register("email", {
@@ -50,7 +57,9 @@ const Login = () => {
                 </div>
 
                 <div>
-                  <label htmlFor="password">Password</label>
+                  <label htmlFor="password">
+                    <FormattedMessage id="password" /> :
+                  </label>
                   <input
                     {...register("password", {
                       required: "Password is required",
@@ -60,6 +69,7 @@ const Login = () => {
                       },
                     })}
                     type="password"
+                    id="password"
                   />
                   {errors?.password?.message && (
                     <p className="error-message">{errors?.password?.message}</p>
@@ -67,7 +77,7 @@ const Login = () => {
                 </div>
 
                 <button className="btn" type="submit">
-                  Login
+                  <FormattedMessage id="login" />
                 </button>
               </form>
             </Col>

@@ -3,12 +3,20 @@ import Link from "next/link";
 import logo from "./assets/logo.png";
 import { useRouter } from "next/router";
 import Languages from "./Languages";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
+import { useDispatch, useSelector } from "react-redux";
+import { postUserLogOut } from "@/store/actions";
 
 const Links = ({ isActive, showSidebarHandler }) => {
   const { asPath, locale } = useRouter();
+  const intl = useIntl();
   const dir = locale === "ar" ? "rtl" : "ltr";
   const isCurrentPath = (path) => asPath === path;
+  const { user, isLoggedIn } = useSelector((state) => state.user);
+  const dispatch = useDispatch();
+  const handleLogout = () => {
+    dispatch(postUserLogOut({ intl }));
+  };
   return (
     <>
       <div
@@ -45,16 +53,18 @@ const Links = ({ isActive, showSidebarHandler }) => {
             </a>
           </Link>
         </li>
-        <li>
-          <Link href="/orders">
-            <a
-              className={isCurrentPath("/orders") ? "active" : ""}
-              onClick={showSidebarHandler}
-            >
-              <FormattedMessage id="orders" />
-            </a>
-          </Link>
-        </li>
+        {isLoggedIn && (
+          <li>
+            <Link href="/orders">
+              <a
+                className={isCurrentPath("/orders") ? "active" : ""}
+                onClick={showSidebarHandler}
+              >
+                <FormattedMessage id="orders" />
+              </a>
+            </Link>
+          </li>
+        )}
         <li>
           <Link href="/categories">
             <a
@@ -65,44 +75,60 @@ const Links = ({ isActive, showSidebarHandler }) => {
             </a>
           </Link>
         </li>
-        <li>
-          <Link href="/login">
-            <a
-              className={isCurrentPath("/login") ? "active" : ""}
-              onClick={showSidebarHandler}
-            >
-              <FormattedMessage id="login" />
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link href="/signUp">
-            <a
-              className={isCurrentPath("/signUp") ? "active" : ""}
-              onClick={showSidebarHandler}
-            >
-              <FormattedMessage id="signup" />
-            </a>
-          </Link>
-        </li>
-        <div className="icons">
+        {!isLoggedIn && (
           <li>
-            <Link href="/wishlist">
-              <a onClick={showSidebarHandler}>
-                <i className="bi bi-heart"></i>
-                <span className="count">10 </span>
+            <Link href="/login">
+              <a
+                className={isCurrentPath("/login") ? "active" : ""}
+                onClick={showSidebarHandler}
+              >
+                <FormattedMessage id="login" />
               </a>
             </Link>
           </li>
+        )}
+        {!isLoggedIn && (
           <li>
-            <Link href="/cart">
-              <a onClick={showSidebarHandler}>
-                <i className="bi bi-cart3"></i>
-                <span className="count">100</span>
+            <Link href="/signUp">
+              <a
+                className={isCurrentPath("/signUp") ? "active" : ""}
+                onClick={showSidebarHandler}
+              >
+                <FormattedMessage id="signup" />
               </a>
             </Link>
           </li>
-        </div>
+        )}
+        {isLoggedIn && (
+          <div className="icons">
+            <li>
+              <Link href="/wishlist">
+                <a onClick={showSidebarHandler}>
+                  <i className="bi bi-heart"></i>
+                  <span className="count">10 </span>
+                </a>
+              </Link>
+            </li>
+            <li>
+              <Link href="/cart">
+                <a onClick={showSidebarHandler}>
+                  <i className="bi bi-cart3"></i>
+                  <span className="count">100</span>
+                </a>
+              </Link>
+            </li>
+          </div>
+        )}
+        {isLoggedIn && (
+          <li>
+            <button
+              className="btn btn-danger text-light my-3"
+              onClick={handleLogout}
+            >
+              <FormattedMessage id="logout" />
+            </button>
+          </li>
+        )}
         <Languages />
       </ul>
     </>

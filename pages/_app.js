@@ -3,7 +3,6 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { IntlProvider } from "react-intl";
-import nookies, { parseCookies, setCookie } from "nookies";
 import { END } from "redux-saga";
 
 import SSRProvider from "react-bootstrap/SSRProvider";
@@ -25,6 +24,11 @@ import Aos from "aos";
 import { wrapper } from "@/store";
 import Loading from "@/components/shared/loading/loading";
 
+import { Toaster } from "react-hot-toast"; // Import React Hot Toast
+import { useDispatch, useSelector } from "react-redux";
+import { parseCookies } from "nookies";
+import { checkUserLoggedIn } from "@/store/actions";
+
 const languages = {
   ar: require("@/content/languages/ar.json"),
   en: require("@/content/languages/en.json"),
@@ -36,14 +40,17 @@ const Header = dynamic(() => import("@/components/shared/header/header"), {
 const Footer = dynamic(() => import("@/components/shared/footer/Footer"), {
   ssr: false,
 });
+
 function App({ Component, pageProps }) {
   const router = useRouter();
-  const { locale, defaultLocale } = useRouter();
+  const dispatch = useDispatch();
+  const { user, isLoggedIn } = useSelector((state) => state.user);
+  const { locale, defaultLocale, route } = useRouter();
+
   const messages = languages[locale];
   const dir = locale === "ar" ? "rtl" : "ltr";
 
   const [Progress, setProgress] = useState(false);
-
   const [loading, setLoading] = useState(false);
 
   TopBarProgress.config({
@@ -54,6 +61,7 @@ function App({ Component, pageProps }) {
       1.0: "#574a4add",
     },
   });
+
   useEffect(() => {
     const handleStart = (url) => {
       url !== router.pathname ? setLoading(true) : setLoading(false);
@@ -86,6 +94,29 @@ function App({ Component, pageProps }) {
     document.body.style.direction = dir;
     document.body.setAttribute("dir", dir);
   }, [dir]);
+
+  useEffect(() => {
+    if (route === "/login" && isLoggedIn) {
+      router.replace("/");
+    }
+
+    if (route === "/signUp" && isLoggedIn) {
+      router.replace("/");
+    }
+    if (route === "/wishlist" && !isLoggedIn) {
+      router.replace("/");
+    }
+
+    if (route === "/cart" && !isLoggedIn) {
+      router.replace("/");
+    }
+    if (route === "/orders" && !isLoggedIn) {
+      router.replace("/");
+    }
+  }, [dispatch, route, isLoggedIn]);
+  useEffect(() => {
+    dispatch(checkUserLoggedIn());
+  }, [dispatch]);
   return (
     <>
       <Head>
@@ -113,22 +144,15 @@ function App({ Component, pageProps }) {
         </IntlProvider>
       </SSRProvider>
       {Progress && <TopBarProgress />}
+      <Toaster position="top-right" reverseOrder={false} />
     </>
   );
 }
 
-// App.getInitialProps = wrapper.getInitialAppProps((store) => {
-//   return async ({ Component, ctx }) => {
-//     let pageProps = {};
-//     if (Component.getInitialProps) {
-//       pageProps = await Component.getInitialProps(ctx);
-//     }
-//     return { pageProps };
-//   };
-// });
 App.getInitialProps = wrapper.getInitialAppProps((store) => async () => {
   store.dispatch(END);
   await store.sagaTask.toPromise();
   return {};
 });
+
 export default wrapper.withRedux(App);

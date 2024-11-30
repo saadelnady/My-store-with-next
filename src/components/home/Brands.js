@@ -36,6 +36,7 @@ const Brands = () => {
               effect="fade"
               autoplay={{
                 delay: 3000,
+                disableOnInteraction: false,
               }}
               navigation
               style={{ display: "flex" }}
