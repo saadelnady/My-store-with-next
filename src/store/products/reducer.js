@@ -3,6 +3,9 @@ import {
   GET_ALL_PRODUCTS,
   GET_ALL_PRODUCTS_SUCCESS,
   GET_ALL_PRODUCTS_FAILURE,
+  GET_SINGLE_PRODUCT,
+  GET_SINGLE_PRODUCT_SUCCESS,
+  GET_SINGLE_PRODUCT_FAILURE,
 } from "./actionTypes";
 
 const initialState = {
@@ -25,21 +28,47 @@ const products = (state = initialState, action) => {
     case GET_ALL_PRODUCTS: {
       return {
         ...state,
-        products: action.payload,
+        isLoading: true,
       };
     }
     case GET_ALL_PRODUCTS_SUCCESS: {
       return {
         ...state,
         products: action.payload,
+        isLoading: false,
       };
     }
     case GET_ALL_PRODUCTS_FAILURE: {
       return {
         ...state,
         error: action.payload,
+        isLoading: false,
       };
     }
+
+    // ---------------------------------------------------
+    case GET_SINGLE_PRODUCT: {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    }
+    case GET_SINGLE_PRODUCT_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        product: action?.payload?.[0],
+      };
+    }
+    case GET_SINGLE_PRODUCT_FAILURE: {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    }
+    // ---------------------------------------------------
+
     default:
       return state;
   }

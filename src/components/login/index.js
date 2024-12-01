@@ -22,8 +22,9 @@ const Login = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const intl = useIntl();
+
   const handleLoginSubmittion = (data) => {
-    dispatch(postUserLogin({ data, cookie: {}, router, intl }));
+    dispatch(postUserLogin({ data, cookies: {}, router, intl }));
   };
   return (
     <div className="submit-page">

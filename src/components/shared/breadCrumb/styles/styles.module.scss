@@ -1,0 +1,10 @@
+@import "@/styles/variables.scss";
+
+.breadCrumb {
+  :global {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 10px 0;
+  }
+}

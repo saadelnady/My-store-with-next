@@ -22,7 +22,7 @@ import TopBarProgress from "react-topbar-progress-indicator";
 import Aos from "aos";
 
 import { wrapper } from "@/store";
-import Loading from "@/components/shared/loading/loading";
+import Loading from "@/components/shared/loading/Loading";
 
 import { Toaster } from "react-hot-toast"; // Import React Hot Toast
 import { useDispatch, useSelector } from "react-redux";
@@ -34,7 +34,7 @@ const languages = {
   en: require("@/content/languages/en.json"),
 };
 
-const Header = dynamic(() => import("@/components/shared/header/header"), {
+const Header = dynamic(() => import("@/components/shared/header/Header"), {
   ssr: false,
 });
 const Footer = dynamic(() => import("@/components/shared/footer/Footer"), {

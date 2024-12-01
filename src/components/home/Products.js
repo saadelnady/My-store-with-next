@@ -4,6 +4,7 @@ import Image from "next/future/image";
 import icStar from "../../../public/images/ic-star.png";
 import { FormattedMessage } from "react-intl";
 import CustomHeading from "../shared/customHeading/CustomHeading";
+import Link from "next/link";
 const Products = () => {
   const { products } = useSelector((state) => state.products);
   return (
@@ -25,6 +26,7 @@ const Products = () => {
               ratingsAverage,
               priceAfterDiscount,
             } = product;
+
             return (
               <Col xs={12} sm={6} md={6} lg={4} xl={3} key={index}>
                 <div className="card">
@@ -35,15 +37,23 @@ const Products = () => {
                       </span>
                     </p>
                   )}
-                  <Image
-                    className="product-img"
-                    src={imageCover}
-                    alt={"product-img"}
-                    width={500}
-                    height={500}
-                  />
+                  <Link href={`/products/${product?.slug}`}>
+                    <a>
+                      <Image
+                        className="product-img"
+                        src={imageCover}
+                        alt={"product-img"}
+                        width={500}
+                        height={500}
+                      />
+                    </a>
+                  </Link>
                   <div className="content">
-                    <h3 className="title">{title}</h3>
+                    <Link href={`/products/${product?.slug}`}>
+                      <a>
+                        <h3 className="title">{title}</h3>
+                      </a>
+                    </Link>
                     <h4 className="description">{description}</h4>
                     <div className="details">
                       <p
