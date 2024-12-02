@@ -82,15 +82,8 @@
           color: white;
           cursor: pointer;
           transition: background 0.3s;
-          -webkit-transition: background 0.3s;
-          -moz-transition: background 0.3s;
-          -ms-transition: background 0.3s;
-          -o-transition: background 0.3s;
+
           border-radius: 50%;
-          -webkit-border-radius: 50%;
-          -moz-border-radius: 50%;
-          -ms-border-radius: 50%;
-          -o-border-radius: 50%;
 
           &:hover {
             background: rgba(0, 0, 0, 0.8);

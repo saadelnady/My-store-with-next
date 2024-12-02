@@ -3,28 +3,33 @@
 // Fonts
 @font-face {
   font-family: "font-regular";
-  src: url("../public/fonts/IBMPlexMono-Regular.ttf");
+  src: url("../public/fonts/Cairo-Regular.ttf");
   font-style: normal;
 }
 
 @font-face {
   font-family: "font-bold";
-  src: url("../public/fonts/IBMPlexMono-Bold.ttf");
+  src: url("../public/fonts/Cairo-Bold.ttf");
   font-style: normal;
 }
 @font-face {
   font-family: "font-semi-bold";
-  src: url("../public/fonts/IBMPlexMono-SemiBold.ttf");
+  src: url("../public/fonts/Cairo-SemiBold.ttf");
   font-style: normal;
 }
 @font-face {
   font-family: "font-medium";
-  src: url("../public/fonts/IBMPlexMono-Medium.ttf");
+  src: url("../public/fonts/Cairo-Medium.ttf");
   font-style: normal;
 }
 @font-face {
   font-family: "font-light";
-  src: url("../public/fonts/IBMPlexMono-Light.ttf");
+  src: url("../public/fonts/Cairo-Light.ttf");
+  font-style: normal;
+}
+@font-face {
+  font-family: "font-extra-light";
+  src: url("../public/fonts/Cairo-ExtraLight.ttf");
   font-style: normal;
 }
 * {

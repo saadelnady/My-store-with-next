@@ -77,13 +77,9 @@
           padding: 10px;
           font-size: 1rem;
           margin: 0 auto;
-          transition: $transition;
-          -webkit-transition: $transition;
-          -moz-transition: $transition;
-          -ms-transition: $transition;
-          -o-transition: $transition;
+          transition: background-color 0.3s ease;
           text-decoration: none;
-          color: $link-color;
+          color: black;
           border-bottom: 2px solid transparent;
           transition: border-bottom 0.3s ease;
           font-size: 17px;
@@ -93,10 +89,6 @@
             background-color: $highlight-color;
             border-radius: 5px;
             color: $light-color;
-            -webkit-border-radius: 5px;
-            -moz-border-radius: 5px;
-            -ms-border-radius: 5px;
-            -o-border-radius: 5px;
           }
         }
       }

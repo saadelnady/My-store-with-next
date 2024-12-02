@@ -1,11 +1,18 @@
 import React from "react";
-import Styles from "./styles/styles.module.scss";
+import styles from "./styles/styles.module.scss";
+import Link from "next/link";
 const BreadCrumb = ({ items }) => {
   return (
-    <div className={Styles.breadCrumb}>
+    <div className={styles.breadCrumb}>
       {items.map((item, index) => (
         <div key={index}>
-          <span>{item}</span>
+          {item.url ? (
+            <Link href={item.url}>
+              <a className="breadCrumb-link"> {item.title}</a>
+            </Link>
+          ) : (
+            <span>{item.title}</span>
+          )}
           {index < items.length - 1 && <span>/</span>}
         </div>
       ))}

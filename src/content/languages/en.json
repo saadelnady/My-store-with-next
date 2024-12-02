@@ -30,5 +30,19 @@
   "addSuccess": "Product added successfully",
   "addFail": "Failed to add the product",
   "updateSuccess": "Product updated successfully",
-  "updateFail": "Failed to update the product"
+  "updateFail": "Failed to update the product",
+  "description": "Description",
+  "category": "Category",
+  "brand": "Brand",
+  "price": "Price",
+  "available_quantity": "Available Quantity",
+  "rating": "Rating",
+  "reviews": "Reviews",
+  "review": "Review",
+  "egp": "EGP",
+  "soldNumber": "Number of sales",
+  "available-quantity": "Available Quantity",
+  "insteadOf": "Instead of",
+  "share": "Share with",
+  "countError": "The minimum quantity is 1"
 }

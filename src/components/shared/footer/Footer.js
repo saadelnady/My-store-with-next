@@ -2,11 +2,11 @@ import googleplaylogo from "public/images/googleplay-logo.png";
 import applestorelogo from "public/images/apple-store.png";
 import Image from "next/future/image";
 import { FormattedMessage, useIntl } from "react-intl";
-import Styles from "./styles/styles.module.scss";
+import styles from "./styles/styles.module.scss";
 const Footer = () => {
   const intl = useIntl();
   return (
-    <div className={Styles.footer}>
+    <div className={styles.footer}>
       <div className="container">
         <div className="top">
           <h2 className="fe-bold">

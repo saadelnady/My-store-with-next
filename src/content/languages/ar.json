@@ -30,5 +30,19 @@
   "addSuccess": "تم اضافة المنتج بنجاح",
   "addFail": "فشل في اضافة المنتج",
   "updateSuccess": "تم تحديث المنتج بنجاح",
-  "updateFail": "فشل في تحديث المنتج"
+  "updateFail": "فشل في تحديث المنتج",
+  "description": "الوصف",
+  "category": "التصنيف",
+  "brand": "العلامة التجارية",
+  "price": "السعر",
+  "available_quantity": "الكمية المتوفرة",
+  "rating": "التقييم",
+  "reviews": "المراجعات",
+  "review": "مراجعة",
+  "egp": "جنيه مصري",
+  "soldNumber": "عدد مرات البيع",
+  "available-quantity": "الكمية المتوفرة",
+  "insteadOf": "بدلا من",
+  "share": "مشاركة عبر",
+  "countError": "الحد الادنى للكمية هو 1"
 }
