@@ -13,6 +13,9 @@ const Links = ({ isActive, showSidebarHandler }) => {
   const dir = locale === "ar" ? "rtl" : "ltr";
   const isCurrentPath = (path) => asPath === path;
   const { user, isLoggedIn } = useSelector((state) => state.user);
+  const { cart } = useSelector((state) => state.cart);
+  const { products } = cart;
+
   const dispatch = useDispatch();
   const handleLogout = () => {
     dispatch(postUserLogOut({ intl }));
@@ -113,7 +116,7 @@ const Links = ({ isActive, showSidebarHandler }) => {
               <Link href="/cart">
                 <a onClick={showSidebarHandler}>
                   <i className="bi bi-cart3"></i>
-                  <span className="count">100</span>
+                  <span className="count">{products?.length}</span>
                 </a>
               </Link>
             </li>

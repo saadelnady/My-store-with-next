@@ -10,6 +10,8 @@ import {
 
 const initialState = {
   products: [],
+  results: 0,
+  metadata: {},
   product: {},
   isLoading: false,
   error: null,
@@ -34,7 +36,9 @@ const products = (state = initialState, action) => {
     case GET_ALL_PRODUCTS_SUCCESS: {
       return {
         ...state,
-        products: action.payload,
+        products: action.payload.data,
+        results: action.payload.results,
+        metadata: action.payload.metadata,
         isLoading: false,
       };
     }

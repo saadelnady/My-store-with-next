@@ -13,11 +13,12 @@ const server = ({ cookies = {}, ctx = {} }) => {
   } else {
     const cookies = parseCookies(ctx);
     token = cookies.token;
+
     lang = cookies.lang || ctx.locale || "ar";
   }
 
   if (token) {
-    headers["Authorization"] = `Bearer ${token}`;
+    headers["token"] = token;
   }
   headers["Content-Language"] = lang;
 

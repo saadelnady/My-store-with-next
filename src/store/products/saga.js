@@ -10,7 +10,8 @@ import { getAllProductsApi, getSingleProductApi } from "@/api/products";
 
 function* getAllProductsSaga({ payload }) {
   try {
-    const { data } = yield call(getAllProductsApi, payload);
+    const data = yield call(getAllProductsApi, payload);
+
     yield put(getAllProductsSuccess(data));
   } catch (error) {
     yield put(getAllProductsFailure(error));

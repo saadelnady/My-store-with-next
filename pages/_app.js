@@ -27,7 +27,7 @@ import Loading from "@/components/shared/loading/Loading";
 import { Toaster } from "react-hot-toast"; // Import React Hot Toast
 import { useDispatch, useSelector } from "react-redux";
 import { parseCookies } from "nookies";
-import { checkUserLoggedIn } from "@/store/actions";
+import { checkUserLoggedIn, getUserCart } from "@/store/actions";
 
 const languages = {
   ar: require("@/content/languages/ar.json"),
@@ -95,28 +95,6 @@ function App({ Component, pageProps }) {
     document.body.setAttribute("dir", dir);
   }, [dir]);
 
-  useEffect(() => {
-    if (route === "/login" && isLoggedIn) {
-      router.replace("/");
-    }
-
-    if (route === "/signUp" && isLoggedIn) {
-      router.replace("/");
-    }
-    if (route === "/wishlist" && !isLoggedIn) {
-      router.replace("/");
-    }
-
-    if (route === "/cart" && !isLoggedIn) {
-      router.replace("/");
-    }
-    if (route === "/orders" && !isLoggedIn) {
-      router.replace("/");
-    }
-  }, [dispatch, route, isLoggedIn]);
-  useEffect(() => {
-    dispatch(checkUserLoggedIn());
-  }, [dispatch]);
   return (
     <>
       <Head>

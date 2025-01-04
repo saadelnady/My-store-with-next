@@ -1,6 +1,6 @@
 import server from "./server";
 
-export const getAllCategoriesApi = async (cookie) => {
-  const response = await server(cookie).get("/categories");
+export const getAllCategoriesApi = async (cookies) => {
+  const response = await server(cookies).get("/categories");
   return response.data;
 };

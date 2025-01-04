@@ -51,6 +51,7 @@ const user = (state = initialState, action) => {
         error: action.payload,
       };
     }
+    // --------------------------------------------------
     case CHECK_USER_LOGGED_IN:
       return {
         ...state,
@@ -70,6 +71,7 @@ const user = (state = initialState, action) => {
         error: action.payload,
         isLoggedIn: false,
       };
+    // --------------------------------------------------
     case POST_USER_LOGOUT:
       return {
         ...state,
@@ -89,6 +91,7 @@ const user = (state = initialState, action) => {
         isLoading: false,
         error: action.payload,
       };
+    // --------------------------------------------------
     default:
       return state;
   }

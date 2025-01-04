@@ -1,0 +1,116 @@
+@import "@/styles/variables.scss";
+.hero {
+  :global {
+    height: 500px;
+    position: relative;
+
+    .images {
+      position: relative;
+      width: 100%;
+      height: 500px;
+      overflow: hidden;
+    }
+
+    img {
+      transform: scale(1.1) translateX(-1rem) rotate(-5deg);
+      transition: all 0.5s ease-in-out;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      opacity: 0;
+      object-fit: cover;
+      transition: opacity 1s ease-in-out, transform 1s ease-in-out;
+
+      &.active {
+        opacity: 1;
+        transform: scale(1) translateX(0) rotate(0);
+      }
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: inherit;
+      background: $main-bg-overlay;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      z-index: 1;
+    }
+    .content {
+      position: absolute;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: $light-color;
+      z-index: 2;
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      top: 0;
+      h1 {
+        font-size: 50px;
+      }
+      p {
+        width: 75%;
+        font-size: 18px;
+        line-height: 2;
+        z-index: 2;
+        margin: 10px auto;
+      }
+    }
+    .nav-buttons {
+      position: absolute;
+      top: 50%;
+      left: 10px;
+      right: 10px;
+      display: flex;
+      justify-content: space-between;
+      z-index: 2;
+
+      button {
+        background: rgba(0, 0, 0, 0.5);
+        border: none;
+        width: 50px;
+        height: 50px;
+
+        color: white;
+        cursor: pointer;
+        transition: background 0.3s;
+
+        border-radius: 50%;
+
+        &:hover {
+          background: rgba(0, 0, 0, 0.8);
+        }
+      }
+    }
+
+    .dots {
+      position: absolute;
+      bottom: 15px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 10px;
+      z-index: 2;
+
+      .dot {
+        width: 10px;
+        height: 10px;
+        background: rgba(255, 255, 255, 0.5);
+        border-radius: 50%;
+        cursor: pointer;
+        transition: background 0.3s;
+
+        &.active {
+          background: white;
+        }
+      }
+    }
+  }
+}

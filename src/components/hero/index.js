@@ -4,7 +4,7 @@ import slideImageTwo from "../../../public/images/slider-image-2.jpeg";
 import slideImageThree from "../../../public/images/slider-image-3.jpeg";
 import Image from "next/future/image";
 import { FormattedMessage } from "react-intl";
-
+import styles from "./styles/styles.module.scss";
 const Slider = () => {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const images = [
@@ -27,7 +27,7 @@ const Slider = () => {
   };
 
   return (
-    <div className="slider">
+    <div className={styles.hero}>
       <div className="overlay"></div>
       <div className="content">
         <div>

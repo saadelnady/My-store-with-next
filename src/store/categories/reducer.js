@@ -25,18 +25,20 @@ const categories = (state = initialState, action) => {
     case GET_ALL_CATEGORIES: {
       return {
         ...state,
-        categories: action.payload,
+        isLoading: true,
       };
     }
     case GET_ALL_CATEGORIES_SUCCESS: {
       return {
         ...state,
         categories: action.payload,
+        isLoading: false,
       };
     }
     case GET_ALL_CATEGORIES_FAILURE: {
       return {
         ...state,
+        isLoading: false,
         error: action.payload,
       };
     }

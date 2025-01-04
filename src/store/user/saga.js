@@ -23,22 +23,14 @@ import { showToast } from "@/helpers/helpers";
 import nookies, { parseCookies } from "nookies";
 
 function* postUserLoginSaga({ payload }) {
-  const { router, intl } = payload;
+  const { intl } = payload;
   try {
     const { message, token, user } = yield call(postUserLoginApi, payload);
-    const { locale } = router;
 
     if (message === "success") {
       yield put(postUserLoginSuccess({ message, token, user }));
       nookies.set(null, "token", token, { path: "/" });
       showToast("success", "loggedInSuccess", intl);
-      setTimeout(() => {
-        if (locale === "ar") {
-          router.replace("/ar");
-        } else {
-          router.replace("/");
-        }
-      }, 2000);
     }
   } catch (error) {
     yield put(postUserLoginFailure(error));
@@ -46,11 +38,9 @@ function* postUserLoginSaga({ payload }) {
   }
 }
 // --------------------------------------------------------------
-function* checkUserLoggedInSaga() {
+function* checkUserLoggedInSaga(action) {
   try {
-    const cookies = parseCookies();
-    const token = cookies.token;
-
+    const { token } = action.payload;
     if (token) {
       yield put(checkUserLoggedInSuccess({ token }));
     } else {
@@ -79,7 +69,7 @@ function* postUserLoggOutSaga({ payload }) {
 // --------------------------------------------------------------
 
 export function* watchPostUserLogin() {
-  yield takeEvery(POST_USER_LOGIN, postUserLoginSaga);
+  yield takeLatest(POST_USER_LOGIN, postUserLoginSaga);
 }
 // --------------------------------------------------------------
 

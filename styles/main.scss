@@ -182,9 +182,10 @@ html {
   align-items: center;
   height: 80vh;
 }
-.error {
-  margin: 10px auto;
-  text-align: center;
+.error-message {
+  color: #d9534f;
+  font-size: 0.9rem;
+  margin-top: 0.25rem;
 }
 
 .submit-page {

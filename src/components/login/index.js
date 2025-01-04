@@ -4,7 +4,6 @@ import { generateSquares } from "@/helpers/helpers";
 import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { postUserLogin } from "@/store/actions";
-import { useRouter } from "next/router";
 import { FormattedMessage, useIntl } from "react-intl";
 
 const Login = () => {
@@ -20,11 +19,10 @@ const Login = () => {
     mode: "all",
   });
   const dispatch = useDispatch();
-  const router = useRouter();
   const intl = useIntl();
 
   const handleLoginSubmittion = (data) => {
-    dispatch(postUserLogin({ data, cookies: {}, router, intl }));
+    dispatch(postUserLogin({ data, cookies: {}, intl }));
   };
   return (
     <div className="submit-page">
@@ -34,7 +32,6 @@ const Login = () => {
           <Row className="justify-content-center">
             <Col xs={12} md={6}>
               <h3>
-                {" "}
                 <FormattedMessage id="login" />
               </h3>
               <form onSubmit={handleSubmit(handleLoginSubmittion)}>
@@ -45,10 +42,10 @@ const Login = () => {
                   <input
                     id="email"
                     {...register("email", {
-                      required: "Email is required",
+                      required: intl.formatMessage({ id: "required" }),
                       pattern: {
                         value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                        message: "Invalid email address",
+                        message: intl.formatMessage({ id: "invalidEmail" }),
                       },
                     })}
                   />
@@ -63,10 +60,10 @@ const Login = () => {
                   </label>
                   <input
                     {...register("password", {
-                      required: "Password is required",
+                      required: intl.formatMessage({ id: "required" }),
                       minLength: {
                         value: 6,
-                        message: "Password must be at least 6 characters",
+                        message: intl.formatMessage({ id: "passwordLength" }),
                       },
                     })}
                     type="password"
