@@ -47,5 +47,6 @@
   "countError": "The minimum quantity is 1",
   "required": "This field is required",
   "invalidEmail": "Invalid email address",
-  "passwordLength": "Password must be at least 6 characters"
+  "passwordLength": "Password must be at least 6 characters",
+  "no-data": "No data available"
 }

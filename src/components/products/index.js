@@ -64,9 +64,9 @@ const Products = () => {
                 },
               },
               1500: {
-                slidesPerView: 3,
+                slidesPerView: 4,
                 spaceBetween: 15,
-                slidesPerGroup: 3,
+                slidesPerGroup: 4,
                 grid: {
                   rows: 2,
                 },

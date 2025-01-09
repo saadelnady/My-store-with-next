@@ -5,6 +5,8 @@ import styles from "./styles/styles.module.scss";
 import { Col, Container, Row } from "react-bootstrap";
 import { getAllProducts } from "@/store/actions";
 import { useRouter } from "next/router";
+import BreadCrumb from "../shared/breadCrumb/BreadCrumb";
+import { FormattedMessage } from "react-intl";
 const ProductsPage = () => {
   const dispatch = useDispatch();
   const { products, metadata, results } = useSelector(
@@ -16,9 +18,18 @@ const ProductsPage = () => {
       dispatch(getAllProducts({ cookies: {}, page, limit: 12 }));
     }
   };
+
+  // -------------------------------------------------------------
+
+  const items = [
+    { title: <FormattedMessage id="home" />, url: "/" },
+    { title: <FormattedMessage id="products" /> },
+  ];
+  // -------------------------------------------------------------
   return (
     <div className={styles.products}>
       <Container>
+        <BreadCrumb items={items} />
         <Row>
           {products && products?.length > 0 ? (
             products.map((item, index) => (
