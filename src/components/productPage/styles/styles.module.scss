@@ -1,7 +1,8 @@
 @import "@/styles/variables.scss";
 .productPage {
   :global {
-    background-color: #f6f6f6;
+    background-color: white;
+    padding: 0 0 80px;
 
     .product-imgs {
       box-shadow: $box-shadow;

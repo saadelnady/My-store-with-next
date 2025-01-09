@@ -56,6 +56,16 @@ const Links = ({ isActive, showSidebarHandler }) => {
             </a>
           </Link>
         </li>
+        <li>
+          <Link href="/brands">
+            <a
+              className={isCurrentPath("/brands") ? "active" : ""}
+              onClick={showSidebarHandler}
+            >
+              <FormattedMessage id="brands" />
+            </a>
+          </Link>
+        </li>
         {isLoggedIn && (
           <li>
             <Link href="/orders">

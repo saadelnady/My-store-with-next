@@ -7,6 +7,7 @@ import Image from "next/future/image";
 import CustomHeading from "../shared/customHeading/CustomHeading";
 import { FormattedMessage } from "react-intl";
 import styles from "./styles/styles.module.scss";
+import Link from "next/link";
 const Brands = () => {
   const { locale } = useRouter();
   const { brands } = useSelector((state) => state.brands);
@@ -45,18 +46,22 @@ const Brands = () => {
                 key={dir}
               >
                 {brands?.map((element, index) => {
-                  const { name, slug, image } = element;
+                  const { image } = element;
                   return (
                     <SwiperSlide key={index}>
-                      <div className="item">
-                        <Image
-                          src={image}
-                          alt="category-img"
-                          width={100}
-                          height={100}
-                          className="item-img"
-                        />
-                      </div>
+                      <Link href={`/brands/${element._id}`}>
+                        <a>
+                          <div className="item">
+                            <Image
+                              src={image}
+                              alt="category-img"
+                              width={100}
+                              height={100}
+                              className="item-img"
+                            />
+                          </div>
+                        </a>
+                      </Link>
                     </SwiperSlide>
                   );
                 })}

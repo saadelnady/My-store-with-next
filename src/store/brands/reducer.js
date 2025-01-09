@@ -4,11 +4,15 @@ const {
   GET_ALL_BRANDS,
   GET_ALL_BRANDS_SUCCESS,
   GET_ALL_BRANDS_FAILURE,
+  GET_SINGLE_BRAND,
+  GET_SINGLE_BRAND_SUCCESS,
+  GET_SINGLE_BRAND_FAILURE,
 } = require("./actionTypes");
 
 const initialState = {
   brands: [],
   brand: {},
+
   isLoading: false,
   error: null,
 };
@@ -30,6 +34,13 @@ const brands = (state = initialState, action) => {
     case GET_ALL_BRANDS_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
 
+    // ----------------------------------------------------------------------
+    case GET_SINGLE_BRAND:
+      return { ...state, isLoading: true };
+    case GET_SINGLE_BRAND_SUCCESS:
+      return { ...state, isLoading: false, brand: action.payload };
+    case GET_SINGLE_BRAND_FAILURE:
+      return { ...state, isLoading: false, error: action.payload };
     default:
       return state;
   }

@@ -6,7 +6,7 @@ export const getAllProductsApi = async ({ cookies = {}, page, limit }) => {
   );
   return response.data;
 };
-export const getSingleProductApi = async ({ cookies, slug }) => {
+export const getSingleProductApi = async ({ cookies = {}, slug }) => {
   const response = await server(cookies).get(`/products?slug=${slug}`);
   return response.data;
 };
