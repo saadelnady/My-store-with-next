@@ -1,11 +1,20 @@
 import Image from "next/future/image";
 import Link from "next/link";
 import React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import icStar from "../../../public/images/ic-star.png";
+import { useDispatch, useSelector } from "react-redux";
+import { postAddProductToCart } from "@/store/actions";
+import { useRouter } from "next/router";
+import { showToast } from "@/helpers/helpers";
 
 const ProductCard = ({ product }) => {
+  const dispatch = useDispatch();
+  const { isLogedIn } = useSelector((state) => state.user);
+  const intl = useIntl();
+  const router = useRouter();
   const {
+    _id,
     title,
     category,
     price,
@@ -14,6 +23,7 @@ const ProductCard = ({ product }) => {
     ratingsAverage,
     priceAfterDiscount,
   } = product;
+
   return (
     <div className="item">
       {priceAfterDiscount && (
@@ -57,7 +67,19 @@ const ProductCard = ({ product }) => {
           </div>
         </div>
         <div className="buttons">
-          <button className="btn border m-0 add-to-cart">
+          <button
+            className="btn border m-0 add-to-cart"
+            onClick={() => {
+              if (isLogedIn) {
+                dispatch(postAddProductToCart({ data: { productId: _id } }));
+              } else {
+                showToast("error", "login-first", intl);
+                setTimeout(() => {
+                  router.push("/login");
+                }, 1500);
+              }
+            }}
+          >
             <FormattedMessage id="addToCart" />
           </button>
           <button className="btn wishlist">

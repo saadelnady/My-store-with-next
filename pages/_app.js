@@ -4,6 +4,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import { IntlProvider } from "react-intl";
 import { END } from "redux-saga";
+import nookies from "nookies";
 
 import SSRProvider from "react-bootstrap/SSRProvider";
 import "bootstrap/dist/css/bootstrap.css";
@@ -26,8 +27,7 @@ import Loading from "@/components/shared/loading/Loading";
 
 import { Toaster } from "react-hot-toast"; // Import React Hot Toast
 import { useDispatch, useSelector } from "react-redux";
-import { parseCookies } from "nookies";
-import { checkUserLoggedIn, getUserCart } from "@/store/actions";
+import { getUserCart, postUserLoginSuccess } from "@/store/actions";
 
 const languages = {
   ar: require("@/content/languages/ar.json"),
@@ -52,7 +52,6 @@ function App({ Component, pageProps }) {
 
   const [Progress, setProgress] = useState(false);
   const [loading, setLoading] = useState(false);
-
   TopBarProgress.config({
     barThickness: 3,
     barColors: {
@@ -94,7 +93,20 @@ function App({ Component, pageProps }) {
     document.body.style.direction = dir;
     document.body.setAttribute("dir", dir);
   }, [dir]);
+  useEffect(() => {
+    const cookies = nookies.get(null);
+    const token = cookies.token;
 
+    if (token) {
+      dispatch(postUserLoginSuccess({ token }));
+    }
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(getUserCart({ cookies: {} }));
+    }
+  }, [dispatch, router, isLoggedIn]);
   return (
     <>
       <Head>

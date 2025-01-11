@@ -31,27 +31,6 @@ export const postUserLoginFailure = (payload) => {
   };
 };
 
-export const checkUserLoggedIn = (cookies) => {
-  return {
-    type: CHECK_USER_LOGGED_IN,
-    payload: cookies,
-  };
-};
-
-export const checkUserLoggedInSuccess = (cookies) => {
-  return {
-    type: CHECK_USER_LOGGED_IN_SUCCESS,
-    payload: cookies,
-  };
-};
-
-export const checkUserLoggedInFailure = (error) => {
-  return {
-    type: CHECK_USER_LOGGED_IN_FAILURE,
-    payload: error,
-  };
-};
-
 export const postUserLogOut = (payload) => {
   return {
     type: POST_USER_LOGOUT,

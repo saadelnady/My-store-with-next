@@ -48,5 +48,6 @@
   "required": "This field is required",
   "invalidEmail": "Invalid email address",
   "passwordLength": "Password must be at least 6 characters",
-  "no-data": "No data available"
+  "no-data": "No data available",
+  "login-first": "Please log in first"
 }

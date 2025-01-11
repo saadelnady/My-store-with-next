@@ -18,6 +18,8 @@ function* getUserCartSaga({ payload }) {
 }
 // -----------------------------------------------------------------
 function* addProductToCartSaga({ payload }) {
+  console.log("payload >>>>>", payload);
+
   try {
     const { data } = yield call(postAddToCartApi, payload);
 

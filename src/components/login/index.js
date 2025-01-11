@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { postUserLogin } from "@/store/actions";
 import { FormattedMessage, useIntl } from "react-intl";
+import { useRouter } from "next/router";
 
 const Login = () => {
   const {
@@ -20,9 +21,11 @@ const Login = () => {
   });
   const dispatch = useDispatch();
   const intl = useIntl();
+  const router = useRouter();
+  console.log(router);
 
   const handleLoginSubmittion = (data) => {
-    dispatch(postUserLogin({ data, cookies: {}, intl }));
+    dispatch(postUserLogin({ data, cookies: {}, intl, router }));
   };
   return (
     <div className="submit-page">

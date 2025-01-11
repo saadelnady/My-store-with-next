@@ -3,9 +3,7 @@ import {
   POST_USER_LOGIN,
   POST_USER_LOGIN_SUCCESS,
   POST_USER_LOGIN_FAILURE,
-  CHECK_USER_LOGGED_IN,
-  CHECK_USER_LOGGED_IN_SUCCESS,
-  CHECK_USER_LOGGED_IN_FAILURE,
+ 
   POST_USER_LOGOUT,
   POST_USER_LOGOUT_SUCCESS,
   POST_USER_LOGOUT_FAILURE,
@@ -52,26 +50,7 @@ const user = (state = initialState, action) => {
       };
     }
     // --------------------------------------------------
-    case CHECK_USER_LOGGED_IN:
-      return {
-        ...state,
-        loading: true,
-      };
-    case CHECK_USER_LOGGED_IN_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        // user: action.payload,
-        isLoggedIn: true,
-      };
-    case CHECK_USER_LOGGED_IN_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-        isLoggedIn: false,
-      };
-    // --------------------------------------------------
+     
     case POST_USER_LOGOUT:
       return {
         ...state,
