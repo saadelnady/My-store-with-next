@@ -6,6 +6,8 @@ import Languages from "./Languages";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useDispatch, useSelector } from "react-redux";
 import { postUserLogOut } from "@/store/actions";
+import DropdownMenu from "./dropdownMenu";
+import DarkModeToggle from "./darkModeToggle";
 
 const Links = ({ isActive, showSidebarHandler }) => {
   const { asPath, locale } = useRouter();
@@ -66,18 +68,7 @@ const Links = ({ isActive, showSidebarHandler }) => {
             </a>
           </Link>
         </li>
-        {isLoggedIn && (
-          <li>
-            <Link href="/orders">
-              <a
-                className={isCurrentPath("/orders") ? "active" : ""}
-                onClick={showSidebarHandler}
-              >
-                <FormattedMessage id="orders" />
-              </a>
-            </Link>
-          </li>
-        )}
+
         <li>
           <Link href="/categories">
             <a
@@ -132,17 +123,10 @@ const Links = ({ isActive, showSidebarHandler }) => {
             </li>
           </div>
         )}
-        {isLoggedIn && (
-          <li>
-            <button
-              className="btn btn-danger text-light my-3"
-              onClick={handleLogout}
-            >
-              <FormattedMessage id="logout" />
-            </button>
-          </li>
-        )}
+
         <Languages />
+        <DarkModeToggle />
+        {isLoggedIn && <DropdownMenu />}
       </ul>
     </>
   );

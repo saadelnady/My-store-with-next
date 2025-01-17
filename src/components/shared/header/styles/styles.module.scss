@@ -75,21 +75,22 @@
       li {
         a {
           padding: 10px;
-          font-size: 1rem;
           margin: 0 auto;
-          transition: background-color 0.3s ease;
           text-decoration: none;
           color: black;
           border-bottom: 2px solid transparent;
-          transition: border-bottom 0.3s ease;
-          font-size: 17px;
-          margin-inline-end: 1.5rem;
+          transition: all 0.3s ease;
           &:hover,
           &.active {
             background-color: $highlight-color;
             border-radius: 5px;
             color: $light-color;
           }
+
+          font-size: 16px;
+          margin-inline-end: 10px;
+          white-space: nowrap;
+          font-weight: 300;
         }
       }
     }
@@ -204,6 +205,15 @@
           }
         }
       }
+    }
+    .user-img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      -webkit-border-radius: 50%;
+      -moz-border-radius: 50%;
+      -ms-border-radius: 50%;
+      -o-border-radius: 50%;
     }
     @media (min-width: 769px) {
       .links {

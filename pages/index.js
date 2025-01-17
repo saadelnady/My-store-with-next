@@ -1,12 +1,13 @@
 import Head from "next/head";
-import { NextSeo } from "next-seo";
-import { wrapper } from "../src/store";
+
+import { wrapper } from "@/store";
 import { END } from "redux-saga";
 
 import Hero from "@/components/hero";
 import Brands from "@/components/brands";
 import Products from "@/components/products";
 import Categories from "@/components/categories";
+import Banner from "@/components/banner/index";
 
 import {
   getAllBrands,
@@ -21,6 +22,7 @@ export default function Home() {
         <meta name="description" content="ecommerce website using next js" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
+      {/* <Banner /> */}
       <Hero />
       <Categories />
       <Products />

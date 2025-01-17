@@ -27,7 +27,7 @@ function* postUserLoginSaga({ payload }) {
 }
 
 // --------------------------------------------------------------
-function* postUserLoggOutSaga({ payload }) {
+function* postUserLogOutSaga({ payload }) {
   const { intl } = payload;
 
   try {
@@ -50,13 +50,14 @@ export function* watchPostUserLogin() {
 // --------------------------------------------------------------
 
 export function* watchPostUserLogout() {
-  yield takeEvery(POST_USER_LOGOUT, postUserLoggOutSaga);
+  yield takeEvery(POST_USER_LOGOUT, postUserLogOutSaga);
 }
 
 // --------------------------------------------------------------
 
 function* userSaga() {
-  yield all([fork(watchPostUserLogin), fork(watchPostUserLogout)]);
+  yield all([fork(watchPostUserLogin)]);
+  yield all([fork(watchPostUserLogout)]);
 }
 
 export default userSaga;

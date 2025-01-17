@@ -49,5 +49,10 @@
   "invalidEmail": "Invalid email address",
   "passwordLength": "Password must be at least 6 characters",
   "no-data": "No data available",
-  "login-first": "Please log in first"
+  "login-first": "Please log in first",
+  "profile": "Profile",
+  "cart": "Cart",
+  "product": "Product",
+  "quantity": "Quantity",
+  "total": "Total Price"
 }

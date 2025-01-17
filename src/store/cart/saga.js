@@ -41,7 +41,8 @@ export function* watchPostAddProductToCart() {
 // -----------------------------------------------------------------
 
 function* cartSaga() {
-  yield all([fork(watchGetUserCart), fork(watchPostAddProductToCart)]);
+  yield all([fork(watchGetUserCart)]);
+  yield all([fork(watchPostAddProductToCart)]);
 }
 
 export default cartSaga;

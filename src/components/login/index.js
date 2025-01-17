@@ -22,7 +22,6 @@ const Login = () => {
   const dispatch = useDispatch();
   const intl = useIntl();
   const router = useRouter();
-  console.log(router);
 
   const handleLoginSubmittion = (data) => {
     dispatch(postUserLogin({ data, cookies: {}, intl, router }));
