@@ -54,5 +54,7 @@
   "cart": "Cart",
   "product": "Product",
   "quantity": "Quantity",
-  "total": "Total Price"
+  "total": "Total Price",
+  "cart-total": "Cart Total",
+  "checkout": "Complete Order"
 }

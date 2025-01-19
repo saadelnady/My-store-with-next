@@ -10,7 +10,9 @@ import { showToast } from "@/helpers/helpers";
 
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
-  const { isLogedIn } = useSelector((state) => state.user);
+  const { isLoggedIn } = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user);
+
   const intl = useIntl();
   const router = useRouter();
   const {
@@ -70,7 +72,7 @@ const ProductCard = ({ product }) => {
           <button
             className="btn border m-0 add-to-cart"
             onClick={() => {
-              if (isLogedIn) {
+              if (isLoggedIn) {
                 dispatch(postAddProductToCart({ data: { productId: _id } }));
               } else {
                 showToast("error", "login-first", intl);

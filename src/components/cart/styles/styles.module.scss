@@ -4,6 +4,7 @@
   :global {
     .table {
       border-collapse: collapse;
+      overflow-x: scroll;
       .t-head,
       .td {
         padding-inline-start: 30px;
@@ -16,10 +17,10 @@
         border-bottom: 1px solid #e6dace80;
       }
       .td {
-        padding-top: 30px;
-        padding-bottom: 30px;
         border-bottom: 1px solid #e6dace80;
+        padding: 30px 0;
       }
+
       .product-details {
         display: flex;
         align-items: center;
@@ -63,20 +64,6 @@
             gap: 5px;
             .rate {
               font-size: 24px;
-              &:hover {
-                svg {
-                  fill: unset;
-                }
-              }
-              &.empty {
-                fill: transparent;
-              }
-              &.full {
-                fill: #ff7513;
-              }
-              &.half {
-                fill: #ff7513;
-              }
             }
             .rc-rate-star {
               svg {
@@ -95,6 +82,7 @@
         color: #000000;
         font-family: "font-medium";
         font-size: 16px;
+        padding: 0 30px;
       }
       .counter {
         display: flex;
@@ -103,6 +91,7 @@
         border: 1px solid #e8e6e3;
         border-collapse: collapse;
         border-radius: 10px;
+
         .buttons {
           display: flex;
           flex-direction: column;
@@ -124,15 +113,54 @@
         }
       }
       .total {
+        padding: 0 30px;
         color: #000000;
         font-family: "font-regular";
         font-size: 16px;
       }
+      .cart-item {
+        .product-img {
+          width: 100px;
+          height: 100px;
+          object-fit: cover;
+        }
+      }
     }
-    .cart-item {
-      .product-img {
-        width: 100px;
-        height: 100px;
+    .cart-total {
+      background-color: #faf8f580;
+      border-radius: 10px;
+      padding: 30px;
+      .total-title {
+        margin-bottom: 50px;
+      }
+      .total-value {
+        display: flex;
+        justify-content: space-between;
+        color: #826f57;
+        padding-bottom: 30px;
+        border-bottom: 1px solid #0000001a;
+        .value {
+          font-family: "font-bold";
+          color: #0a0908;
+        }
+      }
+      .checkout-btn {
+        width: 100%;
+        margin-top: 30px;
+        background-color: $highlight-color;
+        color: #ffffff;
+        border: none;
+        padding: 10px 0;
+        border-radius: 10px;
+        font-family: "font-bold";
+        font-size: 16px;
+      }
+    }
+    .empty-cart {
+      overflow: hidden;
+      text-align: center;
+      img {
+        max-width: 600px;
         object-fit: cover;
       }
     }
