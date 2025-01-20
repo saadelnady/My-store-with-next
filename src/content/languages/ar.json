@@ -56,5 +56,17 @@
   "quantity": "الكمية",
   "total": "الاجمالى",
   "cart-total": "اجمالى السلة",
-  "checkout": "اتمام الطلب"
+  "checkout": "اتمام الطلب",
+  "max-quantity": "الحد الاقصى للكمية هو 5",
+  "min-quantity": "الحد الادنى للكمية هو 1",
+  "cart-empty": " سلة المشتريات فارغة",
+  "remove-product": "حذف المنتج",
+  "remove-product-from-cart": " هل تريد حذف المنتج من سلة المشتريات ؟",
+  "cancel": "الغاء",
+  "remove": "حذف",
+  "remove-all-products-from-cart": "حذف كل المنتجات من سلة المشتريات",
+  "remove-all-products-from-cart-title": "حذف كل المنتجات ",
+  "remove-all-products-from-cart-description": " هل تريد حذف كل المنتجات من سلة المشتريات ؟",
+  "delete-cart-success": "تم حذف سلة المشتريات بنجاح",
+  "delete-cart-item-success": "تم حذف المنتج من سلة المشتريات بنجاح"
 }

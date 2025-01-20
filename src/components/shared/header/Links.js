@@ -14,9 +14,9 @@ const Links = ({ isActive, showSidebarHandler }) => {
   const intl = useIntl();
   const dir = locale === "ar" ? "rtl" : "ltr";
   const isCurrentPath = (path) => asPath === path;
-  const { user, isLoggedIn } = useSelector((state) => state.user);
+  const { isLoggedIn } = useSelector((state) => state.user);
   const { cart } = useSelector((state) => state.cart);
-  const { products } = cart;
+  const products = cart?.products || [];
 
   const dispatch = useDispatch();
   const handleLogout = () => {

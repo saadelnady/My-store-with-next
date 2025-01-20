@@ -2,6 +2,7 @@
 
 .cart {
   :global {
+    min-height: 100vh;
     .table {
       border-collapse: collapse;
       overflow-x: scroll;
@@ -101,6 +102,10 @@
             background-color: transparent;
             outline: none;
             border-left: 1px solid #e8e6e3;
+            [dir="ltr"] & {
+              border-left: unset;
+              border-right: 1px solid #e8e6e3;
+            }
             &.increase {
               border-bottom: 1px solid #e8e6e3;
             }
@@ -144,16 +149,22 @@
           color: #0a0908;
         }
       }
-      .checkout-btn {
+      .checkout-btn,
+      .remove-btn {
         width: 100%;
         margin-top: 30px;
-        background-color: $highlight-color;
         color: #ffffff;
         border: none;
         padding: 10px 0;
         border-radius: 10px;
         font-family: "font-bold";
         font-size: 16px;
+      }
+      .checkout-btn {
+        background-color: $highlight-color;
+      }
+      .remove-btn {
+        background-color: rgba(255, 0, 0, 0.336);
       }
     }
     .empty-cart {
@@ -162,6 +173,18 @@
       img {
         max-width: 600px;
         object-fit: cover;
+      }
+    }
+  }
+}
+.cart-modal {
+  :global {
+    .modal-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      .btn-close {
+        margin-inline-end: 0;
       }
     }
   }

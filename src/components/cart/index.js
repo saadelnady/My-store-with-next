@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
+
 import { useDispatch, useSelector } from "react-redux";
 import Table from "./table";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import Image from "next/future/image";
 import BreadCrumb from "../shared/breadCrumb/BreadCrumb";
 import IcPLus from "./assets/svgs/ic-plus.svg";
@@ -14,13 +15,79 @@ import Rate from "rc-rate";
 import { useRouter } from "next/router";
 import "rc-rate/assets/index.css";
 import styles from "./styles/styles.module.scss";
+import { deleteCartItem, deleteCartItems, editCart } from "@/store/actions";
+import { showToast } from "@/helpers/helpers";
+import CartModal from "./modal";
 
 const Cart = () => {
-  const { cart } = useSelector((state) => state.cart);
-  const { products, totalCartPrice } = cart;
+  const dispatch = useDispatch();
   const { locale } = useRouter();
+  const intl = useIntl();
+  const [showDeleteItemModal, setShowDeleteItemModal] = useState(false);
+  const [showDeleteAllItemsModal, setShowDeleteAllItemsModal] = useState(false);
+  const [targetProductId, setTargetProductId] = useState("");
+  const { cart } = useSelector((state) => state.cart);
+  const products = cart?.products || [];
+  const totalCartPrice = cart?.totalCartPrice || 0;
   const dir = locale === "ar" ? "rtl" : "ltr";
 
+  const handleCloseDeleteItemModal = () => {
+    setShowDeleteItemModal(false);
+    setTargetProductId("");
+  };
+  const handleCloseDeleteAllItemsModal = () => {
+    setShowDeleteAllItemsModal(false);
+  };
+  const handleTargetProductId = (id) => {
+    if (id) {
+      setTargetProductId(id);
+    } else {
+      setTargetProductId("");
+    }
+  };
+  const handleIncrement = (product) => {
+    if (product.count === 5) {
+      showToast("error", "max-quantity", intl);
+      return;
+    }
+    dispatch(
+      editCart({
+        cookies: {},
+        productId: product?.product?._id,
+        data: { count: product.count + 1 },
+      })
+    );
+  };
+  const handleDecrement = (product) => {
+    if (product.count === 1) {
+      showToast("error", "min-quantity", intl);
+      return;
+    }
+    dispatch(
+      editCart({
+        cookies: {},
+        productId: product?.product?._id,
+        data: { count: product.count - 1 },
+      })
+    );
+  };
+  const handleRemoveCartItem = () => {
+    dispatch(
+      deleteCartItem({
+        cookies: {},
+        productId: targetProductId,
+        intl,
+      })
+    );
+  };
+  const handleRemoveAllCartItems = () => {
+    dispatch(
+      deleteCartItems({
+        cookies: {},
+        intl,
+      })
+    );
+  };
   const cols = [
     { key: "product", label: <FormattedMessage id="product" /> },
     { key: "price", label: <FormattedMessage id="price" /> },
@@ -33,7 +100,13 @@ const Cart = () => {
       key: "product.imageCover",
       render: (item) => (
         <div className="product-details">
-          <button className="btn remove">
+          <button
+            className="btn remove"
+            onClick={() => {
+              setShowDeleteItemModal(true);
+              handleTargetProductId(item?.product?._id);
+            }}
+          >
             <IcRemove />
           </button>
           <div className="product-img ">
@@ -74,10 +147,19 @@ const Cart = () => {
       render: (item) => (
         <div className="counter">
           <div className="buttons">
-            <button className="increase">
+            <button
+              className="increase"
+              onClick={() => {
+                handleIncrement(item);
+              }}
+            >
               <IcPLus />
             </button>
-            <button>
+            <button
+              onClick={() => {
+                handleDecrement(item);
+              }}
+            >
               <IcMinus />
             </button>
           </div>
@@ -123,6 +205,16 @@ const Cart = () => {
                     <FormattedMessage id="checkout" />
                   </button>
                 </div>
+                <div className="remove-all">
+                  <button
+                    className="btn remove-btn bg-danger"
+                    onClick={() => {
+                      setShowDeleteAllItemsModal(true);
+                    }}
+                  >
+                    <FormattedMessage id="remove-all-products-from-cart" />
+                  </button>
+                </div>
               </div>
             </Col>
           </Row>
@@ -132,6 +224,24 @@ const Cart = () => {
           </div>
         )}
       </Container>
+      <CartModal
+        showModal={showDeleteItemModal}
+        handleClose={handleCloseDeleteItemModal}
+        handleRemove={handleRemoveCartItem}
+        modalTitle={<FormattedMessage id="remove-product" />}
+        modalDescription={<FormattedMessage id="remove-product-from-cart" />}
+      />
+      <CartModal
+        showModal={showDeleteAllItemsModal}
+        handleClose={handleCloseDeleteAllItemsModal}
+        handleRemove={handleRemoveAllCartItems}
+        modalTitle={
+          <FormattedMessage id="remove-all-products-from-cart-title" />
+        }
+        modalDescription={
+          <FormattedMessage id="remove-all-products-from-cart-description" />
+        }
+      />
     </div>
   );
 };

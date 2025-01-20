@@ -56,5 +56,16 @@
   "quantity": "Quantity",
   "total": "Total Price",
   "cart-total": "Cart Total",
-  "checkout": "Complete Order"
+  "checkout": "Complete Order",
+  "max-quantity": "Maximum quantity is 5",
+  "min-quantity": "Minimum quantity  is 1",
+  "remove-product": "Remove Product",
+  "remove-product-from-cart": " Are you sure you want to remove this product from cart ?",
+  "cancel": "Cancel",
+  "remove": "Remove",
+  "remove-all-products-from-cart": "Remove All Products From Cart",
+  "remove-all-products-from-cart-title": "Remove All Products",
+  "remove-all-products-from-cart-description": "Are you sure you want to remove all products from cart ?",
+  "delete-cart-success": "Cart deleted successfully",
+  "delete-cart-item-success": " Product deleted from cart successfully"
 }
