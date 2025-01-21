@@ -2,10 +2,17 @@ import Image from "next/future/image";
 import React, { useState } from "react";
 import IcUser from "./assets/ic-user.png";
 import Link from "next/link";
-import { FormattedMessage } from "react-intl";
-const DropdownMenu = ({ handleLogout }) => {
-  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+import { FormattedMessage, useIntl } from "react-intl";
+import { useDispatch } from "react-redux";
 
+import { postUserLogOut } from "@/store/actions";
+const DropdownMenu = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const dispatch = useDispatch();
+  const intl = useIntl();
+  const handleLogout = () => {
+    dispatch(postUserLogOut({ intl }));
+  };
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
   };

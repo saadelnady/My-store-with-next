@@ -1,12 +1,13 @@
 import React from "react";
 import nookies from "nookies";
 import { wrapper } from "@/store";
+import WishList from "@/components/wishlist";
 
-const Wishlist = () => {
-  return <div>Wishlist</div>;
+const WishlistPage = () => {
+  return <WishList />;
 };
 
-export default Wishlist;
+export default WishlistPage;
 export const getServerSideProps = wrapper.getServerSideProps((store) => {
   return async (ctx) => {
     const cookies = nookies.get(ctx);

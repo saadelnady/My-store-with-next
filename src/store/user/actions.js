@@ -2,12 +2,12 @@ import {
   POST_USER_LOGIN,
   POST_USER_LOGIN_SUCCESS,
   POST_USER_LOGIN_FAILURE,
-  CHECK_USER_LOGGED_IN,
-  CHECK_USER_LOGGED_IN_SUCCESS,
-  CHECK_USER_LOGGED_IN_FAILURE,
   POST_USER_LOGOUT,
   POST_USER_LOGOUT_SUCCESS,
   POST_USER_LOGOUT_FAILURE,
+  POST_USER_SIGNUP,
+  POST_USER_SIGNUP_SUCCESS,
+  POST_USER_SIGNUP_FAILURE,
 } from "./actionTypes";
 
 export const postUserLogin = (payload) => {
@@ -49,5 +49,26 @@ export const postUserLogOutFailure = (error) => {
   return {
     type: POST_USER_LOGOUT_FAILURE,
     payload: error,
+  };
+};
+
+export const postUserSignup = (payload) => {
+  return {
+    type: POST_USER_SIGNUP,
+    payload,
+  };
+};
+
+export const postUserSignupSuccess = (payload) => {
+  return {
+    type: POST_USER_SIGNUP_SUCCESS,
+    payload,
+  };
+};
+
+export const postUserSignupFailure = (payload) => {
+  return {
+    type: POST_USER_SIGNUP_FAILURE,
+    payload,
   };
 };

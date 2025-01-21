@@ -3,11 +3,7 @@ import SignUpComponent from "../src/components/sign-up";
 import nookies from "nookies";
 
 const SignUp = () => {
-  return (
-    <div>
-      <SignUpComponent />
-    </div>
-  );
+  return <SignUpComponent />;
 };
 
 export default SignUp;

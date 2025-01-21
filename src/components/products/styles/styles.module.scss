@@ -107,24 +107,24 @@
       position: relative;
       overflow: hidden;
       padding: 0;
+      border-radius: 10px;
 
       .sale {
         position: absolute;
-        top: 0;
-        right: 0;
+        top: 20px;
+        right: 20px;
+        [dir="ltr"] & {
+          left: 0;
+          right: unset;
+        }
         background-color: $highlight-color;
-        width: 50px;
-        height: 50px;
         color: $light-color;
         z-index: 99;
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 0 50% 0;
-
-        span {
-          transform: rotate(50deg);
-        }
+        padding: 8px 10px;
+        border-radius: 10px;
       }
       .product-img {
         width: 100%;
@@ -198,13 +198,23 @@
             font-size: 20px;
             margin-inline-start: auto;
             transition: 0.5s;
-
+            svg {
+              stroke: red;
+              fill: none;
+            }
             &:hover {
-              i {
-                filter: brightness(0) saturate(100%) invert(17%) sepia(91%)
-                  saturate(737%) hue-rotate(337deg) brightness(97%)
-                  contrast(101%);
+              svg {
+                fill: red;
               }
+              path {
+                fill: red;
+              }
+            }
+          }
+          .wishlist.active {
+            border: none;
+            svg {
+              fill: red;
             }
           }
         }

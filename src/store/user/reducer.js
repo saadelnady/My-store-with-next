@@ -3,10 +3,12 @@ import {
   POST_USER_LOGIN,
   POST_USER_LOGIN_SUCCESS,
   POST_USER_LOGIN_FAILURE,
- 
   POST_USER_LOGOUT,
   POST_USER_LOGOUT_SUCCESS,
   POST_USER_LOGOUT_FAILURE,
+  POST_USER_SIGNUP,
+  POST_USER_SIGNUP_SUCCESS,
+  POST_USER_SIGNUP_FAILURE,
 } from "./actionTypes";
 
 const initialState = {
@@ -50,7 +52,7 @@ const user = (state = initialState, action) => {
       };
     }
     // --------------------------------------------------
-     
+
     case POST_USER_LOGOUT:
       return {
         ...state,
@@ -71,6 +73,31 @@ const user = (state = initialState, action) => {
         error: action.payload,
       };
     // --------------------------------------------------
+    case POST_USER_SIGNUP: {
+      return {
+        ...state,
+        isLoading: true,
+        isLoggedIn: false,
+      };
+    }
+
+    case POST_USER_SIGNUP_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        isLoggedIn: true,
+        user: action.payload.user,
+      };
+    }
+
+    case POST_USER_SIGNUP_FAILURE: {
+      return {
+        ...state,
+        isLoading: false,
+        isLoggedIn: false,
+        error: action.payload,
+      };
+    }
     default:
       return state;
   }

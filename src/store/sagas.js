@@ -4,6 +4,7 @@ import productsSaga from "./products/saga";
 import userSaga from "./user/saga";
 import brandsSaga from "./brands/saga";
 import cartSaga from "./cart/saga";
+import wishlistSaga from "./wishlist/saga";
 
 export default function* rootSaga() {
   yield all([
@@ -12,5 +13,6 @@ export default function* rootSaga() {
     userSaga(),
     brandsSaga(),
     cartSaga(),
+    wishlistSaga(),
   ]);
 }

@@ -3,25 +3,23 @@ import Link from "next/link";
 import logo from "./assets/logo.png";
 import { useRouter } from "next/router";
 import Languages from "./Languages";
-import { FormattedMessage, useIntl } from "react-intl";
-import { useDispatch, useSelector } from "react-redux";
-import { postUserLogOut } from "@/store/actions";
+import { FormattedMessage } from "react-intl";
+import { useSelector } from "react-redux";
+
 import DropdownMenu from "./dropdownMenu";
 import DarkModeToggle from "./darkModeToggle";
 
 const Links = ({ isActive, showSidebarHandler }) => {
   const { asPath, locale } = useRouter();
-  const intl = useIntl();
+
   const dir = locale === "ar" ? "rtl" : "ltr";
   const isCurrentPath = (path) => asPath === path;
   const { isLoggedIn } = useSelector((state) => state.user);
   const { cart } = useSelector((state) => state.cart);
+  const { wishlist } = useSelector((state) => state.wishlist);
+
   const products = cart?.products || [];
 
-  const dispatch = useDispatch();
-  const handleLogout = () => {
-    dispatch(postUserLogOut({ intl }));
-  };
   return (
     <>
       <div
@@ -109,7 +107,7 @@ const Links = ({ isActive, showSidebarHandler }) => {
               <Link href="/wishlist">
                 <a onClick={showSidebarHandler}>
                   <i className="bi bi-heart"></i>
-                  <span className="count">10 </span>
+                  <span className="count">{wishlist?.length} </span>
                 </a>
               </Link>
             </li>

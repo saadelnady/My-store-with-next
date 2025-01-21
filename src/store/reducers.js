@@ -4,6 +4,7 @@ import products from "./products/reducer.js";
 import user from "./user/reducer.js";
 import brands from "./brands/reducer.js";
 import cart from "./cart/reducer.js";
+import wishlist from "./wishlist/reducer.js";
 
 const rootReducer = combineReducers({
   categories,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   user,
   brands,
   cart,
+  wishlist,
 });
 
 export default rootReducer;

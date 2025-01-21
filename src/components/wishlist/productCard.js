@@ -5,24 +5,20 @@ import { FormattedMessage, useIntl } from "react-intl";
 import icStar from "../../../public/images/ic-star.png";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  deleteProductFromWishlist,
   postAddProductToCart,
-  postAddProductToWishlist,
 } from "@/store/actions";
 import { useRouter } from "next/router";
 import { showToast } from "@/helpers/helpers";
-import IcHeart from "./assets/svgs/ic-heart.svg";
-
+import IcRemove from "./assets/svgs/ic-remove.svg";
 const ProductCard = ({ product }) => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state.user);
-  const { wishlist } = useSelector((state) => state.wishlist);
   const { cart } = useSelector((state) => state.cart);
-  const exictingProductInWishlist = wishlist?.find(
-    (item) => item === product._id
-  );
   const exictingProductInCart = cart?.products?.find(
-    (item) => product._id === item.product || product._id === item.product._id
+    (item) => item.product._id === product._id
   );
+  console.log("exictingProductInCart >>", exictingProductInCart);
 
   const intl = useIntl();
   const router = useRouter();
@@ -46,6 +42,16 @@ const ProductCard = ({ product }) => {
           </span>
         </p>
       )}
+      <button
+        className="btn remove"
+        onClick={() => {
+          dispatch(
+            deleteProductFromWishlist({ cookies: {}, productId: _id, intl })
+          );
+        }}
+      >
+        <IcRemove />
+      </button>
       <Link href={`/products/${product?.slug}`}>
         <a>
           <Image
@@ -102,21 +108,6 @@ const ProductCard = ({ product }) => {
             ) : (
               <FormattedMessage id="addToCart" />
             )}
-          </button>
-          <button
-            className={`btn wishlist ${
-              exictingProductInWishlist ? "active" : ""
-            }`}
-            onClick={() => {
-              dispatch(
-                postAddProductToWishlist({
-                  cookies: {},
-                  data: { productId: _id },
-                })
-              );
-            }}
-          >
-            <IcHeart />
           </button>
         </div>
       </div>

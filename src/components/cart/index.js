@@ -120,14 +120,14 @@ const Cart = () => {
           <div className="content">
             <h3 className="product-title">{item?.product?.title} </h3>
             <p className="brand-title">{item?.product?.brand?.name} </p>
-            <Rate
+            {/* <Rate
               character={<IcStar />}
               count={5}
               value={item.product.ratingsAverage}
               allowHalf
               direction={dir}
               className={`rate`}
-            />
+            /> */}
           </div>
         </div>
       ),

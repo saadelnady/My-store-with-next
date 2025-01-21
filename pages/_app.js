@@ -28,6 +28,7 @@ import Loading from "@/components/shared/loading/Loading";
 import { Toaster } from "react-hot-toast"; // Import React Hot Toast
 import { useDispatch, useSelector } from "react-redux";
 import { getCart, postUserLoginSuccess } from "@/store/actions";
+import { getWishlist } from "@/store/wishlist/actions";
 
 const languages = {
   ar: require("@/content/languages/ar.json"),
@@ -105,6 +106,7 @@ function App({ Component, pageProps }) {
   useEffect(() => {
     if (isLoggedIn) {
       dispatch(getCart({ cookies: {} }));
+      dispatch(getWishlist({ cookies: {} }));
     }
   }, [dispatch, router, isLoggedIn]);
   return (
