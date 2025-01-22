@@ -1,5 +1,4 @@
-import { generateSquares } from "@/helpers/helpers";
-import styles from "./styles/styles.module.scss";
+ import styles from "./styles/styles.module.scss";
 import { useForm } from "react-hook-form";
 import { Col, Container, Row } from "react-bootstrap";
 import { FormattedMessage, useIntl } from "react-intl";
@@ -19,7 +18,6 @@ const SignUp = () => {
   } = useForm();
 
   const onSubmit = (data) => {
-    console.log(data);
     dispatch(postUserSignup({ data, cookies: {}, intl, router }));
   };
   return (
@@ -71,7 +69,7 @@ const SignUp = () => {
                   {...register("email", {
                     required: intl.formatMessage({ id: "required" }),
                     pattern: {
-                      value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
                       message: intl.formatMessage({ id: "invalidEmail" }),
                     },
                   })}

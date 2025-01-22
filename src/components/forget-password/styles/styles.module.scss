@@ -1,6 +1,6 @@
 @import "@/styles/variables.scss";
 
-.sign-up {
+.forget-password {
   :global {
     padding: 50px;
     .title,
@@ -17,13 +17,15 @@
       font-size: 20px;
     }
 
-    .sign-up-form {
+    .forget-password-form {
       margin-top: 50px;
       .row {
         row-gap: 20px;
+        justify-content: center;
         .inner {
           display: flex;
           flex-direction: column;
+
           label {
             font-family: "font-bold";
             font-size: 16px;

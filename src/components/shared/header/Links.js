@@ -89,18 +89,7 @@ const Links = ({ isActive, showSidebarHandler }) => {
             </Link>
           </li>
         )}
-        {!isLoggedIn && (
-          <li>
-            <Link href="/signUp">
-              <a
-                className={isCurrentPath("/signUp") ? "active" : ""}
-                onClick={showSidebarHandler}
-              >
-                <FormattedMessage id="signup" />
-              </a>
-            </Link>
-          </li>
-        )}
+
         {isLoggedIn && (
           <div className="icons">
             <li>

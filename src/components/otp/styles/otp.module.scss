@@ -1,0 +1,187 @@
+@import "@/styles/variables.scss";
+
+.otp_wrapper {
+  :global {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: #565656;
+    background-color: #ffffff;
+    [data-theme="dark"] & {
+      background-color: #17191a;
+      color: #ffffff;
+    }
+    .btn {
+      font-size: 1rem;
+      border: 1px solid transparent;
+      width: 178px;
+      height: 55px;
+      display: flex;
+      align-items: center;
+      border-radius: 50px;
+      justify-content: center;
+      border: 1px solid transparent;
+      background: #ffffff;
+      color: #000;
+      [data-theme="dark"] & {
+        background: #1e2021;
+      }
+    }
+    // .back {
+    //   color: $main-text-color;
+    //   font-size: 16px;
+    //   font-weight: 700;
+    //   svg {
+    //     margin-inline-end: 16px;
+    //   }
+    //   [dir="ltr"] & {
+    //     svg {
+    //       transform: rotateY(180deg);
+    //     }
+    //   }
+    // }
+    form {
+      margin: 55px 0;
+      padding: 80px;
+      height: 100%;
+      border-radius: 30px;
+      row-gap: 30px;
+      background-color: #f8f8f8;
+      [data-theme="dark"] & {
+        // background-color: #0e1011;
+        background-color: #2b2a2a;
+      }
+      @media (max-width: 992px) {
+        & {
+          padding: 40px;
+        }
+      }
+      .row {
+        row-gap: 30px;
+        justify-content: center;
+      }
+      .title {
+        margin-top: 100px;
+        h5 {
+          font-size: 24px;
+          font-weight: 500;
+          margin-bottom: 15px;
+        }
+        span {
+          color: #444444;
+          [data-theme="dark"] & {
+            color: #d8d8d8;
+          }
+          font-size: 16px;
+          font-weight: 500;
+          text-align: center;
+          @media (max-width: 768px) {
+            max-width: unset;
+          }
+        }
+      }
+      .subtitle {
+        display: flex;
+        align-items: center;
+        flex-wrap: wrap;
+        span {
+          margin-inline-start: 10px;
+          text-transform: lowercase;
+        }
+        @media (max-width: 768px) {
+          & {
+            text-align: center !important;
+            span {
+              text-align: center !important;
+              margin-inline-start: unset;
+            }
+            justify-content: center;
+          }
+        }
+      }
+      label {
+        font-weight: 600;
+        font-size: 14px;
+        color: #565656;
+        [data-theme="dark"] & {
+          color: #ffffff;
+        }
+      }
+
+      .inputs {
+        display: flex;
+        justify-content: space-evenly;
+        // flex-wrap: wrap;
+        .input {
+          border: 1px solid $main-text-color;
+          border-radius: 56px;
+          padding-top: 15px;
+          margin: auto;
+          padding-bottom: 15px;
+          box-shadow: none;
+          width: 56px;
+          height: 56px;
+          background-color: #ffffff;
+          color: #212529;
+          [data-theme="dark"] & {
+            color: #ffffff;
+            background-color: #ffffff0d;
+            border-color: #ffffff0d;
+          }
+          @media (max-width: 768px) {
+            & {
+              width: 40px;
+              height: 40px;
+            }
+          }
+        }
+      }
+      .send-otp {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button {
+          margin-inline-start: 10px;
+          color: $main-text-color;
+          font-size: 14px;
+          font-weight: 500;
+          text-decoration: underline;
+          border: none;
+          outline: none;
+          background-color: transparent;
+        }
+      }
+      .send {
+        background-color: $main-text-color;
+        margin-bottom: 0 !important;
+        color: white;
+        font-size: 16px;
+        width: 100%;
+        font-weight: 600;
+        border: 1px solid transparent;
+        &:hover {
+          background-color: transparent;
+          color: $main-text-color;
+          border-color: $main-text-color;
+        }
+      }
+      .error-hint {
+        width: 80px;
+        text-align: center;
+        margin: 0 auto;
+      }
+      @media (max-width: 992px) {
+        & {
+          padding: 60px 30px;
+        }
+      }
+      @media (max-width: 768px) {
+        .error-hint {
+          width: unset;
+        }
+      }
+    }
+  }
+}

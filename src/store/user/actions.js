@@ -8,6 +8,12 @@ import {
   POST_USER_SIGNUP,
   POST_USER_SIGNUP_SUCCESS,
   POST_USER_SIGNUP_FAILURE,
+  POST_USER_FORGET_PASSWORD,
+  POST_USER_FORGET_PASSWORD_FAILURE,
+  POST_USER_FORGET_PASSWORD_SUCCESS,
+  POST_USER_OTP,
+  POST_USER_OTP_SUCCESS,
+  POST_USER_OTP_FAILURE,
 } from "./actionTypes";
 
 export const postUserLogin = (payload) => {
@@ -30,7 +36,7 @@ export const postUserLoginFailure = (payload) => {
     payload,
   };
 };
-
+// -----------------------------------------------------------
 export const postUserLogOut = (payload) => {
   return {
     type: POST_USER_LOGOUT,
@@ -51,6 +57,7 @@ export const postUserLogOutFailure = (error) => {
     payload: error,
   };
 };
+// -----------------------------------------------------------
 
 export const postUserSignup = (payload) => {
   return {
@@ -72,3 +79,46 @@ export const postUserSignupFailure = (payload) => {
     payload,
   };
 };
+// -----------------------------------------------------------
+export const postUserForgetPassword = (payload) => {
+  return {
+    type: POST_USER_FORGET_PASSWORD,
+    payload,
+  };
+};
+
+export const postUserForgetPasswordSuccess = (payload) => {
+  return {
+    type: POST_USER_FORGET_PASSWORD_SUCCESS,
+    payload,
+  };
+};
+
+export const postUserForgetPasswordFailure = (payload) => {
+  return {
+    type: POST_USER_FORGET_PASSWORD_FAILURE,
+    payload,
+  };
+};
+// -----------------------------------------------------------
+export const postUserOtp = (payload) => {
+  return {
+    type: POST_USER_OTP,
+    payload,
+  };
+};
+
+export const postUserOtpSuccess = (payload) => {
+  return {
+    type: POST_USER_OTP_SUCCESS,
+    payload,
+  };
+};
+
+export const postUserOtpFailure = (payload) => {
+  return {
+    type: POST_USER_OTP_FAILURE,
+    payload,
+  };
+};
+// -----------------------------------------------------------

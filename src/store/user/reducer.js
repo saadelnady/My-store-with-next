@@ -9,6 +9,12 @@ import {
   POST_USER_SIGNUP,
   POST_USER_SIGNUP_SUCCESS,
   POST_USER_SIGNUP_FAILURE,
+  POST_USER_FORGET_PASSWORD,
+  POST_USER_FORGET_PASSWORD_SUCCESS,
+  POST_USER_FORGET_PASSWORD_FAILURE,
+  POST_USER_OTP,
+  POST_USER_OTP_SUCCESS,
+  POST_USER_OTP_FAILURE,
 } from "./actionTypes";
 
 const initialState = {
@@ -95,6 +101,46 @@ const user = (state = initialState, action) => {
         ...state,
         isLoading: false,
         isLoggedIn: false,
+        error: action.payload,
+      };
+    }
+    // --------------------------------------------------
+    case POST_USER_FORGET_PASSWORD: {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    }
+    case POST_USER_FORGET_PASSWORD_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+      };
+    }
+    case POST_USER_FORGET_PASSWORD_FAILURE: {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    }
+    // --------------------------------------------------
+    case POST_USER_OTP: {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    }
+    case POST_USER_OTP_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+      };
+    }
+    case POST_USER_OTP_FAILURE: {
+      return {
+        ...state,
+        isLoading: false,
         error: action.payload,
       };
     }
