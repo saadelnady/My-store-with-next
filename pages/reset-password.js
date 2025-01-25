@@ -1,23 +1,22 @@
 import React from "react";
-import Cart from "@/components/cart";
-import nookies from "nookies";
 import { wrapper } from "@/store";
-import { getCart, getWishlist } from "@/store/actions";
+import nookies from "nookies";
+import ResetPassword from "@/components/reset-password";
 
-const CartPage = () => {
-  return <Cart />;
+const ResetPasswordPage = () => {
+  return <ResetPassword />;
 };
-export default CartPage;
 
+export default ResetPasswordPage;
 export const getServerSideProps = wrapper.getServerSideProps((store) => {
   return async (ctx) => {
     const cookies = nookies.get(ctx);
     const token = cookies.token;
 
-    if (!token) {
+    if (token) {
       return {
         redirect: {
-          destination: "/login",
+          destination: "/",
           permanent: false,
         },
       };

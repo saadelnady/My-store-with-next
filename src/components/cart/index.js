@@ -18,6 +18,7 @@ import styles from "./styles/styles.module.scss";
 import { deleteCartItem, deleteCartItems, editCart } from "@/store/actions";
 import { showToast } from "@/helpers/helpers";
 import CartModal from "./modal";
+import Loading from "../shared/loading/Loading";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -26,7 +27,7 @@ const Cart = () => {
   const [showDeleteItemModal, setShowDeleteItemModal] = useState(false);
   const [showDeleteAllItemsModal, setShowDeleteAllItemsModal] = useState(false);
   const [targetProductId, setTargetProductId] = useState("");
-  const { cart } = useSelector((state) => state.cart);
+  const { cart, isLoading } = useSelector((state) => state.cart);
   const products = cart?.products || [];
   const totalCartPrice = cart?.totalCartPrice || 0;
   const dir = locale === "ar" ? "rtl" : "ltr";

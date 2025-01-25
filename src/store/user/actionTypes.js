@@ -20,3 +20,8 @@ export const POST_USER_FORGET_PASSWORD_FAILURE =
 export const POST_USER_OTP = "POST_USER_OTP";
 export const POST_USER_OTP_SUCCESS = "POST_USER_OTP_SUCCESS";
 export const POST_USER_OTP_FAILURE = "POST_USER_OTP_FAILURE";
+
+// -----------------------------------------------------------------
+export const EDIT_USER_PASSWORD = "EDIT_USER_PASSWORD";
+export const EDIT_USER_PASSWORD_SUCCESS = "EDIT_USER_PASSWORD_SUCCESS";
+export const EDIT_USER_PASSWORD_FAILURE = "EDIT_USER_PASSWORD_FAILURE";

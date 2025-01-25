@@ -141,7 +141,16 @@ function App({ Component, pageProps }) {
   );
 }
 
-App.getInitialProps = wrapper.getInitialAppProps((store) => async () => {
+App.getInitialProps = wrapper.getInitialAppProps((store) => async (ctx) => {
+  const cookies = nookies.get(ctx.ctx);
+  const token = cookies.token;
+  // console.log("token >>>> ", token);
+
+  if (token) {
+    // store.dispatch(getCart({ cookies: {} }));
+    // store.dispatch(getWishlist({ cookies: {} }));
+  }
+
   store.dispatch(END);
   await store.sagaTask.toPromise();
   return {};

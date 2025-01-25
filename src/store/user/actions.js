@@ -14,6 +14,9 @@ import {
   POST_USER_OTP,
   POST_USER_OTP_SUCCESS,
   POST_USER_OTP_FAILURE,
+  EDIT_USER_PASSWORD,
+  EDIT_USER_PASSWORD_SUCCESS,
+  EDIT_USER_PASSWORD_FAILURE,
 } from "./actionTypes";
 
 export const postUserLogin = (payload) => {
@@ -122,3 +125,23 @@ export const postUserOtpFailure = (payload) => {
   };
 };
 // -----------------------------------------------------------
+export const editUserPassword = (payload) => {
+  return {
+    type: EDIT_USER_PASSWORD,
+    payload,
+  };
+};
+
+export const editUserPasswordSuccess = (payload) => {
+  return {
+    type: EDIT_USER_PASSWORD_SUCCESS,
+    payload,
+  };
+};
+
+export const editUserPasswordFailure = (payload) => {
+  return {
+    type: EDIT_USER_PASSWORD_FAILURE,
+    payload,
+  };
+};

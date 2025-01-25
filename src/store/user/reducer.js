@@ -15,6 +15,9 @@ import {
   POST_USER_OTP,
   POST_USER_OTP_SUCCESS,
   POST_USER_OTP_FAILURE,
+  EDIT_USER_PASSWORD,
+  EDIT_USER_PASSWORD_SUCCESS,
+  EDIT_USER_PASSWORD_FAILURE,
 } from "./actionTypes";
 
 const initialState = {
@@ -141,6 +144,29 @@ const user = (state = initialState, action) => {
       return {
         ...state,
         isLoading: false,
+        error: action.payload,
+      };
+    }
+    // --------------------------------------------------------
+    case EDIT_USER_PASSWORD: {
+      return {
+        ...state,
+        isLoading: true,
+        isLoggedIn: false,
+      };
+    }
+    case EDIT_USER_PASSWORD_SUCCESS: {
+      return {
+        ...state,
+        isLoading: false,
+        isLoggedIn: true,
+      };
+    }
+    case EDIT_USER_PASSWORD_FAILURE: {
+      return {
+        ...state,
+        isLoading: false,
+        isLoggedIn: false,
         error: action.payload,
       };
     }

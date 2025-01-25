@@ -1,6 +1,6 @@
 @import "@/styles/variables.scss";
 
-.login {
+.reset-password {
   :global {
     padding: 50px;
     .title,
@@ -17,7 +17,7 @@
       font-size: 20px;
     }
 
-    .login-form {
+    .reset-password-form {
       margin-top: 50px;
       .row {
         row-gap: 20px;

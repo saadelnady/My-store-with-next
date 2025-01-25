@@ -1,4 +1,4 @@
- import styles from "./styles/styles.module.scss";
+import styles from "./styles/styles.module.scss";
 import { useForm } from "react-hook-form";
 import { Col, Container, Row } from "react-bootstrap";
 import { FormattedMessage, useIntl } from "react-intl";
@@ -92,7 +92,15 @@ const SignUp = () => {
                     required: intl.formatMessage({ id: "required" }),
                     minLength: {
                       value: 6,
-                      message: intl.formatMessage({ id: "required" }),
+                      message: intl.formatMessage({
+                        id: "password-min-length",
+                      }),
+                    },
+                    maxLength: {
+                      value: 20,
+                      message: intl.formatMessage({
+                        id: "password-max-length",
+                      }),
                     },
                   })}
                 />
@@ -112,6 +120,18 @@ const SignUp = () => {
                   type="password"
                   {...register("rePassword", {
                     required: intl.formatMessage({ id: "required" }),
+                    minLength: {
+                      value: 6,
+                      message: intl.formatMessage({
+                        id: "password-min-length",
+                      }),
+                    },
+                    maxLength: {
+                      value: 20,
+                      message: intl.formatMessage({
+                        id: "password-max-length",
+                      }),
+                    },
                     validate: (value) =>
                       value === watch("password") ||
                       intl.formatMessage({ id: "password-not-matching" }),

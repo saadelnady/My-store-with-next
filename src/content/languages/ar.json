@@ -100,5 +100,12 @@
   "forget-password-message-success": "تم ارسال كود التفعيل عبر البريد الالكتروني",
   "forget-password-message-fail": "فشل فى ارسال كود التفعيل الى البريد الاكترونى او البريد الالكترونى غير صحيح",
   "otp-message-success": "الكود صحيح برجاء تغيير كلمة المرور",
-  "otp-message-fail": "فشل فى ارسال كود التفعيل الى البريد الاكترونى او البريد الالكترونى غير صحيح"
+  "otp-message-fail": "فشل فى ارسال كود التفعيل الى البريد الاكترونى او البريد الالكترونى غير صحيح",
+  "reset-password-title": "تغيير كلمة المرور",
+  "reset-password-description": "يرجى ادخال كلمة المرور الجديدة وتاكيد كلمة المرور الجديدة",
+  "new-password": "كلمة مرور جديدة",
+  "confirm-new-password": "تاكيد كلمة المرور الجديدة",
+  "reset-password-message-success": "تم تغيير كلمة المرور بنجاح",
+  "reset-password-message-fail": "فشل فى تغيير كلمة المرور",
+  "changePassword": "تغيير كلمة المرور"
 }

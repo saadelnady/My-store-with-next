@@ -24,7 +24,7 @@
   "logoutFail": "Logout failed.",
   "signupSuccess": "Account created successfully.",
   "signupFail": "Account creation failed.",
-  "loginFail": "Login failed.",
+  "loginFail": "Login failed - Invalid email or password.",
   "deleteSuccess": "Product deleted successfully.",
   "deleteFail": "Failed to delete the product.",
   "addSuccess": "Product added successfully.",
@@ -100,5 +100,12 @@
   "forget-password-message-success": "Reset code sent to your email",
   "forget-password-message-fail": "Failed to send reset code to your email or your email is not valid",
   "otp-message-success": "Code is valid please change your password",
-  "otp-message-fail": "Code is not valid please try again"
+  "otp-message-fail": "Code is not valid please try again",
+  "reset-password-title": " Change Password",
+  "reset-password-description": "Please enter your new password and confirm it",
+  "new-password": "New Password",
+  "confirm-new-password": "Confirm New Password",
+  "reset-password-message-success": "Password changed successfully",
+  "reset-password-message-fail": "Failed to change password",
+  "changePassword": "Change Password"
 }

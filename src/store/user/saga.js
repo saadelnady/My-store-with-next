@@ -1,5 +1,6 @@
 import { takeEvery, fork, put, all, call } from "redux-saga/effects";
 import {
+  EDIT_USER_PASSWORD,
   POST_USER_FORGET_PASSWORD,
   POST_USER_LOGIN,
   POST_USER_LOGOUT,
@@ -16,8 +17,11 @@ import {
   postUserForgetPasswordFailure,
   postUserOtpSuccess,
   postUserOtpFailure,
+  editUserPasswordSuccess,
+  editUserPasswordFailure,
 } from "./actions";
 import {
+  editUserPasswordApi,
   postUserForgetPasswordApi,
   postUserLoginApi,
   postUserOtpApi,
@@ -68,9 +72,7 @@ function* postUserLogOutSaga({ payload }) {
 
   try {
     nookies.destroy(null, "token", { path: "/" });
-
     yield put(postUserLogOutSuccess());
-
     showToast("success", "logoutSuccess", intl);
   } catch (error) {
     yield put(postUserLogOutFailure(error));
@@ -104,11 +106,28 @@ function* postUserOtpSaga({ payload }) {
     if (status === "Success") {
       yield put(postUserOtpSuccess());
       showToast("success", "otp-message-success", intl);
-      router.replace("/change-password");
+      router.replace("/reset-password");
     }
   } catch (error) {
     yield put(postUserOtpFailure(error));
     showToast("error", "otp-message-fail", intl);
+  }
+}
+// --------------------------------------------------------------
+function* editUserPasswordSaga({ payload }) {
+  const { intl, router } = payload;
+
+  try {
+    const { token } = yield call(editUserPasswordApi, payload);
+    if (token) {
+      yield put(editUserPasswordSuccess({ token }));
+      nookies.set(null, "token", token, { path: "/" });
+      showToast("success", "reset-password-message-success", intl);
+      router.replace("/");
+    }
+  } catch (error) {
+    yield put(editUserPasswordFailure(error));
+    showToast("error", "reset-password-message-fail", intl);
   }
 }
 // --------------------------------------------------------------
@@ -135,6 +154,10 @@ export function* watchPostUserForgetPassword() {
 export function* watchPostUserOtp() {
   yield takeEvery(POST_USER_OTP, postUserOtpSaga);
 }
+// --------------------------------------------------------------
+export function* watchEditUserPassword() {
+  yield takeEvery(EDIT_USER_PASSWORD, editUserPasswordSaga);
+}
 
 // --------------------------------------------------------------
 
@@ -144,6 +167,7 @@ function* userSaga() {
   yield all([fork(watchPostUserSignup)]);
   yield all([fork(watchPostUserForgetPassword)]);
   yield all([fork(watchPostUserOtp)]);
+  yield all([fork(watchEditUserPassword)]);
 }
 
 export default userSaga;
