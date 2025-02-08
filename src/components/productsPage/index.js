@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ProductCard from "./productCard";
+import ProductCard from "./productCard.js";
 import styles from "./styles/styles.module.scss";
 import { Col, Container, Row } from "react-bootstrap";
 import { getAllProducts } from "@/store/actions";
@@ -28,8 +28,8 @@ const ProductsPage = () => {
   // -------------------------------------------------------------
   return (
     <div className={styles.products}>
+      <BreadCrumb items={items} />
       <Container>
-        <BreadCrumb items={items} />
         <Row>
           {products && products?.length > 0 ? (
             products.map((item, index) => (

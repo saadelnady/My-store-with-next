@@ -2,6 +2,11 @@
 
 .brands {
   :global {
+    padding-bottom: 50px;
+    background-color: #ffffff;
+    [data-theme="dark"] & {
+      background-color: #17191a;
+    }
     .list {
       position: relative;
       .swiper {
@@ -21,9 +26,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        left: 93%;
+
         top: -100%;
         background: #f8f5f5;
+        [data-theme="dark"] & {
+          background: #4c4c4c;
+        }
         cursor: pointer;
 
         &::before {
@@ -57,13 +65,14 @@
           opacity: 0.5;
           cursor: not-allowed;
           background: #f8f5f5;
-
+          [data-theme="dark"] & {
+            background: #4c4c4c;
+          }
           &::before {
             border-color: #000;
           }
         }
       }
-
       .swiper-button-prev {
         width: 35px;
         height: 35px;
@@ -73,11 +82,29 @@
         align-items: center;
         top: -100%;
         background: #f8f5f5;
+        [data-theme="dark"] & {
+          background: #4c4c4c;
+        }
         cursor: pointer;
         transition: 0.5s;
-        left: 89%;
+        right: 100%;
         transform: scaleX(-1);
-
+        [dir="ltr"] & {
+          right: unset;
+          left: 80%;
+        }
+        @media (min-width: 992px) {
+          [dir="ltr"] & {
+            right: unset;
+            left: 90%;
+          }
+        }
+        @media (min-width: 1200px) {
+          [dir="ltr"] & {
+            right: unset;
+            left: 92%;
+          }
+        }
         &:hover {
           background: $highlight-color;
           transition: 0.5s;
@@ -116,34 +143,40 @@
           }
         }
       }
-      @media (max-width: 992px) {
+
+      @media (max-width: 768px) {
         .swiper-button-prev {
-          left: 80% !important;
-          top: -150%;
+          right: 90%;
         }
-
+      }
+      @media (max-width: 768px) {
         .swiper-button-next {
-          right: 70% !important;
-          top: -150%;
-        }
-
-        &[dir="rtl"] .swiper-button-prev {
-          right: 85%;
-          top: -120%;
-        }
-
-        &[dir="rtl"] .swiper-button-next {
-          right: 70% !important;
-          top: -120%;
+          left: 50px;
+          right: auto;
+          [dir="ltr"] & {
+            left: unset;
+            right: 0px;
+          }
         }
       }
+      .item {
+        .img-wrapper {
+          overflow: hidden;
+          border-radius: 50%;
+          width: 100px;
+          height: 100px;
 
-      &[dir="rtl"] .swiper-button-next {
-        left: 4%;
-      }
-
-      &[dir="rtl"] .swiper-button-prev {
-        right: 97%;
+          img {
+            width: 100%;
+            height: 100%;
+          }
+        }
+        p {
+          text-align: center;
+          margin-top: 10px;
+          color: $main-text-color;
+          font-weight: bold;
+        }
       }
     }
   }

@@ -81,7 +81,7 @@ const ProductCard = ({ product }) => {
         </div>
         <div className="buttons">
           <button
-            className={`btn border m-0 add-to-cart ${
+            className={`btn m-0 add-to-cart ${
               exictingProductInCart ? "disabled" : ""
             }`}
             onClick={() => {

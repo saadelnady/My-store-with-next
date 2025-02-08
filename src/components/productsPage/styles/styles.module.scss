@@ -1,35 +1,42 @@
 @import "@/styles/variables.scss";
 .products {
   :global {
+    background-color: #ffffff;
+    padding-bottom: 50px;
+    [data-theme="dark"] & {
+      background-color: #17191a;
+    }
     .item {
       position: relative;
       overflow: hidden;
       padding: 0;
+      border-radius: 10px;
 
       .sale {
         position: absolute;
-        top: 0;
-        right: 0;
+        top: 20px;
+        right: 20px;
+        [dir="ltr"] & {
+          left: 0;
+          right: unset;
+        }
         background-color: $highlight-color;
-        width: 50px;
-        height: 50px;
         color: $light-color;
         z-index: 99;
         display: flex;
         justify-content: center;
         align-items: center;
-        border-radius: 0 50% 0;
-
-        span {
-          transform: rotate(50deg);
-        }
+        padding: 8px 10px;
+        border-radius: 10px;
       }
       .product-img {
         width: 100%;
-        height: 300px;
         margin: 0;
+        height: 400px;
         object-fit: cover;
         transition: 0.5s;
+        border-radius: 10px;
+        border-radius: 10px;
       }
 
       .content {
@@ -51,6 +58,9 @@
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 2;
           overflow: hidden;
+          [data-theme="dark"] & {
+            color: #ffffff;
+          }
         }
         .details {
           margin-top: 10px;
@@ -60,6 +70,9 @@
           .price {
             font-size: 17px;
             font-weight: bold;
+            [data-theme="dark"] & {
+              color: #ffffff;
+            }
           }
           .rating {
             display: flex;
@@ -67,6 +80,9 @@
             font-size: 17px;
             .rating-number {
               font-weight: bold;
+              [data-theme="dark"] & {
+                color: #ffffff;
+              }
             }
             .rating-icon {
               margin-inline-end: 10px;
@@ -86,7 +102,12 @@
             bottom: -100%;
             transition: 0.5s;
             font-size: 17px;
+            border: 1px solid #dddddd;
             font-weight: bold;
+            [data-theme="dark"] & {
+              color: #ffffff;
+              border-color: #c4c4c4;
+            }
             &:hover {
               background-color: $highlight-color;
               color: $light-color;
@@ -96,13 +117,23 @@
             font-size: 20px;
             margin-inline-start: auto;
             transition: 0.5s;
-
+            svg {
+              stroke: red;
+              fill: none;
+            }
             &:hover {
-              i {
-                filter: brightness(0) saturate(100%) invert(17%) sepia(91%)
-                  saturate(737%) hue-rotate(337deg) brightness(97%)
-                  contrast(101%);
+              svg {
+                fill: red;
               }
+              path {
+                fill: red;
+              }
+            }
+          }
+          .wishlist.active {
+            border: none;
+            svg {
+              fill: red;
             }
           }
         }
@@ -131,7 +162,7 @@
         color: #6e591a;
         font-size: 16px;
         font-weight: bold;
-        border-radius: 5px;
+        border-radius: 50%;
         cursor: pointer;
         transition: all 0.3s ease;
 

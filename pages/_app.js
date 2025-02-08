@@ -35,12 +35,8 @@ const languages = {
   en: require("@/content/languages/en.json"),
 };
 
-const Header = dynamic(() => import("@/components/shared/header/Header"), {
-  ssr: false,
-});
-const Footer = dynamic(() => import("@/components/shared/footer/Footer"), {
-  ssr: false,
-});
+import Header from "@/components/shared/header/Index";
+import Footer from "@/components/shared/footer/Index";
 
 function App({ Component, pageProps }) {
   const router = useRouter();
@@ -143,13 +139,12 @@ function App({ Component, pageProps }) {
 
 App.getInitialProps = wrapper.getInitialAppProps((store) => async (ctx) => {
   const cookies = nookies.get(ctx.ctx);
-  const token = cookies.token;
-  // console.log("token >>>> ", token);
+  // const token = cookies.token;
 
-  if (token) {
-    // store.dispatch(getCart({ cookies: {} }));
-    // store.dispatch(getWishlist({ cookies: {} }));
-  }
+  // if (token) {
+  //   store.dispatch(getCart({ cookies }));
+  //   store.dispatch(getWishlist({ cookies }));
+  // }
 
   store.dispatch(END);
   await store.sagaTask.toPromise();

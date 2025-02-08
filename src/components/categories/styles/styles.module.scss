@@ -2,6 +2,10 @@
 
 .categories {
   :global {
+    background-color: #ffffff;
+    [data-theme="dark"] & {
+      background-color: #17191a;
+    }
     .list {
       position: relative;
       .swiper {
@@ -21,9 +25,12 @@
         display: flex;
         align-items: center;
         justify-content: center;
-        left: 93%;
+
         top: -100%;
         background: #f8f5f5;
+        [data-theme="dark"] & {
+          background: #4c4c4c;
+        }
         cursor: pointer;
 
         &::before {
@@ -57,9 +64,97 @@
           opacity: 0.5;
           cursor: not-allowed;
           background: #f8f5f5;
+          [data-theme="dark"] & {
+            background: #4c4c4c;
+          }
+          &::before {
+            border-color: #000;
+          }
+        }
+      }
+      .swiper-button-prev {
+        width: 35px;
+        height: 35px;
+        position: absolute;
+        border-radius: 100%;
+        display: flex;
+        align-items: center;
+        top: -100%;
+        background: #f8f5f5;
+        [data-theme="dark"] & {
+          background: #4c4c4c;
+        }
+        cursor: pointer;
+        transition: 0.5s;
+        right: 100%;
+        transform: scaleX(-1);
+        [dir="ltr"] & {
+          right: unset;
+          left: 80%;
+        }
+        @media (min-width: 992px) {
+          [dir="ltr"] & {
+            right: unset;
+            left: 90%;
+          }
+        }
+        @media (min-width: 1200px) {
+          [dir="ltr"] & {
+            right: unset;
+            left: 92%;
+          }
+        }
+        &:hover {
+          background: $highlight-color;
+          transition: 0.5s;
+
+          &::before {
+            border-color: #fff;
+            transition: 0.5s;
+          }
+        }
+
+        &::before {
+          content: "";
+          position: absolute;
+          left: 50%;
+          top: 50%;
+          width: 6px;
+          height: 6px;
+          border-width: 1px 1px 0 0;
+          border-style: solid;
+          border-color: #000;
+          transform: translate(-50%, -50%) rotate(45deg);
+          transition: 0.5s;
+        }
+
+        &::after {
+          display: none;
+        }
+
+        &.swiper-button-disabled {
+          opacity: 0.5;
+          cursor: not-allowed;
+          background: #f8f5f5;
 
           &::before {
             border-color: #000;
+          }
+        }
+      }
+
+      @media (max-width: 768px) {
+        .swiper-button-prev {
+          right: 90%;
+        }
+      }
+      @media (max-width: 768px) {
+        .swiper-button-next {
+          left: 50px;
+          right: auto;
+          [dir="ltr"] & {
+            left: unset;
+            right: 0px;
           }
         }
       }
@@ -81,87 +176,6 @@
           color: $main-text-color;
           font-weight: bold;
         }
-      }
-      .swiper-button-prev {
-        width: 35px;
-        height: 35px;
-        position: absolute;
-        border-radius: 100%;
-        display: flex;
-        align-items: center;
-        top: -100%;
-        background: #f8f5f5;
-        cursor: pointer;
-        transition: 0.5s;
-        left: 89%;
-        transform: scaleX(-1);
-
-        &:hover {
-          background: $highlight-color;
-          transition: 0.5s;
-
-          &::before {
-            border-color: #fff;
-            transition: 0.5s;
-          }
-        }
-
-        &::before {
-          content: "";
-          position: absolute;
-          left: 50%;
-          top: 50%;
-          width: 6px;
-          height: 6px;
-          border-width: 1px 1px 0 0;
-          border-style: solid;
-          border-color: #000;
-          transform: translate(-50%, -50%) rotate(45deg);
-          transition: 0.5s;
-        }
-
-        &::after {
-          display: none;
-        }
-
-        &.swiper-button-disabled {
-          opacity: 0.5;
-          cursor: not-allowed;
-          background: #f8f5f5;
-
-          &::before {
-            border-color: #000;
-          }
-        }
-      }
-      @media (max-width: 992px) {
-        .swiper-button-prev {
-          left: 80% !important;
-          top: -150%;
-        }
-
-        .swiper-button-next {
-          right: 70% !important;
-          top: -150%;
-        }
-
-        &[dir="rtl"] .swiper-button-prev {
-          right: 85%;
-          top: -120%;
-        }
-
-        &[dir="rtl"] .swiper-button-next {
-          right: 70% !important;
-          top: -120%;
-        }
-      }
-
-      &[dir="rtl"] .swiper-button-next {
-        left: 4%;
-      }
-
-      &[dir="rtl"] .swiper-button-prev {
-        right: 97%;
       }
     }
   }

@@ -2,7 +2,6 @@ import React from "react";
 import Cart from "@/components/cart";
 import nookies from "nookies";
 import { wrapper } from "@/store";
-import { getCart, getWishlist } from "@/store/actions";
 
 const CartPage = () => {
   return <Cart />;

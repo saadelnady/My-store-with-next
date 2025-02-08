@@ -107,5 +107,7 @@
   "confirm-new-password": "Confirm New Password",
   "reset-password-message-success": "Password changed successfully",
   "reset-password-message-fail": "Failed to change password",
-  "changePassword": "Change Password"
+  "changePassword": "Change Password",
+  "paymentPartners": "Payment Partners",
+  "links": "Links"
 }

@@ -8,7 +8,7 @@ import styles from "./styles/styles.module.scss";
 import Link from "next/link";
 const Brands = () => {
   const { brands } = useSelector((state) => state.brands);
-   const items = [
+  const items = [
     { title: <FormattedMessage id="home" />, url: "/" },
     { title: <FormattedMessage id="brands" /> },
   ];
@@ -43,8 +43,8 @@ const Brands = () => {
 
   return (
     <div className={styles.brands}>
+      <BreadCrumb items={items} />
       <Container>
-        <BreadCrumb items={items} />
         <Row>{renderBrands()}</Row>
       </Container>
     </div>

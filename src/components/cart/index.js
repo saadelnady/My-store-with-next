@@ -183,8 +183,8 @@ const Cart = () => {
   ];
   return (
     <div className={styles.cart}>
+      <BreadCrumb items={items} />
       <Container>
-        <BreadCrumb items={items} />
         {products?.length > 0 ? (
           <Row>
             <Col xs={12} sm={12} md={8}>

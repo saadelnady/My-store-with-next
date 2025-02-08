@@ -3,10 +3,47 @@
 .footer {
   :global {
     background-color: $main-bg-color;
-    padding: 17px;
+    [data-theme="dark"] & {
+      background: #2c2c2c;
+      color: #ffffff;
+    }
+
     .top {
-      padding: 10px 0;
       border-bottom: 1px solid $main-text-color;
+      padding-bottom: 20px;
+
+      .img {
+        width: 150px;
+        height: 150px;
+        @media (max-width: 768px) {
+          & {
+            width: 200px;
+            height: 200px;
+          }
+        }
+        margin: auto;
+        .logo {
+          width: 100%;
+          height: 100%;
+        }
+      }
+      .links {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        li {
+          margin-bottom: 10px;
+          a {
+            color: #000;
+            font-size: 16px;
+            font-family: "font-medium";
+
+            [data-theme="dark"] & {
+              color: #ffffff;
+            }
+          }
+        }
+      }
       p {
         margin: 10px 0;
         font-size: 20px;
@@ -14,6 +51,7 @@
       .input {
         width: 80%;
         margin-bottom: 10px;
+        background-color: transparent;
         padding: 10px 15px;
         border-radius: 10px;
         -webkit-border-radius: 10px;
@@ -22,15 +60,17 @@
         -o-border-radius: 10px;
         outline: none;
         border: 1px solid $main-text-color;
+        [data-theme="dark"] & {
+          color: #ffffff;
+        }
       }
       button {
         transition: 0.5s;
-        -webkit-transition: 0.5s;
-        -moz-transition: 0.5s;
-        -ms-transition: 0.5s;
-        -o-transition: 0.5s;
         font-size: 17px;
         font-weight: bold;
+        [data-theme="dark"] & {
+          color: #ffffff;
+        }
         &:hover {
           background-color: $main-text-color;
           color: $light-color;

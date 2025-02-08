@@ -39,8 +39,8 @@ const Categories = () => {
   };
   return (
     <div className={styles.categories}>
+      <BreadCrumb items={items} />
       <Container>
-        <BreadCrumb items={items} />
         <Row>{renderCategories()}</Row>
       </Container>
     </div>

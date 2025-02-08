@@ -1,6 +1,10 @@
 @import "@/styles/variables.scss";
 .products {
   :global {
+    background-color: #ffffff;
+    [data-theme="dark"] & {
+      background-color: #17191a;
+    }
     .desktop-slider {
       .swiper {
         padding-bottom: 150px;
@@ -129,8 +133,10 @@
       .product-img {
         width: 100%;
         margin: 0;
+        height: 400px;
         object-fit: cover;
         transition: 0.5s;
+        border-radius: 10px;
         border-radius: 10px;
       }
 
@@ -153,6 +159,9 @@
           -webkit-box-orient: vertical;
           -webkit-line-clamp: 2;
           overflow: hidden;
+          [data-theme="dark"] & {
+            color: #ffffff;
+          }
         }
         .details {
           margin-top: 10px;
@@ -162,6 +171,9 @@
           .price {
             font-size: 17px;
             font-weight: bold;
+            [data-theme="dark"] & {
+              color: #ffffff;
+            }
           }
           .rating {
             display: flex;
@@ -169,6 +181,9 @@
             font-size: 17px;
             .rating-number {
               font-weight: bold;
+              [data-theme="dark"] & {
+                color: #ffffff;
+              }
             }
             .rating-icon {
               margin-inline-end: 10px;
@@ -188,7 +203,12 @@
             bottom: -100%;
             transition: 0.5s;
             font-size: 17px;
+            border: 1px solid #dddddd;
             font-weight: bold;
+            [data-theme="dark"] & {
+              color: #ffffff;
+              border-color: #c4c4c4;
+            }
             &:hover {
               background-color: $highlight-color;
               color: $light-color;

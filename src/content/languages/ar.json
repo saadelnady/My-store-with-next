@@ -107,5 +107,7 @@
   "confirm-new-password": "تاكيد كلمة المرور الجديدة",
   "reset-password-message-success": "تم تغيير كلمة المرور بنجاح",
   "reset-password-message-fail": "فشل فى تغيير كلمة المرور",
-  "changePassword": "تغيير كلمة المرور"
+  "changePassword": "تغيير كلمة المرور",
+  "paymentPartners": "شركاء الدفع",
+  "links": "روابط"
 }

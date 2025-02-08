@@ -7,7 +7,6 @@ import Hero from "@/components/hero";
 import Brands from "@/components/brands";
 import Products from "@/components/products";
 import Categories from "@/components/categories";
-import Banner from "@/components/banner/index";
 
 import {
   getAllBrands,
@@ -22,7 +21,7 @@ export default function Home() {
         <meta name="description" content="ecommerce website using next js" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      {/* <Banner /> */}
+
       <Hero />
       <Categories />
       <Products />

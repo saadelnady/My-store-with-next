@@ -1,11 +1,33 @@
 import Image from "next/future/image";
 import Link from "next/link";
 import React from "react";
-import { FormattedMessage } from "react-intl";
+import { FormattedMessage, useIntl } from "react-intl";
 import icStar from "../../../public/images/ic-star.png";
+import { useDispatch, useSelector } from "react-redux";
+import {
+  postAddProductToCart,
+  postAddProductToWishlist,
+} from "@/store/actions";
+import { useRouter } from "next/router";
+import { showToast } from "@/helpers/helpers";
+import IcHeart from "./assets/svgs/ic-heart.svg";
 
 const ProductCard = ({ product }) => {
+  const dispatch = useDispatch();
+  const { isLoggedIn } = useSelector((state) => state.user);
+  const { wishlist } = useSelector((state) => state.wishlist);
+  const { cart } = useSelector((state) => state.cart);
+  const exictingProductInWishlist = wishlist?.find(
+    (item) => item === product._id
+  );
+  const exictingProductInCart = cart?.products?.find(
+    (item) => product._id === item.product || product._id === item.product._id
+  );
+
+  const intl = useIntl();
+  const router = useRouter();
   const {
+    _id,
     title,
     category,
     price,
@@ -14,6 +36,7 @@ const ProductCard = ({ product }) => {
     ratingsAverage,
     priceAfterDiscount,
   } = product;
+
   return (
     <div className="item">
       {priceAfterDiscount && (
@@ -57,11 +80,43 @@ const ProductCard = ({ product }) => {
           </div>
         </div>
         <div className="buttons">
-          <button className="btn border m-0 add-to-cart">
-            <FormattedMessage id="addToCart" />
+          <button
+            className={`btn m-0 add-to-cart ${
+              exictingProductInCart ? "disabled" : ""
+            }`}
+            onClick={() => {
+              if (isLoggedIn) {
+                if (!exictingProductInCart) {
+                  dispatch(postAddProductToCart({ data: { productId: _id } }));
+                }
+              } else {
+                showToast("error", "login-first", intl);
+                setTimeout(() => {
+                  router.push("/login");
+                }, 1500);
+              }
+            }}
+          >
+            {exictingProductInCart ? (
+              <FormattedMessage id="existing-product-in-cart" />
+            ) : (
+              <FormattedMessage id="addToCart" />
+            )}
           </button>
-          <button className="btn wishlist">
-            <i className="bi bi-suit-heart "></i>
+          <button
+            className={`btn wishlist ${
+              exictingProductInWishlist ? "active" : ""
+            }`}
+            onClick={() => {
+              dispatch(
+                postAddProductToWishlist({
+                  cookies: {},
+                  data: { productId: _id },
+                })
+              );
+            }}
+          >
+            <IcHeart />
           </button>
         </div>
       </div>

@@ -20,7 +20,7 @@ const Products = () => {
   const renderProductsItems =
     products &&
     products.length > 0 &&
-    products?.reverse()?.map((item, index) => (
+    products?.map((item, index) => (
       <SwiperSlide key={index}>
         <ProductCard product={item} />
       </SwiperSlide>

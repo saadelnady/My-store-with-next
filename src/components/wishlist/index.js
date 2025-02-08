@@ -14,8 +14,8 @@ const WishList = () => {
   ];
   return (
     <div className={styles.wishlist}>
+      <BreadCrumb items={items} />
       <Container>
-        <BreadCrumb items={items} />
         <Row>
           {wishlist && wishlist?.length > 0 ? (
             wishlist?.map((product) => {

@@ -2,6 +2,10 @@
 
 .brands {
   :global {
+    background-color: #ffffff;
+    [data-theme="dark"] & {
+      background-color: #17191a;
+    }
     .row {
       row-gap: 30px;
       justify-content: start;

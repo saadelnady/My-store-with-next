@@ -3,8 +3,16 @@
 .cart {
   :global {
     min-height: 100vh;
-    .table {
+    background-color: #ffffff;
+    [data-theme="dark"] & {
+      background-color: #17191a;
+    }
+    .custom-table {
+      width: 100%;
       border-collapse: collapse;
+      [data-theme="dark"] & {
+        background-color: #4c4c4c;
+      }
       overflow-x: scroll;
       .t-head,
       .td {

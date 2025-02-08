@@ -2,7 +2,7 @@
 
 .customHeading {
   :global {
-    margin: 30px 0;
+    padding: 30px 0;
     .title {
       font-size: 32px;
       font-family: "font-bold";
@@ -29,6 +29,9 @@
       font-family: "font-bold";
       margin-top: 25px;
       line-height: 1.6;
+      [data-theme="dark"] & {
+        color: #fff;
+      }
     }
   }
 }
