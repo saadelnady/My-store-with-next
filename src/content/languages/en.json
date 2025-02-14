@@ -71,6 +71,7 @@
   "delete-cart-item-success": "Product removed from the cart successfully.",
   "wishlist": "Wishlist",
   "existing-product-in-cart": "Product added to your cart",
+  "add-wishlist-item-success": "Product added to your wishlist successfully.",
   "delete-wishlist-item-success": "Product removed from the wishlist successfully.",
   "sign-up-title": "Sign Up",
   "sign-up-description": "To sign up, please provide your name, email, and password.",

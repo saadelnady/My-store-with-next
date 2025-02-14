@@ -5,6 +5,7 @@ import { FormattedMessage, useIntl } from "react-intl";
 import icStar from "../../../public/images/ic-star.png";
 import { useDispatch, useSelector } from "react-redux";
 import {
+  deleteProductFromWishlist,
   postAddProductToCart,
   postAddProductToWishlist,
 } from "@/store/actions";
@@ -18,8 +19,9 @@ const ProductCard = ({ product }) => {
   const { wishlist } = useSelector((state) => state.wishlist);
   const { cart } = useSelector((state) => state.cart);
   const exictingProductInWishlist = wishlist?.find(
-    (item) => item === product._id
+    (item) => item === product._id || item._id === product._id
   );
+
   const exictingProductInCart = cart?.products?.find(
     (item) => product._id === item.product || product._id === item.product._id
   );
@@ -87,7 +89,12 @@ const ProductCard = ({ product }) => {
             onClick={() => {
               if (isLoggedIn) {
                 if (!exictingProductInCart) {
-                  dispatch(postAddProductToCart({ data: { productId: _id } }));
+                  dispatch(
+                    postAddProductToCart({
+                      data: { productId: _id },
+                      intl: intl,
+                    })
+                  );
                 }
               } else {
                 showToast("error", "login-first", intl);
@@ -108,12 +115,31 @@ const ProductCard = ({ product }) => {
               exictingProductInWishlist ? "active" : ""
             }`}
             onClick={() => {
-              dispatch(
-                postAddProductToWishlist({
-                  cookies: {},
-                  data: { productId: _id },
-                })
-              );
+              if (isLoggedIn) {
+                if (!exictingProductInWishlist) {
+ 
+                  dispatch(
+                    postAddProductToWishlist({
+                      cookies: {},
+                      data: { productId: _id },
+                      intl: intl,
+                    })
+                  );
+                } else {
+                  dispatch(
+                    deleteProductFromWishlist({
+                      cookies: {},
+                      productId: _id,
+                      intl,
+                    })
+                  );
+                }
+              } else {
+                showToast("error", "login-first", intl);
+                setTimeout(() => {
+                  router.push("/login");
+                }, 1500);
+              }
             }}
           >
             <IcHeart />

@@ -39,7 +39,9 @@ function* getCartSaga({ payload }) {
 function* addProductToCartSaga({ payload }) {
   try {
     const { data } = yield call(postAddToCartApi, payload);
+
     yield put(postAddProductToCartSuccess(data));
+    showToast("success", "existing-product-in-cart", payload.intl);
   } catch (error) {
     yield put(postAddProductToCartFailure(error));
   }

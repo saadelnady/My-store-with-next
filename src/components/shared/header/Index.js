@@ -26,7 +26,7 @@ const Header = () => {
   const { cart } = useSelector((state) => state.cart);
   const { wishlist } = useSelector((state) => state.wishlist);
   const products = cart?.products || [];
-
+ 
   const headerRef = useRef(null);
   const dispatch = useDispatch();
   const intl = useIntl();

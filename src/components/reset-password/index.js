@@ -25,8 +25,7 @@ const ResetPassword = () => {
   const router = useRouter();
 
   const handleLoginSubmittion = (data) => {
-    console.log(data);
-    dispatch(editUserPassword({ data, cookies: {}, intl, router }));
+     dispatch(editUserPassword({ data, cookies: {}, intl, router }));
   };
   return (
     <Container>

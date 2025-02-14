@@ -8,6 +8,7 @@ import CustomHeading from "../shared/customHeading/CustomHeading";
 import { FormattedMessage } from "react-intl";
 
 import styles from "./styles/styles.module.scss";
+import Link from "next/link";
 const Categories = () => {
   const { locale } = useRouter();
   const { categories } = useSelector((state) => state.categories);
@@ -61,18 +62,22 @@ const Categories = () => {
                 const { name, slug, image } = element;
                 return (
                   <SwiperSlide key={index}>
-                    <div className="item">
-                      <div className="img-wrapper">
-                        <Image
-                          src={image}
-                          alt="category-img"
-                          width={100}
-                          height={100}
-                          className="item-img"
-                        />
-                      </div>
-                      <p>{name}</p>
-                    </div>
+                    <Link href={`/categories/${element._id}`}>
+                      <a>
+                        <div className="item">
+                          <div className="img-wrapper">
+                            <Image
+                              src={image}
+                              alt="category-img"
+                              width={100}
+                              height={100}
+                              className="item-img"
+                            />
+                          </div>
+                          <p>{name}</p>
+                        </div>
+                      </a>
+                    </Link>
                   </SwiperSlide>
                 );
               })}

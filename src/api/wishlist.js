@@ -15,7 +15,6 @@ export const deleteProductFromWishlistApi = async ({
   productId,
 }) => {
   const response = await server(cookies).delete(`/wishlist/${productId}`);
-  console.log("response.data >>>> ", response.data);
 
   return response.data;
 };

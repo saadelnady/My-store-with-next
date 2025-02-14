@@ -79,13 +79,11 @@ const wishlist = (state = initialState, action) => {
       };
     }
     case DELETE_PRODUCT_FROM_WISHLIST_SUCCESS: {
-      console.log("action.payload >>>", action.payload);
-
       return {
         ...state,
         isLoading: false,
         wishlist: state.wishlist.filter((product) =>
-          action.payload.includes(product.id)
+          action.payload.includes(product.id || product._id || product)
         ),
       };
     }

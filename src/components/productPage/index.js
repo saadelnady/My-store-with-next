@@ -78,7 +78,7 @@ const ProductComponent = () => {
 
     if (shareUrls[icon.name]) {
       window.open(shareUrls[icon.name], "_blank", "noopener,noreferrer");
-     } else {
+    } else {
       console.log(`${icon.name} sharing is not supported.`);
     }
   };
@@ -98,8 +98,8 @@ const ProductComponent = () => {
 
   return (
     <div className={styles.productPage}>
+      <BreadCrumb items={items} />
       <Container>
-        <BreadCrumb items={items} />
         <Row>
           <Col xs={12} md={6}>
             <div className="product-imgs">
@@ -198,7 +198,7 @@ const ProductComponent = () => {
                         &#9733;
                       </span>
                     ))}
-                    ({product?.ratingsAverage})
+                    <span className="count"> ({product?.ratingsAverage})</span>
                   </div>
                 </div>
               )}
@@ -220,7 +220,7 @@ const ProductComponent = () => {
                 </strong>
 
                 {product?.priceAfterDiscount ? (
-                  <>
+                  <div className="price-content">
                     {product?.priceAfterDiscount} <FormattedMessage id="egp" />
                     <strong className="mx-3">
                       <FormattedMessage id="insteadOf" />
@@ -228,11 +228,11 @@ const ProductComponent = () => {
                     <del>
                       {product.price} <FormattedMessage id="egp" />
                     </del>
-                  </>
+                  </div>
                 ) : (
-                  <>
+                  <div className="price-content">
                     {product?.price} <FormattedMessage id="egp" />
-                  </>
+                  </div>
                 )}
               </div>
               <div className="counter">

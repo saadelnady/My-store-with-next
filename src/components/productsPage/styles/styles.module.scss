@@ -17,7 +17,7 @@
         top: 20px;
         right: 20px;
         [dir="ltr"] & {
-          left: 0;
+          left: 20px;
           right: unset;
         }
         background-color: $highlight-color;

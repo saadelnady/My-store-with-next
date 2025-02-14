@@ -38,8 +38,13 @@
               color: #ffffff;
             }
             &:hover {
-              background: none;
-              transform: scale(1.1);
+              background: transparent;
+              color: #000;
+            }
+            [data-theme="dark"] & {
+              &:hover {
+                color: #fff !important;
+              }
             }
 
             .count {
@@ -192,7 +197,7 @@
           transition: all 0.3s ease;
           &:hover,
           &.active {
-            background-color: $highlight-color;
+            // background-color: $highlight-color;
             border-radius: 5px;
             color: $light-color;
           }
@@ -395,7 +400,7 @@
           right: 0;
         }
 
-        padding: 5px 10px;
+        padding: 10px 10px 0 10px;
         border-radius: 5px;
         z-index: 999;
         background-color: #ffffff;

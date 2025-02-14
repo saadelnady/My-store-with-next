@@ -38,6 +38,7 @@ function* addProductToWishlistSaga({ payload }) {
   try {
     const { data } = yield call(postAddProductToWishlistApi, payload);
     yield put(postAddProductToWishlistSuccess(data));
+    showToast("success", "add-wishlist-item-success", payload.intl);
   } catch (error) {
     yield put(postAddProductToWishlistFailure(error));
   }
@@ -49,6 +50,7 @@ function* deleteProductFromWishlistSaga({ payload }) {
     const { data, status } = yield call(deleteProductFromWishlistApi, payload);
     if (status === "success") {
       showToast("success", "delete-wishlist-item-success", payload.intl);
+ 
       yield put(deleteProductFromWishlistSuccess(data));
     }
   } catch (error) {

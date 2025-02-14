@@ -18,7 +18,6 @@ const ProductCard = ({ product }) => {
   const exictingProductInCart = cart?.products?.find(
     (item) => item.product._id === product._id
   );
-  console.log("exictingProductInCart >>", exictingProductInCart);
 
   const intl = useIntl();
   const router = useRouter();

@@ -26,8 +26,7 @@
         display: flex;
         align-items: center;
         justify-content: center;
-
-        top: -100%;
+        top: -130%;
         background: #f8f5f5;
         [data-theme="dark"] & {
           background: #4c4c4c;
@@ -80,7 +79,7 @@
         border-radius: 100%;
         display: flex;
         align-items: center;
-        top: -100%;
+        top: -130%;
         background: #f8f5f5;
         [data-theme="dark"] & {
           background: #4c4c4c;
@@ -91,7 +90,19 @@
         transform: scaleX(-1);
         [dir="ltr"] & {
           right: unset;
-          left: 80%;
+          left: 86%;
+        }
+        @media (max-width: 400px) {
+          [dir="ltr"] & {
+            right: unset;
+            left: 85%;
+          }
+        }
+        @media (max-width: 600px) {
+          [dir="ltr"] & {
+            right: unset;
+            left: 80%;
+          }
         }
         @media (min-width: 992px) {
           [dir="ltr"] & {

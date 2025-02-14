@@ -71,8 +71,8 @@ const SingleBrand = () => {
 
   return (
     <div className={styles.singleBrand}>
+      <BreadCrumb items={items} />
       <Container>
-        <BreadCrumb items={items} />
         {/* desktop-slider */}
         <div className="desktop-slider">
           <Swiper
