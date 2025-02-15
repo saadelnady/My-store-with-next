@@ -1,5 +1,5 @@
-import googleplaylogo from "public/images/googleplay-logo.png";
-import applestorelogo from "public/images/apple-store.png";
+import googleplaylogo from "./assets/googleplay-logo.png";
+import applestorelogo from "./assets/apple-store.png";
 import Image from "next/future/image";
 import { FormattedMessage, useIntl } from "react-intl";
 import styles from "./styles/styles.module.scss";

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
-import slideImageOne from "../../../public/images/slider-image-1.jpeg";
-import slideImageTwo from "../../../public/images/slider-image-2.jpeg";
-import slideImageThree from "../../../public/images/slider-image-3.jpeg";
+import slideImageOne from "./assets/slider-image-1.jpeg";
+import slideImageTwo from "./assets/slider-image-2.jpeg";
+import slideImageThree from "./assets/slider-image-3.jpeg";
 import Image from "next/future/image";
 import { FormattedMessage } from "react-intl";
 import styles from "./styles/styles.module.scss";

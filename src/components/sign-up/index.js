@@ -5,11 +5,15 @@ import { FormattedMessage, useIntl } from "react-intl";
 import { useDispatch } from "react-redux";
 import { postUserSignup } from "@/store/actions";
 import { useRouter } from "next/router";
-
+import EyeSlashIcon from "./assets/eye-slash.svg";
+import EyeIcon from "./assets/eye.svg";
+import { useState } from "react";
 const SignUp = () => {
   const intl = useIntl();
   const dispatch = useDispatch();
   const router = useRouter();
+  const [showPassword, setShowPassword] = useState(false);
+  const [showRePassword, setShowRePassword] = useState(false);
   const {
     register,
     handleSubmit,
@@ -20,6 +24,7 @@ const SignUp = () => {
   const onSubmit = (data) => {
     dispatch(postUserSignup({ data, cookies: {}, intl, router }));
   };
+
   return (
     <div className={styles["sign-up"]}>
       <Container>
@@ -52,9 +57,7 @@ const SignUp = () => {
                     },
                   })}
                 />
-                {errors.name && (
-                  <p className="error-message">{errors.name.message}</p>
-                )}
+                {errors.name && <p className="error">{errors.name.message}</p>}
               </div>
             </Col>
             <Col xs={12} md={6} lg={6}>
@@ -75,70 +78,82 @@ const SignUp = () => {
                   })}
                 />
                 {errors.email && (
-                  <p className="error-message">{errors.email.message}</p>
+                  <p className="error">{errors.email.message}</p>
                 )}
               </div>
             </Col>
+            {/* Password */}
             <Col xs={12} md={6} lg={6}>
-              {/* Password */}
               <div className="inner">
                 <label htmlFor="password">
                   <FormattedMessage id="password" />:
                 </label>
-                <input
-                  id="password"
-                  type="password"
-                  {...register("password", {
-                    required: intl.formatMessage({ id: "required" }),
-                    minLength: {
-                      value: 6,
-                      message: intl.formatMessage({
-                        id: "password-min-length",
-                      }),
-                    },
-                    maxLength: {
-                      value: 20,
-                      message: intl.formatMessage({
-                        id: "password-max-length",
-                      }),
-                    },
-                  })}
-                />
+                <div className="password-input">
+                  <input
+                    {...register("password", {
+                      required: intl.formatMessage({ id: "required" }),
+                      minLength: {
+                        value: 6,
+                        message: intl.formatMessage({ id: "passwordLength" }),
+                      },
+                    })}
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                  />
+                  <button
+                    className="show-password"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShowPassword(!showPassword);
+                    }}
+                  >
+                    {showPassword ? <EyeSlashIcon /> : <EyeIcon />}
+                  </button>
+                </div>
                 {errors.password && (
-                  <p className="error-message">{errors.password.message}</p>
+                  <p className="error">{errors.password.message}</p>
                 )}
               </div>
             </Col>
+            {/* Confirm Password */}
             <Col xs={12} md={6} lg={6}>
-              {/* Confirm Password */}
               <div className="inner">
                 <label htmlFor="rePassword">
                   <FormattedMessage id="confirm-password" />:
                 </label>
-                <input
-                  id="rePassword"
-                  type="password"
-                  {...register("rePassword", {
-                    required: intl.formatMessage({ id: "required" }),
-                    minLength: {
-                      value: 6,
-                      message: intl.formatMessage({
-                        id: "password-min-length",
-                      }),
-                    },
-                    maxLength: {
-                      value: 20,
-                      message: intl.formatMessage({
-                        id: "password-max-length",
-                      }),
-                    },
-                    validate: (value) =>
-                      value === watch("password") ||
-                      intl.formatMessage({ id: "password-not-matching" }),
-                  })}
-                />
+                <div className="password-input">
+                  <input
+                    {...register("rePassword", {
+                      required: intl.formatMessage({ id: "required" }),
+                      minLength: {
+                        value: 6,
+                        message: intl.formatMessage({ id: "passwordLength" }),
+                      },
+                      maxLength: {
+                        value: 20,
+                        message: intl.formatMessage({
+                          id: "password-max-length",
+                        }),
+                      },
+                      validate: (value) =>
+                        value === watch("password") ||
+                        intl.formatMessage({ id: "password-not-matching" }),
+                    })}
+                    type={showRePassword ? "text" : "password"}
+                    id="rePassword"
+                  />
+                  <button
+                    className="show-password"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setShowRePassword(!showRePassword);
+                    }}
+                  >
+                    {showRePassword ? <EyeSlashIcon /> : <EyeIcon />}
+                  </button>
+                </div>
                 {errors.rePassword && (
-                  <p className="error-message">{errors.rePassword.message}</p>
+                  <p className="error">{errors.rePassword.message}</p>
                 )}
               </div>
             </Col>
@@ -162,7 +177,7 @@ const SignUp = () => {
                   })}
                 />
                 {errors.phone && (
-                  <p className="error-message">{errors.phone.message}</p>
+                  <p className="error">{errors.phone.message}</p>
                 )}
               </div>
             </Col>

@@ -9,28 +9,24 @@ import BreadCrumb from "../shared/breadCrumb/BreadCrumb";
 import IcPLus from "./assets/svgs/ic-plus.svg";
 import IcMinus from "./assets/svgs/ic-minus.svg";
 import IcRemove from "./assets/svgs/ic-remove.svg";
-import IcStar from "./assets/svgs/ic-star.svg";
 import EmptyCart from "./assets/pngs/empty-cart.jpg";
-import Rate from "rc-rate";
-import { useRouter } from "next/router";
 import "rc-rate/assets/index.css";
 import styles from "./styles/styles.module.scss";
 import { deleteCartItem, deleteCartItems, editCart } from "@/store/actions";
 import { showToast } from "@/helpers/helpers";
 import CartModal from "./modal";
-import Loading from "../shared/loading/Loading";
+import Loading from "../shared/loading-2/Index";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const { locale } = useRouter();
   const intl = useIntl();
   const [showDeleteItemModal, setShowDeleteItemModal] = useState(false);
   const [showDeleteAllItemsModal, setShowDeleteAllItemsModal] = useState(false);
   const [targetProductId, setTargetProductId] = useState("");
   const { cart, isLoading } = useSelector((state) => state.cart);
+
   const products = cart?.products || [];
   const totalCartPrice = cart?.totalCartPrice || 0;
-  const dir = locale === "ar" ? "rtl" : "ltr";
 
   const handleCloseDeleteItemModal = () => {
     setShowDeleteItemModal(false);
@@ -121,14 +117,6 @@ const Cart = () => {
           <div className="content">
             <h3 className="product-title">{item?.product?.title} </h3>
             <p className="brand-title">{item?.product?.brand?.name} </p>
-            {/* <Rate
-              character={<IcStar />}
-              count={5}
-              value={item.product.ratingsAverage}
-              allowHalf
-              direction={dir}
-              className={`rate`}
-            /> */}
           </div>
         </div>
       ),
@@ -183,48 +171,60 @@ const Cart = () => {
   ];
   return (
     <div className={styles.cart}>
-      <BreadCrumb items={items} />
-      <Container>
-        {products?.length > 0 ? (
-          <Row>
-            <Col xs={12} sm={12} md={8}>
-              <Table cols={cols} rows={rows} data={products} />
-            </Col>
-            <Col xs={12} sm={12} md={4}>
-              <div className="cart-total">
-                <h3 className="total-title">
-                  <FormattedMessage id="cart-total" />
-                </h3>
-                <div className="total-value">
-                  <FormattedMessage id="total" />
-                  <p className="value">
-                    {totalCartPrice} <FormattedMessage id="egp" />
-                  </p>
-                </div>
-                <div className="checkout">
-                  <button className="btn checkout-btn">
-                    <FormattedMessage id="checkout" />
-                  </button>
-                </div>
-                <div className="remove-all">
-                  <button
-                    className="btn remove-btn bg-danger"
-                    onClick={() => {
-                      setShowDeleteAllItemsModal(true);
-                    }}
-                  >
-                    <FormattedMessage id="remove-all-products-from-cart" />
-                  </button>
-                </div>
+      {isLoading ? (
+        <Loading />
+      ) : (
+        <>
+          <BreadCrumb items={items} />
+          <Container>
+            {products?.length > 0 ? (
+              <Row className="g-4 py-4">
+                <Col xs={12} sm={12} md={8}>
+                  <Table cols={cols} rows={rows} data={products} />
+                </Col>
+                <Col xs={12} sm={12} md={4}>
+                  <div className="cart-total">
+                    <h3 className="total-title">
+                      <FormattedMessage id="cart-total" />
+                    </h3>
+                    <div className="total-value">
+                      <FormattedMessage id="total" />
+                      <p className="value">
+                        {totalCartPrice} <FormattedMessage id="egp" />
+                      </p>
+                    </div>
+                    <div className="checkout">
+                      <button className="btn checkout-btn">
+                        <FormattedMessage id="checkout" />
+                      </button>
+                    </div>
+                    <div className="remove-all">
+                      <button
+                        className="btn remove-btn bg-danger"
+                        onClick={() => {
+                          setShowDeleteAllItemsModal(true);
+                        }}
+                      >
+                        <FormattedMessage id="remove-all-products-from-cart" />
+                      </button>
+                    </div>
+                  </div>
+                </Col>
+              </Row>
+            ) : (
+              <div className="empty-cart">
+                <Image
+                  src={EmptyCart}
+                  alt="empty-cart"
+                  width={500}
+                  height={500}
+                />
               </div>
-            </Col>
-          </Row>
-        ) : (
-          <div className="empty-cart">
-            <Image src={EmptyCart} alt="empty-cart" width={500} height={500} />
-          </div>
-        )}
-      </Container>
+            )}
+          </Container>
+        </>
+      )}
+
       <CartModal
         showModal={showDeleteItemModal}
         handleClose={handleCloseDeleteItemModal}

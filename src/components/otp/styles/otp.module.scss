@@ -167,7 +167,7 @@
           border-color: $main-text-color;
         }
       }
-      .error-hint {
+      .error {
         width: 80px;
         text-align: center;
         margin: 0 auto;
@@ -178,7 +178,7 @@
         }
       }
       @media (max-width: 768px) {
-        .error-hint {
+        .error {
           width: unset;
         }
       }

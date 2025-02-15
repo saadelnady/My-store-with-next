@@ -80,13 +80,13 @@ const cart = (state = initialState, action) => {
     case EDIT_CART: {
       return {
         ...state,
-        isLoading: true,
+        // isLoading: true,
       };
     }
     case EDIT_CART_SUCCESS: {
       return {
         ...state,
-        isLoading: false,
+        // isLoading: false,
         cart: action.payload,
       };
     }
@@ -101,7 +101,7 @@ const cart = (state = initialState, action) => {
     case DELETE_CART_ITEM: {
       return {
         ...state,
-        isLoading: true,
+        // isLoading: true,
       };
     }
     case DELETE_CART_ITEM_SUCCESS: {

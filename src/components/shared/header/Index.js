@@ -26,7 +26,7 @@ const Header = () => {
   const { cart } = useSelector((state) => state.cart);
   const { wishlist } = useSelector((state) => state.wishlist);
   const products = cart?.products || [];
- 
+
   const headerRef = useRef(null);
   const dispatch = useDispatch();
   const intl = useIntl();
@@ -40,14 +40,14 @@ const Header = () => {
     const cookies = parseCookies();
     const savedTheme = cookies["data-theme"] || "light";
     setDataTheme(savedTheme);
-    document.body.setAttribute("data-theme", savedTheme);
+    document.documentElement.setAttribute("data-theme", savedTheme);
   }, []);
 
   // Toggle dark mode
   const toggleDarkMode = () => {
     const newTheme = dataTheme === "light" ? "dark" : "light";
     setDataTheme(newTheme);
-    document.body.setAttribute("data-theme", newTheme);
+    document.documentElement.setAttribute("data-theme", newTheme);
     setCookie(null, "data-theme", newTheme, { path: "/" });
   };
   const handleLanguageChange = (lang) => {

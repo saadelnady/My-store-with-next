@@ -110,5 +110,7 @@
   "reset-password-message-fail": "فشل فى تغيير كلمة المرور",
   "changePassword": "تغيير كلمة المرور",
   "paymentPartners": "شركاء الدفع",
-  "links": "روابط"
+  "links": "روابط",
+  "remove-product-from-wishlist-title": "حذف المنتج من المفضلة",
+  "remove-product-from-wishlist-description": "هل تريد حذف المنتج من المفضلة ؟"
 }

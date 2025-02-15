@@ -1,13 +1,12 @@
 import { useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Image from "next/future/image";
 import { useRouter } from "next/router";
 
 import { Col, Container, Row } from "react-bootstrap";
 import { FormattedMessage, useIntl } from "react-intl";
-import icFacebook from "../../../public/images/ic-facebook.svg";
-import icTwitetter from "../../../public/images/ic-twitter.svg";
-import icLinkedin from "../../../public/images/ic-linkedin.svg";
+
+import IcHeart from "./assets/svgs/ic-heart.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Thumbs, Autoplay, EffectFade } from "swiper";
 import "swiper/css";
@@ -15,18 +14,38 @@ import "swiper/css/navigation";
 import "swiper/css/thumbs";
 import "swiper/css/effect-fade";
 
-import BreadCrumb from "../shared/breadCrumb/BreadCrumb";
-import styles from "./styles/styles.module.scss";
+import {
+  deleteProductFromWishlist,
+  postAddProductToCart,
+  postAddProductToWishlist,
+} from "@/store/actions";
+
 import { showToast } from "@/helpers/helpers";
+import BreadCrumb from "../shared/breadCrumb/BreadCrumb";
+
+import styles from "./styles/styles.module.scss";
 
 const ProductComponent = () => {
   const { product } = useSelector((state) => state.products);
+  const { isLoggedIn } = useSelector((state) => state.user);
+  const { wishlist } = useSelector((state) => state.wishlist);
+  const { cart } = useSelector((state) => state.cart);
+  const exictingProductInWishlist = wishlist?.find(
+    (item) => item === product._id || item._id === product._id
+  );
+
+  const exictingProductInCart = cart?.products?.find(
+    (item) => product._id === item.product || product._id === item.product._id
+  );
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const intl = useIntl();
   const { locale } = useRouter();
-  const [count, setCount] = useState(1);
+  // const [count, setCount] = useState(1);
+  const dispatch = useDispatch();
+  const router = useRouter();
 
   const dir = locale === "ar" ? "rtl" : "ltr";
+
   // -------------------------------------------------------------
 
   const totalStars = 5;
@@ -45,21 +64,22 @@ const ProductComponent = () => {
     { title: product?.title },
   ];
   // -------------------------------------------------------------
+
   const socialMediaIcons = [
     {
       name: "Facebook",
       link: "https://facebook.com",
-      imageSrc: icFacebook,
+      imageSrc: <i className="bi bi-facebook"></i>,
     },
     {
       name: "Twitter",
       link: "https://twitter.com",
-      imageSrc: icTwitetter,
+      imageSrc: <i className="bi bi-twitter"></i>,
     },
     {
       name: "linkedin",
       link: "https://linkedin.com",
-      imageSrc: icLinkedin,
+      imageSrc: <i className="bi bi-linkedin"></i>,
     },
   ];
 
@@ -83,17 +103,17 @@ const ProductComponent = () => {
     }
   };
   // -------------------------------------------------------------
-  const handleIncrement = () => {
-    setCount(count + 1);
-  };
-  const handleDecrement = () => {
-    if (count === 1) {
-      showToast("error", "countError", intl);
+  // const handleIncrement = () => {
+  //   setCount(count + 1);
+  // };
+  // const handleDecrement = () => {
+  //   if (count === 1) {
+  //     showToast("error", "countError", intl);
 
-      return;
-    }
-    setCount(count - 1);
-  };
+  //     return;
+  //   }
+  //   setCount(count - 1);
+  // };
   // -------------------------------------------------------------
 
   return (
@@ -235,17 +255,72 @@ const ProductComponent = () => {
                   </div>
                 )}
               </div>
-              <div className="counter">
+              {/* <div className="counter">
                 <button onClick={handleIncrement}>+</button>
                 <span>{count}</span>
                 <button onClick={handleDecrement}>-</button>
-              </div>
+              </div> */}
               <div className="buttons">
-                <button className="btn border m-0 add-to-cart">
-                  <FormattedMessage id="addToCart" />
+                <button
+                  className={`btn m-0 add-to-cart ${
+                    exictingProductInCart ? "disabled" : ""
+                  }`}
+                  onClick={() => {
+                    if (isLoggedIn) {
+                      if (!exictingProductInCart) {
+                        dispatch(
+                          postAddProductToCart({
+                            data: { productId: product._id },
+                            intl: intl,
+                          })
+                        );
+                      }
+                    } else {
+                      showToast("error", "login-first", intl);
+                      setTimeout(() => {
+                        router.push("/login");
+                      }, 1500);
+                    }
+                  }}
+                >
+                  {exictingProductInCart ? (
+                    <FormattedMessage id="existing-product-in-cart" />
+                  ) : (
+                    <FormattedMessage id="addToCart" />
+                  )}
                 </button>
-                <button className="btn wishlist">
-                  <i className="bi bi-suit-heart "></i>
+                <button
+                  className={`btn wishlist ${
+                    exictingProductInWishlist ? "active" : ""
+                  }`}
+                  onClick={() => {
+                    if (isLoggedIn) {
+                      if (!exictingProductInWishlist) {
+                        dispatch(
+                          postAddProductToWishlist({
+                            cookies: {},
+                            data: { productId: product._id },
+                            intl: intl,
+                          })
+                        );
+                      } else {
+                        dispatch(
+                          deleteProductFromWishlist({
+                            cookies: {},
+                            productId: product._id,
+                            intl,
+                          })
+                        );
+                      }
+                    } else {
+                      showToast("error", "login-first", intl);
+                      setTimeout(() => {
+                        router.push("/login");
+                      }, 1500);
+                    }
+                  }}
+                >
+                  <IcHeart />
                 </button>
               </div>
               {product?.ratingsQuantity && (
@@ -254,7 +329,9 @@ const ProductComponent = () => {
                     <FormattedMessage id="reviews" />:
                   </strong>
                   <p className="mx-2"> {product?.ratingsQuantity}</p>
-                  <FormattedMessage id="review" />
+                  <p>
+                    <FormattedMessage id="review" />
+                  </p>
                 </div>
               )}
               <div className="social-media">
@@ -269,7 +346,7 @@ const ProductComponent = () => {
                       handleShareButton(icon);
                     }}
                   >
-                    <icon.imageSrc />
+                    {icon.imageSrc}
                   </button>
                 ))}
               </div>

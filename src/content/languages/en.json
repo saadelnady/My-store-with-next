@@ -110,5 +110,7 @@
   "reset-password-message-fail": "Failed to change password",
   "changePassword": "Change Password",
   "paymentPartners": "Payment Partners",
-  "links": "Links"
+  "links": "Links",
+  "remove-product-from-wishlist-title": "Remove Product From Wishlist",
+  "remove-product-from-wishlist-description": "Do you want to remove the product from your wishlist?"
 }

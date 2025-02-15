@@ -4,19 +4,20 @@ import React from "react";
 import { FormattedMessage, useIntl } from "react-intl";
 import icStar from "../../../public/images/ic-star.png";
 import { useDispatch, useSelector } from "react-redux";
-import {
-  deleteProductFromWishlist,
-  postAddProductToCart,
-} from "@/store/actions";
+import { postAddProductToCart } from "@/store/actions";
 import { useRouter } from "next/router";
 import { showToast } from "@/helpers/helpers";
 import IcRemove from "./assets/svgs/ic-remove.svg";
-const ProductCard = ({ product }) => {
+const ProductCard = ({
+  product,
+  handleTargetProductId,
+  setShowDeleteItemModal,
+}) => {
   const dispatch = useDispatch();
   const { isLoggedIn } = useSelector((state) => state.user);
   const { cart } = useSelector((state) => state.cart);
   const exictingProductInCart = cart?.products?.find(
-    (item) => item.product._id === product._id
+    (item) => product._id === item.product || product._id === item.product._id
   );
 
   const intl = useIntl();
@@ -44,9 +45,8 @@ const ProductCard = ({ product }) => {
       <button
         className="btn remove"
         onClick={() => {
-          dispatch(
-            deleteProductFromWishlist({ cookies: {}, productId: _id, intl })
-          );
+          handleTargetProductId(_id);
+          setShowDeleteItemModal(true);
         }}
       >
         <IcRemove />

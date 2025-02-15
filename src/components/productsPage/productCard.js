@@ -117,7 +117,6 @@ const ProductCard = ({ product }) => {
             onClick={() => {
               if (isLoggedIn) {
                 if (!exictingProductInWishlist) {
- 
                   dispatch(
                     postAddProductToWishlist({
                       cookies: {},

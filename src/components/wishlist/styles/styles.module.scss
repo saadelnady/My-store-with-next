@@ -17,8 +17,8 @@
         top: 20px;
         left: 20px;
         [dir="ltr"] & {
-          right: 0;
-          right: unset;
+          right: 20px;
+          left: unset;
         }
         background-color: $highlight-color;
         color: $light-color;
@@ -34,7 +34,7 @@
         top: 20px;
         right: 20px;
         [dir="ltr"] & {
-          left: 0;
+          left: 20px;
           right: unset;
         }
         background-color: #f9dfdf;
@@ -136,24 +136,90 @@
         }
       }
     }
-    .empty-cart {
-      overflow: hidden;
-      text-align: center;
-      img {
-        max-width: 600px;
-        object-fit: cover;
+    .nodata-wrapper {
+      height: 50vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .no-data {
+        overflow: hidden;
+        text-align: center;
+        color: #000;
+        font-family: "font-bold";
+        [data-theme="dark"] & {
+          color: #fff;
+        }
       }
     }
   }
 }
 .cart-modal {
   :global {
+    .modal-content {
+      background-color: #ffffff;
+      [data-theme="dark"] & {
+        background-color: #17191a;
+      }
+    }
     .modal-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      .btn-close {
+      border: none;
+      padding: 20px;
+      p {
+        font-size: 16px;
+        font-family: "font-bold";
+      }
+      [data-theme="dark"] & {
+        color: #fff;
+      }
+      .btn-close-modal {
+        border: none;
+        outline: none;
         margin-inline-end: 0;
+        background-color: transparent;
+        svg {
+          width: 20px;
+          height: 20px;
+          [data-theme="dark"] & {
+            fill: #fff;
+          }
+        }
+        &:focus {
+          border: none;
+          outline: none;
+          box-shadow: none;
+        }
+      }
+    }
+    .modal-body {
+      p {
+        color: #000000;
+        font-size: 16px;
+        [data-theme="dark"] & {
+          color: #fff;
+        }
+      }
+    }
+
+    .modal-footer {
+      border: none;
+      button {
+        border: none;
+        outline: none;
+        box-shadow: none;
+      }
+      .btn-delete {
+        background-color: $highlight-color;
+      }
+      .btn-cancel {
+        color: #000;
+        background-color: #fcfcfc;
+        [data-theme="dark"] & {
+          background-color: #000;
+          color: #fff;
+        }
       }
     }
   }

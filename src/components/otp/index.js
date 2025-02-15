@@ -128,7 +128,7 @@ export default function Otp() {
                           onKeyDown={(e) => handleBackspace(e, index)}
                         />
                         {errors?.otp?.[index] && (
-                          <p className="error-hint text-danger mt-1  ">
+                          <p className="error text-danger mt-1  ">
                             {errors.otp[index]?.message}
                           </p>
                         )}

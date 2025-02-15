@@ -28,13 +28,14 @@
           }
           @media (max-width: 768px) {
             img {
-              height: 300px !important;
+              height: 500px !important;
             }
           }
         }
       }
       .thumb-imgs {
         margin-top: 20px;
+
         .swiper-slide {
           border: 1px solid transparent;
           border-radius: 10px;
@@ -158,7 +159,50 @@
         font-size: 18px;
         margin-inline-end: 15px;
       }
-
+      .buttons {
+        margin-top: 10px;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        .add-to-cart {
+          transition: 0.5s;
+          font-size: 17px;
+          border: 1px solid #dddddd;
+          font-weight: bold;
+          [data-theme="dark"] & {
+            color: #ffffff;
+            border-color: #c4c4c4;
+          }
+          &:hover {
+            background-color: $highlight-color;
+            color: $light-color;
+          }
+        }
+        .wishlist {
+          font-size: 20px;
+          margin-inline-start: auto;
+          transition: 0.5s;
+          svg {
+            stroke: red;
+            fill: none;
+          }
+          &:hover {
+            svg {
+              fill: red;
+            }
+            path {
+              fill: red;
+            }
+          }
+        }
+        .wishlist.active {
+          border: none;
+          svg {
+            fill: red;
+          }
+        }
+      }
       .rating {
         display: flex;
         align-items: center;
@@ -187,6 +231,13 @@
           transition: all 0.5s;
           &:hover {
             transform: translateY(-5px);
+          }
+
+          i {
+            font-size: 20px;
+            [data-theme="dark"] & {
+              color: #ffffff;
+            }
           }
         }
       }

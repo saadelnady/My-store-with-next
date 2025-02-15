@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { FormattedMessage } from "react-intl";
+import IcClose from "./assets/svgs/ic-remove.svg";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import styles from "./styles/styles.module.scss";
@@ -17,26 +18,27 @@ const CartModal = ({
       centered
       className={styles["cart-modal"]}
     >
-      <Modal.Header closeButton>
-        <Modal.Title>
-          <p className="title">{modalTitle}</p>
-        </Modal.Title>
+      <Modal.Header>
+        <p className="title">{modalTitle}</p>
+        <button className="btn-close-modal" onClick={handleClose}>
+          <IcClose />
+        </button>
       </Modal.Header>
       <Modal.Body>
         <p className="description">{modalDescription}</p>
       </Modal.Body>
       <Modal.Footer>
-        <Button variant="secondary" onClick={handleClose}>
-          <FormattedMessage id="cancel" />
-        </Button>
         <Button
-          variant="primary"
+          className="btn-delete "
           onClick={() => {
             handleRemove();
             handleClose();
           }}
         >
           <FormattedMessage id="remove" />
+        </Button>
+        <Button className="btn-cancel " onClick={handleClose}>
+          <FormattedMessage id="cancel" />
         </Button>
       </Modal.Footer>
     </Modal>

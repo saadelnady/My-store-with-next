@@ -6,6 +6,9 @@ import { postUserLogin } from "@/store/actions";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useRouter } from "next/router";
 import Link from "next/link";
+import EyeIcon from "./assets/eye.svg";
+import EyeSlashIcon from "./assets/eye-slash.svg";
+import { useState } from "react";
 
 const Login = () => {
   const {
@@ -19,6 +22,8 @@ const Login = () => {
     },
     mode: "all",
   });
+  const [showPassword, setShowPassword] = useState(false);
+  const showPasswordHandler = () => setShowPassword(!showPassword);
   const dispatch = useDispatch();
   const intl = useIntl();
   const router = useRouter();
@@ -27,8 +32,8 @@ const Login = () => {
     dispatch(postUserLogin({ data, cookies: {}, intl, router }));
   };
   return (
-    <Container>
-      <div className={styles.login}>
+    <div className={styles.login}>
+      <Container>
         <h3 className="title">
           <FormattedMessage id="login-title" />
         </h3>
@@ -56,7 +61,7 @@ const Login = () => {
                   })}
                 />
                 {errors?.email?.message && (
-                  <p className="error-message">{errors?.email?.message}</p>
+                  <p className="error">{errors?.email?.message}</p>
                 )}
               </div>
             </Col>
@@ -65,19 +70,31 @@ const Login = () => {
                 <label htmlFor="password">
                   <FormattedMessage id="password" /> :
                 </label>
-                <input
-                  {...register("password", {
-                    required: intl.formatMessage({ id: "required" }),
-                    minLength: {
-                      value: 6,
-                      message: intl.formatMessage({ id: "passwordLength" }),
-                    },
-                  })}
-                  type="password"
-                  id="password"
-                />
+                <div className="password-input">
+                  <input
+                    {...register("password", {
+                      required: intl.formatMessage({ id: "required" }),
+                      minLength: {
+                        value: 6,
+                        message: intl.formatMessage({ id: "passwordLength" }),
+                      },
+                    })}
+                    type={showPassword ? "text" : "password"}
+                    id="password"
+                  />
+                  <button
+                    className="show-password"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      showPasswordHandler();
+                    }}
+                  >
+                    {showPassword ? <EyeSlashIcon /> : <EyeIcon />}
+                  </button>
+                </div>
+
                 {errors?.password?.message && (
-                  <p className="error-message">{errors?.password?.message}</p>
+                  <p className="error">{errors?.password?.message}</p>
                 )}
               </div>
             </Col>
@@ -103,8 +120,8 @@ const Login = () => {
             </div>
           </Row>
         </form>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 };
 

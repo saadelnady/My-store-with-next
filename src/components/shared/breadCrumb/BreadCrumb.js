@@ -15,7 +15,7 @@ const BreadCrumb = ({ items }) => {
                 </Link>
               ) : (
                 <span className="current-page">
-                  {item?.title?.slice(0, 100)}
+                  {item?.title || item?.title?.slice(0, 100)}
                 </span>
               )}
               {index < items.length - 1 && <span>/</span>}
