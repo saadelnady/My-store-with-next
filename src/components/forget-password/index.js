@@ -25,8 +25,8 @@ const Login = () => {
     dispatch(postUserForgetPassword({ data, intl, router }));
   };
   return (
-    <Container>
-      <div className={styles["forget-password"]}>
+    <div className={styles["forget-password"]}>
+      <Container>
         <h3 className="title">
           <FormattedMessage id="forget-password-title" />
         </h3>
@@ -54,7 +54,7 @@ const Login = () => {
                   })}
                 />
                 {errors?.email?.message && (
-                  <p className="error-message">{errors?.email?.message}</p>
+                  <p className="error">{errors?.email?.message}</p>
                 )}
               </div>
             </Col>
@@ -66,8 +66,8 @@ const Login = () => {
             </div>
           </Row>
         </form>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 };
 

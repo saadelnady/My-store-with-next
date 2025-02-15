@@ -5,7 +5,9 @@ import { useDispatch } from "react-redux";
 import { editUserPassword } from "@/store/actions";
 import { FormattedMessage, useIntl } from "react-intl";
 import { useRouter } from "next/router";
-
+import IcEye from "./assets/eye.svg";
+import IcEyeSlash from "./assets/eye-slash.svg";
+import { useState } from "react";
 const ResetPassword = () => {
   const {
     register,
@@ -23,13 +25,15 @@ const ResetPassword = () => {
   const dispatch = useDispatch();
   const intl = useIntl();
   const router = useRouter();
+  const [passwordShow, setPasswordShow] = useState(false);
+  const [confirmedPasswordShow, setConfirmedPasswordShow] = useState(false);
 
   const handleLoginSubmittion = (data) => {
-     dispatch(editUserPassword({ data, cookies: {}, intl, router }));
+    dispatch(editUserPassword({ data, cookies: {}, intl, router }));
   };
   return (
-    <Container>
-      <div className={styles["reset-password"]}>
+    <div className={styles["reset-password"]}>
+      <Container>
         <h3 className="title">
           <FormattedMessage id="reset-password-title" />
         </h3>
@@ -57,7 +61,7 @@ const ResetPassword = () => {
                   })}
                 />
                 {errors?.email?.message && (
-                  <p className="error-message">{errors?.email?.message}</p>
+                  <p className="error">{errors?.email?.message}</p>
                 )}
               </div>
             </Col>
@@ -66,21 +70,27 @@ const ResetPassword = () => {
                 <label htmlFor="newPassword">
                   <FormattedMessage id="new-password" /> :
                 </label>
-                <input
-                  {...register("newPassword", {
-                    required: intl.formatMessage({ id: "required" }),
-                    minLength: {
-                      value: 6,
-                      message: intl.formatMessage({ id: "passwordLength" }),
-                    },
-                  })}
-                  type="password"
-                  id="newPassword"
-                />
+                <div className="password-input">
+                  <input
+                    {...register("newPassword", {
+                      required: intl.formatMessage({ id: "required" }),
+                      minLength: {
+                        value: 6,
+                        message: intl.formatMessage({ id: "passwordLength" }),
+                      },
+                    })}
+                    type={passwordShow ? "text" : "password"}
+                    id="newPassword"
+                  />
+                  <button
+                    className="password-icon"
+                    onClick={() => setPasswordShow(!passwordShow)}
+                  >
+                    {passwordShow ? <IcEyeSlash /> : <IcEye />}{" "}
+                  </button>
+                </div>
                 {errors?.newPassword?.message && (
-                  <p className="error-message">
-                    {errors?.newPassword?.message}
-                  </p>
+                  <p className="error">{errors?.newPassword?.message}</p>
                 )}
               </div>
             </Col>
@@ -89,32 +99,41 @@ const ResetPassword = () => {
                 <label htmlFor="confirm-new-password">
                   <FormattedMessage id="confirm-new-password" /> :
                 </label>
-                <input
-                  {...register("confirmedPassword", {
-                    required: intl.formatMessage({ id: "required" }),
-                    minLength: {
-                      value: 6,
-                      message: intl.formatMessage({
-                        id: "password-min-length",
-                      }),
-                    },
-                    maxLength: {
-                      value: 20,
-                      message: intl.formatMessage({
-                        id: "password-max-length",
-                      }),
-                    },
-                    validate: (value) =>
-                      value === watch("newPassword") ||
-                      intl.formatMessage({ id: "password-not-matching" }),
-                  })}
-                  type="password"
-                  id="confirm-new-password"
-                />
+                <div className="password-input">
+                  <input
+                    {...register("confirmedPassword", {
+                      required: intl.formatMessage({ id: "required" }),
+                      minLength: {
+                        value: 6,
+                        message: intl.formatMessage({
+                          id: "password-min-length",
+                        }),
+                      },
+                      maxLength: {
+                        value: 20,
+                        message: intl.formatMessage({
+                          id: "password-max-length",
+                        }),
+                      },
+                      validate: (value) =>
+                        value === watch("newPassword") ||
+                        intl.formatMessage({ id: "password-not-matching" }),
+                    })}
+                    type={confirmedPasswordShow ? "text" : "password"}
+                    id="confirm-new-password"
+                  />
+                  <button
+                    className="password-icon"
+                    onClick={() =>
+                      setConfirmedPasswordShow(!confirmedPasswordShow)
+                    }
+                  >
+                    {confirmedPasswordShow ? <IcEyeSlash /> : <IcEye />}{" "}
+                  </button>
+                </div>
+
                 {errors?.confirmedPassword?.message && (
-                  <p className="error-message">
-                    {errors?.confirmedPassword?.message}
-                  </p>
+                  <p className="error">{errors?.confirmedPassword?.message}</p>
                 )}
               </div>
             </Col>
@@ -126,8 +145,8 @@ const ResetPassword = () => {
             </div>
           </Row>
         </form>
-      </div>
-    </Container>
+      </Container>
+    </div>
   );
 };
 
