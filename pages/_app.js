@@ -27,7 +27,7 @@ import Loading from "@/components/shared/loading/Loading";
 
 import { Toaster } from "react-hot-toast"; // Import React Hot Toast
 import { useDispatch, useSelector } from "react-redux";
-import { getCart, postUserLoginSuccess } from "@/store/actions";
+import { getCart, getOrders, postUserLoginSuccess } from "@/store/actions";
 import { getWishlist } from "@/store/wishlist/actions";
 
 const languages = {
@@ -42,6 +42,11 @@ function App({ Component, pageProps }) {
   const router = useRouter();
   const dispatch = useDispatch();
   const { user, isLoggedIn } = useSelector((state) => state.user);
+  const { cart } = useSelector((state) => state.cart);
+  const { cartOwner } = cart;
+  console.log(cart);
+  console.log(cartOwner);
+
   const { locale, defaultLocale, route } = useRouter();
 
   const messages = languages[locale];
@@ -105,6 +110,11 @@ function App({ Component, pageProps }) {
       dispatch(getWishlist({ cookies: {} }));
     }
   }, [dispatch, router, isLoggedIn]);
+  useEffect(() => {
+    if (isLoggedIn) {
+      dispatch(getOrders({ cookies: {}, userId: cartOwner }));
+    }
+  }, [dispatch, isLoggedIn, cartOwner]);
   return (
     <>
       <Head>

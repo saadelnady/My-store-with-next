@@ -13,3 +13,8 @@ export const showToast = (type, message, intl) => {
   }
   return toast.error(intl.formatMessage({ id: message }));
 };
+
+export const formatDate = (dateString) => {
+  const date = new Date(dateString);
+  return `${date.getDate()}/${date.getMonth() + 1}/${date.getFullYear()}`;
+};

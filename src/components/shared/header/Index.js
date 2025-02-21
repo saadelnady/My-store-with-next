@@ -14,6 +14,8 @@ import { postUserLogOut } from "@/store/actions";
 import logo from "./assets/logo.png";
 import IcUser from "./assets/ic-user.svg";
 import IcArrow from "./assets/arrow.svg";
+import IcOrders from "./assets/ic-orders.svg";
+import IcLoggout from "./assets/ic-logout.svg";
 import styles from "./styles/styles.module.scss";
 
 const Header = () => {
@@ -239,6 +241,7 @@ const Header = () => {
                     <li>
                       <Link href="/orders">
                         <a className=" ">
+                          <IcOrders />
                           <FormattedMessage id="orders" />
                         </a>
                       </Link>
@@ -246,6 +249,7 @@ const Header = () => {
 
                     <li>
                       <button onClick={handleLogout}>
+                        <IcLoggout className="logout-icon" />
                         <FormattedMessage id="logout" />
                       </button>
                     </li>
@@ -303,6 +307,7 @@ const Header = () => {
                     <li>
                       <Link href="/orders">
                         <a className=" ">
+                          <IcOrders />
                           <FormattedMessage id="orders" />
                         </a>
                       </Link>
@@ -310,6 +315,7 @@ const Header = () => {
 
                     <li>
                       <button onClick={handleLogout}>
+                        <IcLoggout className="logout-icon" />
                         <FormattedMessage id="logout" />
                       </button>
                     </li>

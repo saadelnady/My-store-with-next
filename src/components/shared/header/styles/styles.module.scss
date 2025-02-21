@@ -91,12 +91,30 @@
               button {
                 width: 100%;
                 padding: 10px;
-                display: block;
+                display: flex;
+                align-items: center;
                 color: #000;
+                .logout-icon {
+                  [dir="ltr"] & {
+                    transform: rotate(180deg);
+                  }
+                }
                 [data-theme="dark"] & {
                   color: #fff;
                 }
               }
+              svg {
+                fill: #000;
+
+                path {
+                  fill: #0000;
+                  [data-theme="dark"] & {
+                    stroke: #fff;
+                  }
+                }
+                margin-inline-end: 10px;
+              }
+
               button {
                 background-color: transparent;
                 border: none;
@@ -104,6 +122,7 @@
                 color: #000;
                 background-color: $highlight-color;
                 border-radius: 5px;
+
                 [data-theme="dark"] & {
                   color: #fff;
                 }
@@ -199,7 +218,7 @@
           &.active {
             // background-color: $highlight-color;
             border-radius: 5px;
-            color: $light-color;
+            // color: $light-color;
           }
 
           font-size: 16px;
@@ -334,7 +353,8 @@
             button {
               width: 100%;
               padding: 10px;
-              display: block;
+              display: flex;
+              align-items: center;
               color: #000;
               font-size: 14px;
               [data-theme="dark"] & {
@@ -351,6 +371,22 @@
               border-radius: 5px;
               [data-theme="dark"] & {
                 color: #fff;
+              }
+            }
+            svg {
+              fill: #000;
+
+              path {
+                fill: #0000;
+                [data-theme="dark"] & {
+                  stroke: #fff;
+                }
+              }
+              margin-inline-end: 10px;
+            }
+            .logout-icon {
+              [dir="ltr"] & {
+                transform: rotate(180deg);
               }
             }
           }

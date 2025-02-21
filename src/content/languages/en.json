@@ -112,5 +112,17 @@
   "paymentPartners": "Payment Partners",
   "links": "Links",
   "remove-product-from-wishlist-title": "Remove Product From Wishlist",
-  "remove-product-from-wishlist-description": "Do you want to remove the product from your wishlist?"
+  "remove-product-from-wishlist-description": "Do you want to remove the product from your wishlist?",
+  "delivered": "Delivered",
+  "notDelivered": "Not delivered",
+  "orderId": "Order number",
+  "date": "Date",
+  "status": "Status",
+  "showOrder": "Show Order",
+  "city": "City",
+  "details": "Details",
+  "order-details": "Order Details",
+  "tax-price": "Tax Price",
+  "payment-method": "Payment Method",
+  "shipping": "Shipping"
 }

@@ -112,5 +112,17 @@
   "paymentPartners": "شركاء الدفع",
   "links": "روابط",
   "remove-product-from-wishlist-title": "حذف المنتج من المفضلة",
-  "remove-product-from-wishlist-description": "هل تريد حذف المنتج من المفضلة ؟"
+  "remove-product-from-wishlist-description": "هل تريد حذف المنتج من المفضلة ؟",
+  "delivered": "تم التوصيل",
+  "notDelivered": "لم يتم التوصيل بعد",
+  "orderId": "رقم الطلب",
+  "date": "التاريخ",
+  "status": "الحالة",
+  "showOrder": "عرض الطلب",
+  "city": "المدينة",
+  "details": "تفاصيل",
+  "order-details": "تفاصيل الطلب",
+  "tax-price": "ضريبة القيمة المضافة",
+  "payment-method": " طريقة الدفع",
+  "shipping": "الشحن"
 }
