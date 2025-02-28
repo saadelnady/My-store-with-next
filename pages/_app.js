@@ -23,7 +23,7 @@ import TopBarProgress from "react-topbar-progress-indicator";
 import Aos from "aos";
 
 import { wrapper } from "@/store";
-import Loading from "@/components/shared/loading/Loading";
+import Loading from "@/components/shared/loading";
 
 import { Toaster } from "react-hot-toast"; // Import React Hot Toast
 import { useDispatch, useSelector } from "react-redux";
