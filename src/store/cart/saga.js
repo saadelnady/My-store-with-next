@@ -26,6 +26,7 @@ import {
   postAddToCartApi,
 } from "@/api/cart";
 import { showToast } from "@/helpers/helpers";
+import nookies from "nookies";
 
 function* getCartSaga({ payload }) {
   try {
@@ -42,6 +43,7 @@ function* addProductToCartSaga({ payload }) {
 
     yield put(postAddProductToCartSuccess(data));
     showToast("success", "existing-product-in-cart", payload.intl);
+    nookies.set(null, "userId", data?.cartOwner, { path: "/" });
   } catch (error) {
     yield put(postAddProductToCartFailure(error));
   }

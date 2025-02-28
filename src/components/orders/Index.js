@@ -70,8 +70,9 @@ const Orders = () => {
             {item?.totalOrderPrice} <span>{<FormattedMessage id="EGP" />}</span>
           </h4>
 
-          <span className="products-count">{item?.cartItems?.length}</span>
-          {<FormattedMessage id="product" />}
+          <span className="products-count">
+            {item?.cartItems?.length} <FormattedMessage id="product" />
+          </span>
         </div>
       ),
     },

@@ -203,3 +203,15 @@ html {
   align-items: center;
   height: 80vh;
 }
+.no-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  p {
+    color: #000;
+    font-size: 20px;
+    [data-theme="dark"] & {
+      color: #fff;
+    }
+  }
+}

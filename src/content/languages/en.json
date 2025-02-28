@@ -124,5 +124,9 @@
   "order-details": "Order Details",
   "tax-price": "Tax Price",
   "payment-method": "Payment Method",
-  "shipping": "Shipping"
+  "shipping": "Shipping",
+  "details-max-length": "You cannot enter more than 250 characters.",
+  "pay": "Pay",
+  "empty-cart-title": "Your cart is empty",
+  "empty-cart-description": "You have no items in your shopping cart."
 }

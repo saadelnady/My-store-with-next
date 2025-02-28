@@ -9,13 +9,14 @@ import BreadCrumb from "../shared/breadCrumb/BreadCrumb";
 import IcPLus from "./assets/svgs/ic-plus.svg";
 import IcMinus from "./assets/svgs/ic-minus.svg";
 import IcRemove from "./assets/svgs/ic-remove.svg";
-import EmptyCart from "./assets/pngs/empty-cart.jpg";
+import EmptyCart from "./assets/svgs/empty-cart.svg";
 import "rc-rate/assets/index.css";
 import styles from "./styles/styles.module.scss";
 import { deleteCartItem, deleteCartItems, editCart } from "@/store/actions";
 import { showToast } from "@/helpers/helpers";
 import CartModal from "./modal";
 import Loading from "../shared/loading-2/Index";
+import Link from "next/link";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -194,9 +195,11 @@ const Cart = () => {
                       </p>
                     </div>
                     <div className="checkout">
-                      <button className="btn checkout-btn">
-                        <FormattedMessage id="checkout" />
-                      </button>
+                      <Link href="/checkout">
+                        <a className="btn checkout-btn">
+                          <FormattedMessage id="checkout" />
+                        </a>
+                      </Link>
                     </div>
                     <div className="remove-all">
                       <button
@@ -213,12 +216,13 @@ const Cart = () => {
               </Row>
             ) : (
               <div className="empty-cart">
-                <Image
-                  src={EmptyCart}
-                  alt="empty-cart"
-                  width={500}
-                  height={500}
-                />
+                <EmptyCart alt="empty-cart" width={500} height={500} />{" "}
+                <h2>
+                  <FormattedMessage id="empty-cart-title" />
+                </h2>
+                <p>
+                  <FormattedMessage id="empty-cart-description" />
+                </p>
               </div>
             )}
           </Container>

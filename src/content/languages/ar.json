@@ -124,5 +124,9 @@
   "order-details": "تفاصيل الطلب",
   "tax-price": "ضريبة القيمة المضافة",
   "payment-method": " طريقة الدفع",
-  "shipping": "الشحن"
+  "shipping": "الشحن",
+  "details-max-length": "لا يمكن ان يكون طول التفاصيل اكثر من 250 حرف",
+  "pay": "ادفع",
+  "empty-cart-title": "سلة التسوق فارغة",
+  "empty-cart-description": "ليس لديك أي عناصر في سلة التسوق."
 }

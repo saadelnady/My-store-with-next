@@ -23,7 +23,7 @@ const SingleBrand = () => {
 
   const items = [
     { title: <FormattedMessage id="home" />, url: "/" },
-    { title: <FormattedMessage id="brands" />, url: "/" },
+    { title: <FormattedMessage id="brands" />, url: "/brands" },
     { title: brand.name },
   ];
   const { locale } = useRouter();
@@ -31,43 +31,49 @@ const SingleBrand = () => {
   const dir = locale === "ar" ? "rtl" : "ltr";
 
   const renderProductsItems =
-    filteredProducts &&
-    filteredProducts.length > 0 &&
-    filteredProducts?.map((item, index) => (
-      <SwiperSlide key={index}>
-        <ProductCard product={item} />
-      </SwiperSlide>
-    ));
-  const renderProducts = () => {
-    if (filteredProducts && filteredProducts?.length > 0) {
-      return filteredProducts?.map((product, index) => (
-        <Col xs={12} sm={6} md={6} lg={4} xl={3} key={index}>
-          <Link href={`/products/${product?._id}`}>
-            <a>
-              <div className="product">
-                <div className="product-img">
-                  <Image
-                    src={product.imageCover}
-                    alt={product.title}
-                    width={500}
-                    height={500}
-                    priority
-                    unoptimized
-                  />
-                </div>
-                <h4 className="product-name">{product.title}</h4>
-              </div>
-            </a>
-          </Link>
-        </Col>
-      ));
-    }
-    return (
-      <p className="text-center">
-        <FormattedMessage id="no-data" />
-      </p>
+    filteredProducts && filteredProducts.length > 0 ? (
+      filteredProducts?.map((item, index) => (
+        <SwiperSlide key={index}>
+          <ProductCard product={item} />
+        </SwiperSlide>
+      ))
+    ) : (
+      <div className="no-data">
+        <p>
+          <FormattedMessage id="no-data" />
+        </p>
+      </div>
     );
-  };
+  // const renderProducts = () => {
+  //   if (filteredProducts && filteredProducts?.length > 0) {
+  //     return filteredProducts?.map((product, index) => (
+  //       <Col xs={12} sm={6} md={6} lg={4} xl={3} key={index}>
+  //         <Link href={`/products/${product?._id}`}>
+  //           <a>
+  //             <div className="product">
+  //               <div className="product-img">
+  //                 <Image
+  //                   src={product.imageCover}
+  //                   alt={product.title}
+  //                   width={500}
+  //                   height={500}
+  //                   priority
+  //                   unoptimized
+  //                 />
+  //               </div>
+  //               <h4 className="product-name">{product.title}</h4>
+  //             </div>
+  //           </a>
+  //         </Link>
+  //       </Col>
+  //     ));
+  //   }
+  //   return (
+  //     <p className="text-center">
+  //       <FormattedMessage id="no-data" />
+  //     </p>
+  //   );
+  // };
 
   return (
     <div className={styles.singleBrand}>
@@ -143,7 +149,7 @@ const SingleBrand = () => {
                 spaceBetween: 10,
               },
               480: {
-                slidesPerView: 1,
+                slidesPerView: 2,
                 spaceBetween: 10,
               },
               768: {

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { IntlProvider } from "react-intl";
 import { END } from "redux-saga";
 import nookies from "nookies";
-
+import { parseCookies } from "nookies";
 import SSRProvider from "react-bootstrap/SSRProvider";
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap-icons/font/bootstrap-icons.css";
@@ -44,9 +44,8 @@ function App({ Component, pageProps }) {
   const { user, isLoggedIn } = useSelector((state) => state.user);
   const { cart } = useSelector((state) => state.cart);
   const { cartOwner } = cart;
-  console.log(cart);
-  console.log(cartOwner);
-
+  const cookies = parseCookies();
+  const userId = cookies.userId;
   const { locale, defaultLocale, route } = useRouter();
 
   const messages = languages[locale];
@@ -111,10 +110,10 @@ function App({ Component, pageProps }) {
     }
   }, [dispatch, router, isLoggedIn]);
   useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(getOrders({ cookies: {}, userId: cartOwner }));
+    if (isLoggedIn || cartOwner || userId) {
+      dispatch(getOrders({ cookies: {}, userId: cartOwner || userId }));
     }
-  }, [dispatch, isLoggedIn, cartOwner]);
+  }, [dispatch, isLoggedIn, cartOwner, userId, router]);
   return (
     <>
       <Head>

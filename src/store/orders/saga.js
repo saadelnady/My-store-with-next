@@ -4,7 +4,7 @@ import { getOrdersSuccess, getOrdersFailure } from "./actions";
 import { getOrdersApi } from "@/api/orders";
 
 function* getOrdersSaga({ payload }) {
-  console.log("payload >>>", payload);
+  
 
   try {
     const orders = yield call(getOrdersApi, payload);

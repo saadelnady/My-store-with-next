@@ -232,9 +232,30 @@
     .empty-cart {
       overflow: hidden;
       text-align: center;
-      img {
-        max-width: 600px;
+      svg {
+        width: 100%;
+
+        margin: auto;
         object-fit: cover;
+        fill: #000;
+        [data-theme="dark"] & {
+          fill: #fff;
+        }
+      }
+      h2 {
+        margin-top: 30px;
+        font-family: "font-bold";
+        font-size: 24px;
+        color: #000000;
+        [data-theme="dark"] & {
+          color: #fff;
+        }
+      }
+      p {
+        margin-top: 10px;
+        [data-theme="dark"] & {
+          color: #fff;
+        }
       }
     }
   }

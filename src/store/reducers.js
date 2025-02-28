@@ -6,6 +6,7 @@ import brands from "./brands/reducer.js";
 import cart from "./cart/reducer.js";
 import wishlist from "./wishlist/reducer.js";
 import orders from "./orders/reducer.js";
+import checkout from "./checkout/reducer.js";
 
 const rootReducer = combineReducers({
   categories,
@@ -15,6 +16,7 @@ const rootReducer = combineReducers({
   cart,
   wishlist,
   orders,
+  checkout,
 });
 
 export default rootReducer;
