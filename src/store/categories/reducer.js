@@ -3,6 +3,9 @@ import {
   GET_ALL_CATEGORIES,
   GET_ALL_CATEGORIES_SUCCESS,
   GET_ALL_CATEGORIES_FAILURE,
+  GET_SINGLE_CATEGORY,
+  GET_SINGLE_CATEGORY_SUCCESS,
+  GET_SINGLE_CATEGORY_FAILURE,
 } from "./actionTypes";
 
 const initialState = {
@@ -42,6 +45,28 @@ const categories = (state = initialState, action) => {
         error: action.payload,
       };
     }
+    // --------------------------------------------------------------------
+    case GET_SINGLE_CATEGORY: {
+      return {
+        ...state,
+        isLoading: true,
+      };
+    }
+    case GET_SINGLE_CATEGORY_SUCCESS: {
+      return {
+        ...state,
+        category: action.payload,
+        isLoading: false,
+      };
+    }
+    case GET_SINGLE_CATEGORY_FAILURE: {
+      return {
+        ...state,
+        isLoading: false,
+        error: action.payload,
+      };
+    }
+
     default:
       return state;
   }

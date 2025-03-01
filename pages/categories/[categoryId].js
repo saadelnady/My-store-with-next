@@ -1,24 +1,21 @@
-import ProductComponent from "@/components/productPage";
+import React from "react";
 import { wrapper } from "@/store";
-import { getSingleProduct } from "@/store/actions";
+import { getAllProducts, getSingleCategory } from "@/store/actions";
 import { END } from "redux-saga";
-
-const ProductPage = () => {
-  return (
-    <div>
-      <ProductComponent />
-    </div>
-  );
+import SingleCategory from "@/components/singleCategory";
+const SingleCategoryPage = () => {
+  return <SingleCategory />;
 };
 
-export default ProductPage;
+export default SingleCategoryPage;
+
 export const getStaticProps = wrapper.getStaticProps((store) => {
   return async (context) => {
     const { params } = context;
-    const { slug } = params;
+    const { categoryId } = params;
 
-    store.dispatch(getSingleProduct({ cookies: {}, slug }));
-
+    store.dispatch(getSingleCategory({ cookies: {}, categoryId }));
+    store.dispatch(getAllProducts({ cookies: {} }));
     store.dispatch(END);
     await store.sagaTask.toPromise();
     const product = store.getState().products.product;

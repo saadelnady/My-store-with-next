@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 import { FormattedMessage } from "react-intl";
 import Image from "next/future/image";
 import BreadCrumb from "../shared/breadCrumb/BreadCrumb";
+import Link from "next/link";
 
 const Categories = () => {
   const { categories } = useSelector((state) => state.categories);
@@ -26,7 +27,11 @@ const Categories = () => {
                 priority
               />
             </div>
-            <h4 className="category-name">{category.name}</h4>
+            <Link href={`/categories/${category?._id}`}>
+              <a>
+                <h4 className="category-name">{category.name}</h4>
+              </a>
+            </Link>
           </div>
         </Col>
       ));
