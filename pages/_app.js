@@ -36,7 +36,7 @@ const languages = {
 };
 
 import Header from "@/components/shared/header/Index";
-import Footer from "@/components/shared/footer/index.js";
+import Footer from "@/components/shared/footer/Index";
 
 function App({ Component, pageProps }) {
   const router = useRouter();
