@@ -10,7 +10,7 @@ import IcPLus from "./assets/svgs/ic-plus.svg";
 import IcMinus from "./assets/svgs/ic-minus.svg";
 import IcRemove from "./assets/svgs/ic-remove.svg";
 import EmptyCart from "./assets/svgs/empty-cart.svg";
-import "rc-rate/assets/index.css";
+// import "rc-rate/assets/index.css";
 import styles from "./styles/styles.module.scss";
 import { deleteCartItem, deleteCartItems, editCart } from "@/store/actions";
 import { showToast } from "@/helpers/helpers";
