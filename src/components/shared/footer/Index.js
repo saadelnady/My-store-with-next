@@ -8,11 +8,28 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import logo from "./assets/logo.png";
 import CustomHeading from "../customHeading/CustomHeading";
+import IcSend from "./assets/ic-send.svg";
+import { useForm } from "react-hook-form";
 const Footer = () => {
   const intl = useIntl();
   const { asPath } = useRouter();
 
   const isCurrentPath = (path) => asPath === path;
+
+  const { locale } = useRouter();
+  const {
+    register,
+    handleSubmit,
+    setError,
+    reset,
+    clearErrors,
+    formState: { errors },
+  } = useForm();
+
+  const onSubmit = (data) => {
+    console.log(data);
+  };
+
   return (
     <div className={styles.footer}>
       <Container>
@@ -26,9 +43,34 @@ const Footer = () => {
                   </a>
                 </Link>
               </div>
+              {/* <p className="payment-partners">
+                <FormattedMessage id="paymentPartners" />
+              </p> */}
+              <ul className="icons">
+                <li>
+                  <i className="bi bi-instagram"></i>
+                </li>
+                <li>
+                  <i className="bi bi-facebook"></i>
+                </li>
+                <li>
+                  <i className="bi bi-tiktok"></i>
+                </li>
+                <li>
+                  <i className="bi bi-twitter"></i>
+                </li>
+                <li>
+                  <i className="bi bi-linkedin"></i>
+                </li>
+                <li>
+                  <i className="bi bi-youtube"></i>
+                </li>
+              </ul>
             </Col>
             <Col xs={6} md={1}>
-              <CustomHeading title={<FormattedMessage id="links" />} />
+              <h2>
+                <FormattedMessage id="links" />
+              </h2>
               <ul className="links">
                 <li>
                   <Link href="/">
@@ -61,49 +103,38 @@ const Footer = () => {
                 </li>
               </ul>
             </Col>
-            <Col xs={6} md={6}>
-              <CustomHeading title={<FormattedMessage id="getOurApp" />} />
-
+            <Col xs={6} md={4}>
+              <h2>
+                <FormattedMessage id="getOurApp" />
+              </h2>
               <p>
                 <FormattedMessage id="getAppMessage" />
               </p>
-              <input
-                type="email"
-                placeholder={`${intl.formatMessage({ id: "email" })}...`}
-                className="input"
-              />
-              <button className="btn">
-                <FormattedMessage id="subscribe" />
-              </button>
+              <form onSubmit={handleSubmit(onSubmit)}>
+                <input
+                  id="email"
+                  placeholder={intl.formatMessage({ id: "email-placeholder" })}
+                  {...register("email", {
+                    required: intl.formatMessage({ id: "required" }),
+                    pattern: {
+                      value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
+                      message: intl.formatMessage({ id: "invalidEmail" }),
+                    },
+                  })}
+                />
+
+                <button type="submit">
+                  <IcSend alt="Send" />
+                </button>
+              </form>
+              {errors?.email?.message && (
+                <p className="error">{errors?.email?.message}</p>
+              )}
             </Col>
           </Row>
         </div>
         <div className="bottom">
-          <p>
-            {" "}
-            <FormattedMessage id="paymentPartners" />
-          </p>
-          <ul className="icons">
-            <li>
-              <i className="bi bi-instagram"></i>
-            </li>
-            <li>
-              <i className="bi bi-facebook"></i>
-            </li>
-            <li>
-              <i className="bi bi-tiktok"></i>
-            </li>
-            <li>
-              <i className="bi bi-twitter"></i>
-            </li>
-            <li>
-              <i className="bi bi-linkedin"></i>
-            </li>
-            <li>
-              <i className="bi bi-youtube"></i>
-            </li>
-          </ul>
-          <div className="imgs">
+          {/* <div className="imgs">
             <p>Get Deliveries</p>
             <Image
               src={googleplaylogo}
@@ -115,7 +146,9 @@ const Footer = () => {
               alt={"applestorelogo"}
               className="store"
             />
-          </div>
+          </div> */}
+
+          <p className="copyright">{intl.formatMessage({ id: "copyright" })}</p>
         </div>
       </Container>
     </div>

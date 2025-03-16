@@ -128,5 +128,7 @@
   "details-max-length": "You cannot enter more than 250 characters.",
   "pay": "Pay",
   "empty-cart-title": "Your cart is empty",
-  "empty-cart-description": "You have no items in your shopping cart."
+  "empty-cart-description": "You have no items in your shopping cart.",
+  "email-placeholder": "Enter your email address",
+  "copyright": "© All rights reserved. Developed in 2025"
 }
